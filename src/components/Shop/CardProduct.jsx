@@ -16,7 +16,7 @@ export default function CardProduct({ product }) {
                         </ul>
                     </div>
                 </div>
-                <div className="card-body">
+                <div className="card-body s">
                     <a href="shop-single.html" className="h3 text-decoration-none">{product.name}</a>
                     
                     <p className='text-center m-0 fs-6'>{product.brand}</p>
