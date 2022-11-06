@@ -26,8 +26,8 @@ export default function CardProduct({ product }) {
                         <li>
                             {                           
                                 [1,2,3,4,5].map( (n) => {
-                                    if(n <= product.rating) return <i className="text-warning fa fa-star"></i>
-                                    else return <i className="text-muted fa fa-star"></i>
+                                    if(n <= product.rating) return <i key={n} className="text-warning fa fa-star"></i>
+                                    else return <i key={n} className="text-muted fa fa-star"></i>
                                 } )
                             }
                             {/* <i className="text-warning fa fa-star"></i>
