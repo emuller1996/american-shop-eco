@@ -6,6 +6,7 @@ import BannerCarousel from '../components/Home/BannerCarousel'
 import BannerCategoryMoth from '../components/Home/BannerCategoryMoth'
 import About from '../components/About'
 import Shop from '../components/Shop'
+import ProductDetail from '../pages/ProductDetail'
 
 export default function TemplateBase() {
 
@@ -24,6 +25,9 @@ export default function TemplateBase() {
                 </Route>
                 <Route path={'/Shop'}>
                     <Shop  />
+                </Route>
+                <Route path={'/ProductDetail/:id'}>
+                    <ProductDetail  />
                 </Route>
             </Switch>
 
