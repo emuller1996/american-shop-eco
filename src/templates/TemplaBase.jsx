@@ -7,6 +7,7 @@ import BannerCategoryMoth from '../components/Home/BannerCategoryMoth'
 import About from '../components/About'
 import Shop from '../components/Shop'
 import ProductDetail from '../pages/ProductDetail'
+import MyCart from '../pages/MyCart'
 
 export default function TemplateBase() {
 
@@ -25,6 +26,9 @@ export default function TemplateBase() {
                 </Route>
                 <Route path={'/Shop'}>
                     <Shop  />
+                </Route>
+                <Route path={'/MyCart'}>
+                    <MyCart  />
                 </Route>
                 <Route path={'/ProductDetail/:id'}>
                     <ProductDetail  />

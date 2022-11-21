@@ -2,26 +2,27 @@ import React, { useState, useEffect } from 'react';
 import CardProduct from './CardProduct';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
+import FilterProducts from './FilterProducts';
 
 export default function Shop() {
 
     const [productsAll, setProductsAll] = useState([]);
     const [categories, setCategories] = useState();
     const [size] = useState(6);
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState();
     const [total, setTotal] = useState();
     const [search, setSearch] = useState('');
+    const [categoryFilter, setCategoryFilter] = useState('');
 
 
     useEffect(() => {
-        getProductAll(size, page, search)
-        
+        getProductAll(size, page, search, categoryFilter)
+
         getCategoryAll();
-    }, [size, page, search,total])
+    }, [size, page, search, total, categoryFilter])
 
     const handlePageClick = (event) => {
-
-         setPage(event.selected)  
+            setPage(event.selected)            
     };
 
     const getCategoryAll = async () => {
@@ -29,10 +30,11 @@ export default function Shop() {
         setCategories(result.data)
     }
 
-    const getProductAll = async (size, page, search) => {
+    const getProductAll = async (size, page, search, categoryFilter) => {
         try {
-            const result = await axios.get(`http://localhost:3001/product?size=${size}&page=${page}&search=${search}`);
+            const result = await axios.get(`http://localhost:3001/product?size=${size}&page=${page}&search=${search}&cat=${categoryFilter}`);
             setProductsAll(result.data.products);
+            
             setTotal(result.data.totalPages)
             console.log(result.data);
 
@@ -45,7 +47,7 @@ export default function Shop() {
 
 
     function handleSearch(e) {
-        
+
         setSearch(e.target.value)
     }
 
@@ -61,24 +63,7 @@ export default function Shop() {
 
 
 
-                        <div className="accordion list-unstyled templatemo-accordion  " id="accordionExample">
-                            <div className="accordion-item pb-3 border-0">
-                                <h2 className="accordion-header" id="headingOne">
-                                    <div className="d-flex justify-content-between h3 text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Categories
-                                        <i className="fa fa-fw fa-chevron-circle-down mt-1"></i>
-                                    </div>
-                                </h2>
-                                <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div className="accordion-body">
-                                        {
-                                            categories && categories.map(c => <p key={c.id}> {c.category} </p>)
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                        <FilterProducts categories={categories} setCategoryFilter={setCategoryFilter} />
 
                         {/* <ul className="list-unstyled templatemo-accordion accordion">
                             <li className="pb-3">
@@ -136,9 +121,9 @@ export default function Shop() {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row g-3 mb-4">
 
-                            { productsAll && productsAll.length === 0 && <p> No products found</p>}
+                            {productsAll && productsAll.length === 0 && <p> No products found</p>}
                             {
                                 productsAll || productsAll.length !== 0 ? productsAll.map(p => <CardProduct key={p.id} product={p} />) : (<p>sada</p>)
                             }
@@ -148,12 +133,13 @@ export default function Shop() {
                         <div div="row">
 
                             <ReactPaginate
+                                initialPage={0}
                                 breakLabel="..."
                                 breakLinkClassName='page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold'
                                 nextLabel=">"
                                 onPageChange={handlePageClick}
                                 pageRangeDisplayed={2}
-                                pageCount={total!==0 ? total : 1}
+                                pageCount={total !== 0 ? total : 1}
                                 previousLabel="<"
                                 renderOnZeroPageCount={1}
                                 className="pagination pagination-lg justify-content-end"

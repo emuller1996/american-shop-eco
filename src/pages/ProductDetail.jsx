@@ -9,7 +9,7 @@ const ProductDetail = () =>{
 
     useEffect( () => {
         getProductDetail(id);
-    },[])
+    },[id])
 
     const getProductDetail = async (id)=>{
         const result = await axios.get(`http://localhost:3001/Product/${id}`);
