@@ -3,6 +3,7 @@ import CardProduct from './CardProduct';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import FilterProducts from './FilterProducts';
+import './index.css'
 
 export default function Shop() {
 
@@ -117,7 +118,7 @@ export default function Shop() {
                             </div>
                             <div className="col-md-6 pb-4">
                                 <div className="d-flex">
-                                    <input type="text" className="form-control  border-dark" value={search} onChange={handleSearch} placeholder='Search a product' />
+                                    <input type="text" className="form-control input-search-producto" value={search} onChange={handleSearch} placeholder='Search a product' />
                                 </div>
                             </div>
                         </div>

@@ -3,14 +3,11 @@ import React from 'react';
 export default function MyCart() {
 
 
-
-
-
     return (
         <>
             <div className="container py-4">
-                <div className="card rounded-0 p-3  shadow">
-                    <h4>MyCart</h4>
+                {/* <div className="card rounded-0 p-3  shadow"> */}
+                    <h4 className='text-center mb-3'>MyCart</h4>
                     <div className="row">
                         <div className="col-md-7">
                             <div className="table-responsive">
@@ -55,7 +52,7 @@ export default function MyCart() {
                         </div>
 
                     </div>
-                </div>
+                {/* </div> */}
             </div>
         </>
     )
