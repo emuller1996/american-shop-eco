@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 export default function CardProduct({ product }) {
 
 
+    const addProducToCart = (e)=>{
+        e.preventDefault();
+    }
+
     return (
         <div className="col-md-4">
             <Link className="card mb-4 product-wap rounded-0 text-decoration-none h-100" to={`/ProductDetail/${product.id}`}>
@@ -16,7 +20,7 @@ export default function CardProduct({ product }) {
                         <ul className="list-unstyled">
                             <li><span className="btn btn-dark text-white" ><i className="far fa-heart"></i></span></li>
                             
-                            <li><span className="btn btn-dark text-white mt-2"><i className="fas fa-cart-plus"></i></span></li>
+                            <li onClick={addProducToCart} ><span className="btn btn-dark text-white mt-2"><i className="fas fa-cart-plus"></i></span></li>
                         </ul>
                     </div>
                 </div>
