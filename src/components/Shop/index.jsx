@@ -4,6 +4,9 @@ import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import FilterProducts from './FilterProducts';
 import './index.css'
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { setCart as setCartR } from '../../features/Car/carSlice'
+import { useDispatch } from 'react-redux';
 
 export default function Shop() {
 
@@ -14,6 +17,29 @@ export default function Shop() {
     const [total, setTotal] = useState();
     const [search, setSearch] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
+    const [cart,setCart] = useLocalStorage("cart",[]);
+
+    const dispatch = useDispatch();
+   
+
+   
+    const addProducToCart = (e, id) => {
+        e.preventDefault();
+        /* console.log(cartGlobal); */
+               
+        const exist = cart.find(i => i === id)
+        console.log(exist)
+        if (!exist) {
+            setCart([...cart, id])
+            dispatch(setCartR(cart))
+        } else {
+            alert('Cart already exists')
+        }
+
+        console.log(cart); 
+        
+
+    }
 
 
     useEffect(() => {
@@ -126,7 +152,7 @@ export default function Shop() {
 
                             {productsAll && productsAll.length === 0 && <p> No products found</p>}
                             {
-                                productsAll || productsAll.length !== 0 ? productsAll.map(p => <CardProduct key={p.id} product={p} />) : (<p>sada</p>)
+                                productsAll || productsAll.length !== 0 ? productsAll.map(p => <CardProduct addProducToCart={addProducToCart} key={p.id} product={p} />) : (<p>sada</p>)
                             }
 
 

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Dropdown, DropdownButton, Fade } from 'react-bootstrap';
 import { useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 
 export default function Nav() {
 
-    const cartCount = useSelector (state => state.cart.cart.length);
-
+    const cartCount = useSelector(state => state.cart.cart.length);
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
@@ -19,8 +19,8 @@ export default function Nav() {
                         </div>
                         <div>
                             <span className="text-light" target="_blank" rel="sponsored"><i className="fab fa-facebook-f fa-sm fa-fw me-2"></i></span>
-                            <span className="text-light"  target="_blank"><i className="fab fa-instagram fa-sm fa-fw me-2"></i></span>
-                            <span className="text-light"  target="_blank"><i className="fab fa-twitter fa-sm fa-fw me-2"></i></span>
+                            <span className="text-light" target="_blank"><i className="fab fa-instagram fa-sm fa-fw me-2"></i></span>
+                            <span className="text-light" target="_blank"><i className="fab fa-twitter fa-sm fa-fw me-2"></i></span>
                             <span className="text-light" ><i className="fab fa-linkedin fa-sm fa-fw"></i></span>
                         </div>
                     </div>
@@ -41,23 +41,23 @@ export default function Nav() {
                         <div className="flex-fill">
                             <ul className="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                                 <li className="nav-item ">
-                                    <NavLink  to={'/Home'} activeClassName={'text-danger fw-semibold'} className="nav-link text-decoration-none" >Home</NavLink>
+                                    <NavLink to={'/Home'} activeClassName={'text-danger fw-semibold'} className="nav-link text-decoration-none" >Home</NavLink>
                                 </li>
-                                <li  className="nav-item text-decoration-none">
+                                <li className="nav-item text-decoration-none">
                                     <NavLink to={'/About'} activeClassName={'text-danger fw-semibold'} className="nav-link" href="about.html">About</NavLink>
                                 </li>
-                                <li    className="nav-item text-decoration-none">
-                                    <NavLink  to={'/Shop'} activeClassName={'text-danger fw-semibold'}  className="nav-link" href="shop.html">Shop</NavLink>
+                                <li className="nav-item text-decoration-none">
+                                    <NavLink to={'/Shop'} activeClassName={'text-danger fw-semibold'} className="nav-link" href="shop.html">Shop</NavLink>
                                 </li>
                             </ul>
                         </div>
                         <div className="navbar align-self-center d-flex">
                             <div className="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
                                 <div className="input-group">
-                                    <input type="text" className="form-control" id="inputMobileSearch" placeholder="Search ..."/>
-                                        <div className="input-group-text">
-                                            <i className="fa fa-fw fa-search"></i>
-                                        </div>
+                                    <input type="text" className="form-control" id="inputMobileSearch" placeholder="Search ..." />
+                                    <div className="input-group-text">
+                                        <i className="fa fa-fw fa-search"></i>
+                                    </div>
                                 </div>
                             </div>
                             {/* <a className="nav-icon d-none d-lg-inline" href='/'  data-bs-toggle="modal" data-bs-target="#templatemo_search" >
@@ -65,12 +65,23 @@ export default function Nav() {
                             </a> */}
                             <Link className="nav-icon position-relative text-decoration-none" to={'/MyCart'}>
                                 <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{cartCount && cartCount}</span>
+                                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{cartCount}</span>
                             </Link>
-                            <a className="nav-icon position-relative text-decoration-none" href="/">
-                                <i className="fa fa-fw fa-user text-dark mr-3"></i>
-                                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
-                            </a>
+
+
+                            <Dropdown>
+                                <Dropdown.Toggle variant="white" id="dropdown-basic" 
+                                >
+                                    <i className="fa fa-fw fa-user text-dark mr-3" ></i>
+                                </Dropdown.Toggle>                           
+                                    <Dropdown.Menu id="example-fade-text">
+                                        <Dropdown.Item href="#/action-1">Mi Perfil</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-2">Dasboard</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-3">cs</Dropdown.Item>
+                                    </Dropdown.Menu>                              
+                            </Dropdown>
+
+
                         </div>
                     </div>
 

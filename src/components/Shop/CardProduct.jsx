@@ -1,26 +1,26 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { useLocalStorage } from '../../hooks/useLocalStorage'
 
-export default function CardProduct({ product }) {
+export default function CardProduct({ product,addProducToCart }) {
 
+        
 
-    const addProducToCart = (e)=>{
-        e.preventDefault();
-    }
 
     return (
         <div className="col-md-4">
             <Link className="card mb-4 product-wap rounded-0 text-decoration-none h-100" to={`/ProductDetail/${product.id}`}>
-                
-               
+
+
                 <div className="card  rounded-0 border-0">
-                <Card.Img variant="top" src={product.image} style={{ maxWidth: '90%', minWidth: '100%', minHeight: '100%' }} className="img-product img-fluid w-50  mx-auto d-block p-3" />
+                    <Card.Img variant="top" src={product.image} style={{ maxWidth: '90%', minWidth: '100%', minHeight: '100%' }} className="img-product img-fluid w-50  mx-auto d-block p-3" />
                     <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                         <ul className="list-unstyled">
                             <li><span className="btn btn-dark text-white" ><i className="far fa-heart"></i></span></li>
-                            
-                            <li onClick={addProducToCart} ><span className="btn btn-dark text-white mt-2"><i className="fas fa-cart-plus"></i></span></li>
+
+                            <li onClick={ (e,id)=> addProducToCart(e,product.id)} ><span className="btn btn-dark text-white mt-2"><i className="fas fa-cart-plus"></i></span></li>
                         </ul>
                     </div>
                 </div>

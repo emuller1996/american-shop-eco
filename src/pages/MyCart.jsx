@@ -1,10 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setCart as setCartR } from '../features/Car/carSlice'
+import { useLocalStorage } from '../hooks/useLocalStorage'
+import axios from "axios"
 
 export default function MyCart() {
 
-    const cart = useSelector(state => state.cart.cart)
+    const cartR = useSelector(state => state.cart.cart)
     const dispatch = useDispatch();
+    const [cart,setCart] = useLocalStorage("cart",[]);
+
+    useEffect(() => {
+        
+        getAllProductCar()
+        
+    },[])
+
+    const getAllProductCar = async ()=>{
+        const result = await cart.map(async c => await axios.get(`http://localhost:3001/product/${c}`))
+        const promises = await Promise.all(result); 
+        const arratP = promises.map( p => p.data)     
+        dispatch(setCartR(arratP))
+    }
 
     return (
         <>
@@ -29,14 +46,14 @@ export default function MyCart() {
                                 <tbody>
 
                                     {
-                                        cart.length === 0 ?
+                                        cartR.length === 0 ?
                                             (
                                                 <tr>
                                                     <td colSpan={6}> <p className="text-center text-success fw-semibold py-4"> You have not added products to the cart </p></td>
                                                 </tr>
 
                                             ) :
-                                            cart.map( c => (
+                                            cartR.map( c => (
                                                 <tr>
                                                     <td className="text-center"><img src={c.image} alt="IMGE_PROD" width={"50px"} /></td>
                                                     <td>{c.name}</td>
