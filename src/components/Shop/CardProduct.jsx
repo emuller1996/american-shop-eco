@@ -29,7 +29,8 @@ export default function CardProduct({ product,addProducToCart }) {
 
                     <p className='text-center m-0 fs-6 text-danger fw-normal'>{product.brand}</p>
 
-                    <p className='text-center m-0 fs-6 '>{product.CategoryId}</p>
+                    <p className='text-center m-0 fs-6 placeholder-glow'>{product.CategoryId} </p>
+                    
                     <ul className="list-unstyled d-flex justify-content-center mb-1">
                         <li>
                             {

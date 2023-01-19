@@ -16,12 +16,12 @@ export default function TemplateBase() {
         <>
             <Nav />
             <Switch>
-                <Route path={'/Home'}>
+                <Route strict exact path={'/'}>
                     <BannerCarousel />
                     <BannerCategoryMoth />
 
                 </Route>
-                <Route path={'/About'}>
+                <Route  path={'/About'}>
                     <About />
                 </Route>
                 <Route path={'/Shop'}>
