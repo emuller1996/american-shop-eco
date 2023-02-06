@@ -53,13 +53,13 @@ export default function Shop() {
     };
 
     const getCategoryAll = async () => {
-        const result = await axios.get('http://192.168.0.25:3001/category');
+        const result = await axios.get('/category');
         setCategories(result.data)
     }
 
     const getProductAll = async (size, page, search, categoryFilter) => {
         try {
-            const result = await axios.get(`http://192.168.0.25:3001/products?size=${size}&page=${page}&search=${search}&cat=${categoryFilter}`);
+            const result = await axios.get(`/products?size=${size}&page=${page}&search=${search}&cat=${categoryFilter}`);
             setProductsAll(result.data.products);
             
             setTotal(result.data.totalPages)
