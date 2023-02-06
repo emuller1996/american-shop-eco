@@ -6,6 +6,8 @@ import BannerCarousel from '../components/Home/BannerCarousel'
 import BannerCategoryMoth from '../components/Home/BannerCategoryMoth'
 import About from '../components/About'
 import Shop from '../components/Shop'
+import ProductDetail from '../pages/ProductDetail'
+import MyCart from '../pages/MyCart'
 
 export default function TemplateBase() {
 
@@ -14,16 +16,22 @@ export default function TemplateBase() {
         <>
             <Nav />
             <Switch>
-                <Route path={'/Home'}>
+                <Route strict exact path={'/'}>
                     <BannerCarousel />
                     <BannerCategoryMoth />
 
                 </Route>
-                <Route path={'/About'}>
+                <Route  path={'/About'}>
                     <About />
                 </Route>
                 <Route path={'/Shop'}>
                     <Shop  />
+                </Route>
+                <Route path={'/MyCart'}>
+                    <MyCart  />
+                </Route>
+                <Route path={'/ProductDetail/:id'}>
+                    <ProductDetail  />
                 </Route>
             </Switch>
 
