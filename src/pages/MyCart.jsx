@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCart as setCartR } from '../features/Car/carSlice'
 import { useLocalStorage } from '../hooks/useLocalStorage'
@@ -7,20 +7,30 @@ import axios from "axios"
 export default function MyCart() {
 
     const cartR = useSelector(state => state.cart.cart)
+    const [cartState, setCartState] = useState([]);
     const dispatch = useDispatch();
     const [cart,setCart] = useLocalStorage("cart",[]);
+    
 
     useEffect(() => {
         
         getAllProductCar()
+        console.log(cart);
         
     },[])
 
+
+    const deleteProductCar = (id) => {
+        console.log(id)
+        setCart( cart.filter( p => p !== id))
+    }
+
     const getAllProductCar = async ()=>{
-        const result = await cart.map(async c => await axios.get(`http://localhost:3001/product/${c}`))
+        const result = await cart.map(async c => await axios.get(`http://localhost:3001/products/${c}`))
         const promises = await Promise.all(result); 
-        const arratP = promises.map( p => p.data)     
-        dispatch(setCartR(arratP))
+        const arratP = promises.map( p => p.data) 
+        setCartState(arratP);   
+        /* dispatch(setCartR(arratP)) */
     }
 
     return (
@@ -46,14 +56,14 @@ export default function MyCart() {
                                 <tbody>
 
                                     {
-                                        cartR.length === 0 ?
+                                        cartState.length === 0 ?
                                             (
                                                 <tr>
                                                     <td colSpan={6}> <p className="text-center text-success fw-semibold py-4"> You have not added products to the cart </p></td>
                                                 </tr>
 
                                             ) :
-                                            cartR.map( c => (
+                                            cartState.map( c => (
                                                 <tr>
                                                     <td className="text-center"><img src={c.image} alt="IMGE_PROD" width={"50px"} /></td>
                                                     <td>{c.name}</td>
@@ -61,7 +71,7 @@ export default function MyCart() {
                                                     <td>CAnt</td>
                                                     <td>Total</td>
                                                     <td>
-                                                        <button type="button" className="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
+                                                        <button type="button" onClick={ () => deleteProductCar(c.id)} className="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
                                                     </td>
                                                 </tr>
                                             ))

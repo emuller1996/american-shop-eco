@@ -31,7 +31,7 @@ export default function Shop() {
         console.log(exist)
         if (!exist) {
             setCart([...cart, id])
-            dispatch(setCartR(cart))
+            //dispatch(setCartR(cart))
         } else {
             alert('Cart already exists')
         }
