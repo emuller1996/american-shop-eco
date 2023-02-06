@@ -1,0 +1,12 @@
+.input-search-producto{
+    border: 1px solid #b1b1b1 !important;
+    font-weight: 400 !important;
+    border-radius: 0;
+    
+    font-size: 1.12em !important;
+}
+
+.input-search-producto:focus{
+    border: 1px solid #ED4C4C !important;
+    box-shadow: #ed4c4c7a 0px 2px 4px 0px, #ed4c4ca2 0px 2px 4px 0px !important;
+}

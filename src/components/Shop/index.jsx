@@ -3,6 +3,10 @@ import CardProduct from './CardProduct';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import FilterProducts from './FilterProducts';
+import './index.css'
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { setCart as setCartR } from '../../features/Car/carSlice'
+import { useDispatch } from 'react-redux';
 
 export default function Shop() {
 
@@ -13,6 +17,29 @@ export default function Shop() {
     const [total, setTotal] = useState();
     const [search, setSearch] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
+    const [cart,setCart] = useLocalStorage("cart",[]);
+
+    const dispatch = useDispatch();
+   
+
+   
+    const addProducToCart = (e, id) => {
+        e.preventDefault();
+        /* console.log(cartGlobal); */
+               
+        const exist = cart.find(i => i === id)
+        console.log(exist)
+        if (!exist) {
+            setCart([...cart, id])
+            //dispatch(setCartR(cart))
+        } else {
+            alert('Cart already exists')
+        }
+
+        console.log(cart); 
+        
+
+    }
 
 
     useEffect(() => {
@@ -26,13 +53,13 @@ export default function Shop() {
     };
 
     const getCategoryAll = async () => {
-        const result = await axios.get('http://localhost:3001/category');
+        const result = await axios.get('http://192.168.0.25:3001/category');
         setCategories(result.data)
     }
 
     const getProductAll = async (size, page, search, categoryFilter) => {
         try {
-            const result = await axios.get(`http://localhost:3001/product?size=${size}&page=${page}&search=${search}&cat=${categoryFilter}`);
+            const result = await axios.get(`http://192.168.0.25:3001/products?size=${size}&page=${page}&search=${search}&cat=${categoryFilter}`);
             setProductsAll(result.data.products);
             
             setTotal(result.data.totalPages)
@@ -117,7 +144,7 @@ export default function Shop() {
                             </div>
                             <div className="col-md-6 pb-4">
                                 <div className="d-flex">
-                                    <input type="text" className="form-control  border-dark" value={search} onChange={handleSearch} placeholder='Search a product' />
+                                    <input type="text" className="form-control input-search-producto" value={search} onChange={handleSearch} placeholder='Search a product' />
                                 </div>
                             </div>
                         </div>
@@ -125,7 +152,7 @@ export default function Shop() {
 
                             {productsAll && productsAll.length === 0 && <p> No products found</p>}
                             {
-                                productsAll || productsAll.length !== 0 ? productsAll.map(p => <CardProduct key={p.id} product={p} />) : (<p>sada</p>)
+                                productsAll || productsAll.length !== 0 ? productsAll.map(p => <CardProduct addProducToCart={addProducToCart} key={p.id} product={p} />) : (<p>sada</p>)
                             }
 
 
