@@ -26,7 +26,7 @@ export default function MyCart() {
     }
 
     const getAllProductCar = async ()=>{
-        const result = await cart.map(async c => await axios.get(`http://localhost:3001/products/${c}`))
+        const result = await cart.map(async c => await axios.get(`/products/${c}`))
         const promises = await Promise.all(result); 
         const arratP = promises.map( p => p.data) 
         setCartState(arratP);   
