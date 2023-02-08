@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCart as setCartR } from '../features/Car/carSlice'
+import { setCart as setCartR, setTotalCart } from '../features/Car/carSlice'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import axios from "axios"
 
@@ -29,7 +29,8 @@ export default function MyCart() {
         const result = await cart.map(async c => await axios.get(`/products/${c}`))
         const promises = await Promise.all(result); 
         const arratP = promises.map( p => p.data) 
-        setCartState(arratP);   
+        setCartState(arratP);
+        dispatch(setTotalCart(cart.length))   
         /* dispatch(setCartR(arratP)) */
     }
 
