@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 import FilterProducts from './FilterProducts';
 import './index.css'
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { setCart as setCartR } from '../../features/Car/carSlice'
+import { setCart as setCartR, setTotalCart } from '../../features/Car/carSlice'
 import { useDispatch } from 'react-redux';
 
 export default function Shop() {
@@ -32,6 +32,8 @@ export default function Shop() {
         if (!exist) {
             setCart([...cart, id])
             //dispatch(setCartR(cart))
+        dispatch(setTotalCart(cart.length))   
+
         } else {
             alert('Cart already exists')
         }

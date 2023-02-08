@@ -1,11 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dropdown, DropdownButton, Fade } from 'react-bootstrap';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { setTotalCart } from '../../features/Car/carSlice'
 
 export default function Nav() {
 
-    const cartCount = useSelector(state => state.cart.cart.length);
+    const cartCount = useSelector(state => state.cart.totalCart);
+    const [cart,setCart] = useLocalStorage("cart",[]);
+    const dispatch = useDispatch();
+
+    useEffect( ()=> {
+
+        try {
+            console.log(cart.length);
+        dispatch(setTotalCart(cart.length))
+        } catch (error) {
+            console.log(error.message);
+     
+        }
+        
+    },[cart,dispatch])
+
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">

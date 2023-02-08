@@ -14,12 +14,16 @@ export const carSlice = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.cart = action.payload
+    },
+    setTotalCart:(state,action)=>{
+
+      state.totalCart = action.payload
     }
     
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setCart } = carSlice.actions
+export const { setCart, setTotalCart } = carSlice.actions
 
 export default carSlice.reducer
