@@ -36,7 +36,7 @@ export default function FilterProducts({ categories,setCategoryFilter }) {
                                     value={c.id}
                                     name={'category'}
                                     id={c.id}
-                                    label={c.category}
+                                    label={c.name}
                                     onChange={(e) => setCategoryFilter(e.target.value)}
                                 />
                             )

@@ -11,17 +11,7 @@ export default function Nav() {
     const [cart,setCart] = useLocalStorage("cart",[]);
     const dispatch = useDispatch();
 
-    useEffect( ()=> {
-
-        try {
-            console.log(cart.length);
-        dispatch(setTotalCart(cart.length))
-        } catch (error) {
-            console.log(error.message);
-     
-        }
-        
-    },[cart,dispatch])
+   
 
     return (
         <>
@@ -82,7 +72,7 @@ export default function Nav() {
                             </a> */}
                             <Link className="nav-icon position-relative text-decoration-none" to={'/MyCart'}>
                                 <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{cartCount}</span>
+                                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">*</span>
                             </Link>
 
 
