@@ -30,7 +30,7 @@ export default function MyCart() {
         const promises = await Promise.all(result); 
         const arratP = promises.map( p => p.data) 
         setCartState(arratP);
-        dispatch(setTotalCart(cart.length))   
+         
         /* dispatch(setCartR(arratP)) */
     }
 
