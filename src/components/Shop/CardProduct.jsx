@@ -11,7 +11,7 @@ export default function CardProduct({ product,addProducToCart }) {
 
     return (
         <div className="col-md-4">
-            <Link className="card mb-4 product-wap rounded-0 text-decoration-none h-100" to={`/ProductDetail/${product.id}`}>
+            <Link className="card card-product mb-4 product-wap rounded-0 text-decoration-none h-100" to={`/ProductDetail/${product.id}`}>
 
 
                 <div className="card  rounded-0 border-0">
