@@ -17,31 +17,11 @@ export default function Shop() {
     const [total, setTotal] = useState();
     const [search, setSearch] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
-    const [cart,setCart] = useLocalStorage("cart",[]);
-
     const dispatch = useDispatch();
    
 
    
-    const addProducToCart = (e, id) => {
-        e.preventDefault();
-        /* console.log(cartGlobal); */
-               
-        const exist = cart.find(i => i === id)
-        console.log(exist)
-        if (!exist) {
-            setCart([...cart, id])
-            //dispatch(setCartR(cart))
-        dispatch(setTotalCart(cart.length))   
-
-        } else {
-            alert('Cart already exists')
-        }
-
-        console.log(cart); 
-        
-
-    }
+    
 
 
     useEffect(() => {
@@ -152,11 +132,7 @@ export default function Shop() {
                         </div>
                         <div className="row g-3 mb-4">
 
-                            {productsAll && productsAll.length === 0 && <p> No products found</p>}
-                            {
-                                productsAll || productsAll.length !== 0 ? productsAll.map(p => <CardProduct addProducToCart={addProducToCart} key={p.id} product={p} />) : (<p>sada</p>)
-                            }
-
+                           
 
                         </div>
                         <div div="row">
