@@ -7,8 +7,8 @@ import { setTotalCart } from '../../features/Car/carSlice'
 
 export default function Nav() {
 
-    const cartCount = useSelector(state => state.cart.totalCart);
-    const [cart,setCart] = useLocalStorage("cart",[]);
+    const cart = useSelector(state => state.cart);
+
     const dispatch = useDispatch();
 
    
@@ -72,7 +72,7 @@ export default function Nav() {
                             </a> */}
                             <Link className="nav-icon position-relative text-decoration-none" to={'/MyCart'}>
                                 <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">*</span>
+                                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{cart.length}</span>
                             </Link>
 
 

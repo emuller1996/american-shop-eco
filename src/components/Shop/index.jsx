@@ -5,8 +5,8 @@ import ReactPaginate from 'react-paginate';
 import FilterProducts from './FilterProducts';
 import './index.css'
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { setCart as setCartR, setTotalCart } from '../../features/Car/carSlice'
-import { useDispatch } from 'react-redux';
+import {addProductToCart } from '../../features/Car/carSlice'
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Shop() {
 
@@ -17,13 +17,15 @@ export default function Shop() {
     const [total, setTotal] = useState();
     const [search, setSearch] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
+    const cart = useSelector( (state)=> state.cart );
     const dispatch = useDispatch();
    
 
    
     const addProducToCart = (e, id) => {
         e.preventDefault();
-        
+        dispatch(addProductToCart( {id:id, cant:1}))
+        console.log(cart);
 
         
     }
@@ -31,7 +33,7 @@ export default function Shop() {
 
     useEffect(() => {
         getProductAll(size, page, search, categoryFilter)
-
+        console.log(cart);
         getCategoryAll();
     }, [size, page, search, total, categoryFilter])
 
