@@ -2,11 +2,22 @@
     border: 1px solid #b1b1b1 !important;
     font-weight: 400 !important;
     border-radius: 0;
-    
+    border-radius: 0.5em;
     font-size: 1.12em !important;
 }
 
 .input-search-producto:focus{
-    border: 1px solid #ED4C4C !important;
+    border: 1px solid #ed4c4ca2 !important;
     box-shadow: #ed4c4c7a 0px 2px 4px 0px, #ed4c4ca2 0px 2px 4px 0px !important;
+}
+
+.card-product{
+    border-radius: 0.5em !important;
+    overflow: hidden;
+}
+
+.card-product:hover{
+    border: 0.11em solid #808080a2;
+    box-shadow: #8686867a 0px 2px 4px 0px, #888888a1 0px 2px 4px 0px !important;
+
 }
