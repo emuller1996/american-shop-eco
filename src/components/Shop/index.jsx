@@ -21,7 +21,12 @@ export default function Shop() {
    
 
    
-    
+    const addProducToCart = (e, id) => {
+        e.preventDefault();
+        
+
+        
+    }
 
 
     useEffect(() => {
@@ -132,7 +137,11 @@ export default function Shop() {
                         </div>
                         <div className="row g-3 mb-4">
 
-                           
+                            {productsAll && productsAll.length === 0 && <p> No products found</p>}
+                            {
+                                productsAll || productsAll.length !== 0 ? productsAll.map(p => <CardProduct addProducToCart={addProducToCart} key={p.id} product={p} />) : (<p>sada</p>)
+                            }
+
 
                         </div>
                         <div div="row">
