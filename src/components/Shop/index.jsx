@@ -17,30 +17,15 @@ export default function Shop() {
     const [total, setTotal] = useState();
     const [search, setSearch] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
-    const [cart,setCart] = useLocalStorage("cart",[]);
-
     const dispatch = useDispatch();
    
 
    
     const addProducToCart = (e, id) => {
         e.preventDefault();
-        /* console.log(cartGlobal); */
-               
-        const exist = cart.find(i => i === id)
-        console.log(exist)
-        if (!exist) {
-            setCart([...cart, id])
-            //dispatch(setCartR(cart))
-        dispatch(setTotalCart(cart.length))   
-
-        } else {
-            alert('Cart already exists')
-        }
-
-        console.log(cart); 
         
 
+        
     }
 
 
