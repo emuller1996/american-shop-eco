@@ -10,10 +10,9 @@ export default function BannerCategoryMoth() {
                 <div className="container py-5">
                     <div className="row text-center py-3">
                         <div className="col-lg-6 m-auto">
-                            <h1 className="h1">Featured Product</h1>
+                            <h1 className="h1">Producto Nuevos</h1>
                             <p>
-                                Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident.
+                                Mira nuestro ultimos catalogo de los nuevos modelos de jordan, nike, adidas y brooklyn que hemos han llegado a nuestas tiendas.
                             </p>
                         </div>
                     </div>

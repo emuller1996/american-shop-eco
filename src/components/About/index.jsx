@@ -9,11 +9,9 @@ export default function About() {
                 <div className="container">
                     <div className="row align-items-center py-5">
                         <div className="col-md-8 text-white">
-                            <h1>About Us</h1>
+                            <h1>Sobre Nosotros</h1>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Somos una tienda de ropa del distrito de Buenaventura, Valle del cauca, con mas de 10 años ofreciendo lo mejor y nuevo de la moda a la comunidad de buenaventura.
                             </p>
                         </div>
                         <div className="col-md-4">
@@ -26,7 +24,7 @@ export default function About() {
             <section className="container py-5">
                 <div className="row text-center pt-5 pb-3">
                     <div className="col-lg-6 m-auto">
-                        <h1 className="h1">Our Services</h1>
+                        <h1 className="h1">Nuestros Servicios</h1>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                             Lorem ipsum dolor sit amet.
