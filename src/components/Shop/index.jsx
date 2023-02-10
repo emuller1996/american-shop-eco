@@ -151,7 +151,7 @@ export default function Shop() {
                             <ReactPaginate
                                 initialPage={0}
                                 breakLabel="..."
-                                breakLinkClassName='page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold'
+                                breakLinkClassName='page-link rounded-3 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold'
                                 nextLabel=">"
                                 onPageChange={handlePageClick}
                                 pageRangeDisplayed={2}
@@ -160,13 +160,13 @@ export default function Shop() {
                                 renderOnZeroPageCount={1}
                                 className="pagination pagination-lg justify-content-end"
                                 pageClassName="page-item "
-                                pageLinkClassName="page-link page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
-                                activeLinkClassName="active rounded-0 mr-3 shadow-sm border-top-0 border-left-0"
+                                pageLinkClassName="page-link page-link rounded-3 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
+                                activeLinkClassName="active rounded mr-3 shadow-sm border-top-0 border-left-0"
                                 activeClassName="page-item disabled"
                                 previousClassName="page-item"
                                 nextClassName="page-item"
-                                previousLinkClassName="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
-                                nextLinkClassName="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
+                                previousLinkClassName="page-link rounded-3 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
+                                nextLinkClassName="page-link rounded-3 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
                             />
                             {/* <ul className="pagination pagination-lg justify-content-end">
                                 <li className="page-item disabled">
@@ -191,11 +191,11 @@ export default function Shop() {
                 <div className="container my-4">
                     <div className="row text-center py-3">
                         <div className="col-lg-6 m-auto">
-                            <h1 className="h1">Our Brands</h1>
-                            <p>
+                            <h1 className="h1">Nuestras Marcas</h1>
+                           {/*  <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                 Lorem ipsum dolor sit amet.
-                            </p>
+                            </p> */}
                         </div>
                         <div className="col-lg-9 m-auto tempaltemo-carousel">
                             <div className="row d-flex flex-row">
