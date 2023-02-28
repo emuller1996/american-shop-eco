@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState ,useEffect } from "react";
 import LogoutButton from "./LogoutButton";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import isClient from "../../utils/isClient";
+
+
 export default function DropdownProfile() {
-  const { user } = useAuth0();
-  console.log(user);
+
+  const [ client, setClient] = useState(true);
+  const { user, isLoading, isAuthenticated, getAccessTokenSilently, logout } = useAuth0();
+
+
+
+  useEffect( ()=> {
+    isClient(user).then((data)=>setClient(data)).catch((error)=>setClient(error));
+
+
+
+  },[user])
+
+  
   return (
     <>
       <Dropdown>
