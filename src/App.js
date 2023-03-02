@@ -11,7 +11,7 @@ function App() {
       <div className="App">
         <Switch>
 
-        <Route exact path={'/Dashboard'}>
+        <Route  path={'/Dashboard'}>
             <DasboardTemplate />
           </Route>
           <Route path={'/'}>
