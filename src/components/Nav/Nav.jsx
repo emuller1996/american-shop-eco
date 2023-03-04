@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Dropdown, DropdownButton, Fade } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import {  useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { setTotalCart } from "../../features/Car/carSlice";
+
 import Login from "./Login";
 import { useAuth0 } from "@auth0/auth0-react";
 import DropdownProfile from "./DropdownProfile";
@@ -12,7 +10,6 @@ import DropdownProfile from "./DropdownProfile";
 export default function Nav() {
   const cart = useSelector((state) => state.cart);
 
-  const dispatch = useDispatch();
   const {isAuthenticated} = useAuth0();
 
   return (

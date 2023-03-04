@@ -1,8 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import { useLocalStorage } from '../../hooks/useLocalStorage'
 
 export default function CardProduct({ product,addProducToCart }) {
 
@@ -29,7 +27,7 @@ export default function CardProduct({ product,addProducToCart }) {
 
                     <p className='text-center m-0 fs-6 text-danger fw-normal'>{product.brand}</p>
 
-                    <p className='text-center m-0 fs-6 placeholder-glow'>{product.CategoryId} </p>
+                    <p className='text-center m-0 fs-6 placeholder-glow'>{product.Category.name} </p>
                     
                     <ul className="list-unstyled d-flex justify-content-center mb-1">
                         <li>
