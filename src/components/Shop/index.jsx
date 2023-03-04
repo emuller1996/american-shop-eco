@@ -4,7 +4,6 @@ import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import FilterProducts from './FilterProducts';
 import './index.css'
-import { useLocalStorage } from '../../hooks/useLocalStorage';
 import {addProductToCart } from '../../features/Car/carSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -33,7 +32,7 @@ export default function Shop() {
 
     useEffect(() => {
         getProductAll(size, page, search, categoryFilter)
-        console.log(cart);
+        
         getCategoryAll();
     }, [size, page, search, total, categoryFilter])
 

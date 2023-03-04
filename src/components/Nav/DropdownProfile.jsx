@@ -1,6 +1,6 @@
 import React, { useState ,useEffect } from "react";
 import LogoutButton from "./LogoutButton";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import isClient from "../../utils/isClient";
@@ -9,7 +9,7 @@ import isClient from "../../utils/isClient";
 export default function DropdownProfile() {
 
   const [ client, setClient] = useState(true);
-  const { user, isLoading, isAuthenticated, getAccessTokenSilently, logout } = useAuth0();
+  const { user } = useAuth0();
 
 
 
@@ -29,7 +29,7 @@ export default function DropdownProfile() {
         </Dropdown.Toggle>
         <Dropdown.Menu id="example-fade-text">
           <Dropdown.ItemText>
-            <div className="container bg-ligth border rounded-3 p-2">
+            <div className="container bg-ligth  rounded-3 p-2">
               <div className="text-center">
                 <img
                   src={user ? user.picture : "..."}
@@ -42,17 +42,17 @@ export default function DropdownProfile() {
                 {user ? user.name : "..."}
               </small>
              
+              <Link className="btn btn-sm btn-light
+               w-100 rounded-3 text-decoration-none" to={"/Dashboard/MyProfile"}>Mi Perfil</Link>
               <small className="text-sm p-0 m-0 f-6 text-nowrap text-uppercase d-block mt-2">
               <LogoutButton />
               </small>
             </div>
           </Dropdown.ItemText>
-          <Dropdown.Item href="#/action-2">
-            <Link to={"/Dashboard"}>Dasboard</Link>
-          </Dropdown.Item>
-          <Dropdown.Item href="#/action-3">
+          <Dropdown.Item>
             
           </Dropdown.Item>
+          
         </Dropdown.Menu>
       </Dropdown>
     </>
