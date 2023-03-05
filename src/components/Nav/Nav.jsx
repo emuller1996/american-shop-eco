@@ -1,16 +1,24 @@
-import React from "react";
-import {  useSelector } from "react-redux";
+import React , {useEffect} from "react";
+import {  useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
 import Login from "./Login";
 import { useAuth0 } from "@auth0/auth0-react";
 import DropdownProfile from "./DropdownProfile";
+import {getCardProductToCard } from '../../features/Car/carSlice';
 
 
 export default function Nav() {
   const cart = useSelector((state) => state.cart);
-
+  const dispatch = useDispatch();
   const {isAuthenticated} = useAuth0();
+
+  useEffect(() => {
+    
+    dispatch(getCardProductToCard());
+
+    
+  }, []);
 
   return (
     <>
