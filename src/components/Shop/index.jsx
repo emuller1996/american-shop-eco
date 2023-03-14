@@ -4,40 +4,44 @@ import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import FilterProducts from './FilterProducts';
 import './index.css'
-import {addProductToCart } from '../../features/Car/carSlice'
+import { addProductToCart } from '../../features/Car/carSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function Shop() {
 
-    const [productsAll, setProductsAll] = useState([]);
+    const [productsAll, setProductsAll] = useState();
     const [categories, setCategories] = useState();
     const [size] = useState(6);
     const [page, setPage] = useState();
     const [total, setTotal] = useState();
     const [search, setSearch] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
-    const cart = useSelector( (state)=> state.cart );
-    const dispatch = useDispatch();
-   
 
-   
+
+    const [error, setError] = useState(undefined);
+
+    const cart = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+
+
+
     const addProducToCart = (e, id) => {
         e.preventDefault();
-        dispatch(addProductToCart( {id:id, cant:1}))
+        dispatch(addProductToCart({ id: id, cant: 1 }))
         console.log(cart);
 
-        
+
     }
 
 
     useEffect(() => {
         getProductAll(size, page, search, categoryFilter)
-        
+
         getCategoryAll();
     }, [size, page, search, total, categoryFilter])
 
     const handlePageClick = (event) => {
-            setPage(event.selected)            
+        setPage(event.selected)
     };
 
     const getCategoryAll = async () => {
@@ -46,16 +50,17 @@ export default function Shop() {
     }
 
     const getProductAll = async (size, page, search, categoryFilter) => {
+        setError(undefined);
         try {
             const result = await axios.get(`/products?size=${size}&page=${page}&search=${search}&cat=${categoryFilter}`);
             setProductsAll(result.data.products);
-            
+
             setTotal(result.data.totalPages)
             console.log(result.data);
 
         } catch (error) {
-            console.error(error);
-
+            console.log(error);
+            setError(`${error.code}  ::  ${error.message}`);
         }
 
     }
@@ -74,45 +79,8 @@ export default function Shop() {
 
                     <div className="col-lg-3">
 
-
-
-
-
                         <FilterProducts categories={categories} setCategoryFilter={setCategoryFilter} />
 
-                        {/* <ul className="list-unstyled templatemo-accordion accordion">
-                            <li className="pb-3">
-                                <a className="collapsed d-flex justify-content-between h3 text-decoration-none" href="/">
-                                    Gender
-                                    <i className="fa fa-fw fa-chevron-circle-down mt-1"></i>
-                                </a>
-                                <ul className="collapse show list-unstyled pl-3">
-                                    <li><a className="text-decoration-none" href="/">Men</a></li>
-                                    <li><a className="text-decoration-none" href="/">Women</a></li>
-                                </ul>
-                            </li>
-                            <li className="pb-3">
-                                <a className="collapsed d-flex justify-content-between h3 text-decoration-none" href="/">
-                                    Sale
-                                    <i className="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-                                </a>
-                                <ul id="collapseTwo" className="collapse list-unstyled pl-3">
-                                    <li><a className="text-decoration-none" href="/">Sport</a></li>
-                                    <li><a className="text-decoration-none" href="/">Luxury</a></li>
-                                </ul>
-                            </li>
-                            <li className="pb-3">
-                                <a className="collapsed d-flex justify-content-between h3 text-decoration-none" href="/">
-                                    Product
-                                    <i className="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-                                </a>
-                                <ul id="collapseThree" className="collapse list-unstyled pl-3">
-                                    <li><a className="text-decoration-none" href="/">Bag</a></li>
-                                    <li><a className="text-decoration-none" href="/">Sweather</a></li>
-                                    <li><a className="text-decoration-none" href="/">Sunglass</a></li>
-                                </ul>
-                            </li>
-                        </ul> */}
                     </div>
 
                     <div className="col-lg-9">
@@ -138,9 +106,25 @@ export default function Shop() {
                         </div>
                         <div className="row g-3 mb-4">
 
+                            {error &&
+                                (
+                                    <div class="alert alert-danger" role="alert">
+                                        {error}
+                                    </div>
+                                )
+                            }
+
                             {productsAll && productsAll.length === 0 && <p> No products found</p>}
                             {
-                                productsAll || productsAll.length !== 0 ? productsAll.map(p => <CardProduct addProducToCart={addProducToCart} key={p.id} product={p} />) : (<p>sada</p>)
+                                productsAll ? productsAll.map(p => <CardProduct addProducToCart={addProducToCart} key={p.id} product={p} />)
+                                    :
+                                    (
+                                        <div className="container mx-auto text-center py-4 my-4">
+                                            <div class="spinner-border text-danger" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+                                    )
                             }
 
 
@@ -167,17 +151,7 @@ export default function Shop() {
                                 previousLinkClassName="page-link rounded-3 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
                                 nextLinkClassName="page-link rounded-3 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
                             />
-                            {/* <ul className="pagination pagination-lg justify-content-end">
-                                <li className="page-item disabled">
-                                    <a className="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="/" tabIndex="-1">1</a>
-                                </li>
-                                <li className="page-item">
-                                    <a className="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="/">2</a>
-                                </li>
-                                <li className="page-item">
-                                    <a className="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="/">3</a>
-                                </li>
-                            </ul> */}
+
                         </div>
                     </div>
 
@@ -191,7 +165,7 @@ export default function Shop() {
                     <div className="row text-center py-3">
                         <div className="col-lg-6 m-auto">
                             <h1 className="h1">Nuestras Marcas</h1>
-                           {/*  <p>
+                            {/*  <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                 Lorem ipsum dolor sit amet.
                             </p> */}
