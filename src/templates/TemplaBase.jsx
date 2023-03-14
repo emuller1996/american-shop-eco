@@ -8,6 +8,7 @@ import About from '../components/About'
 import Shop from '../components/Shop'
 import ProductDetail from '../pages/ProductDetail'
 import MyCart from '../pages/MyCart'
+import PurchaseConfirmation from '../pages/PurchaseConfirmation'
 
 export default function TemplateBase() {
 
@@ -32,6 +33,9 @@ export default function TemplateBase() {
                 </Route>
                 <Route path={'/ProductDetail/:id'}>
                     <ProductDetail  />
+                </Route>
+                <Route path={'/PurchaseConfirmation'}>
+                    <PurchaseConfirmation />
                 </Route>
             </Switch>
 

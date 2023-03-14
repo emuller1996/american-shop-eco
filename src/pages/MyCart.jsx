@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteProductsToCart } from "../features/Car/carSlice";
 import { useAuth0 }  from "@auth0/auth0-react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 export default function MyCart() {
@@ -44,7 +45,7 @@ export default function MyCart() {
   return (
     <>
       <div className="container py-4">
-        <h4 className="text-center mb-3">My Cart</h4>
+        <h4 className="text-center mb-3">Mi Carrito</h4>
         <div className="row">
           <div className="col-md-8 ">
             <div className="card shadow mb-4 border  border-dark">
@@ -135,9 +136,9 @@ export default function MyCart() {
                   Total a Pagar
                 </h3>
                 <p className="text-center fs-4 fw-semibold">$ {total}</p>
-                <button disabled={!isAuthenticated} className="btn btn-success w-100 py-3 h3 fw-bold">
+                <Link to={'/PurchaseConfirmation'}  disabled={!isAuthenticated} className="btn btn-success w-100 py-3 h3 fw-bold ">
                   COMFIRMAR COMPRA
-                </button>
+                </Link>
               </div>
             </div>
           </div>
