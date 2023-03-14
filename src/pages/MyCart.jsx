@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProductsToCart } from "../features/Car/carSlice";
-
+import { useAuth0 }  from "@auth0/auth0-react";
 import axios from "axios";
+
 
 export default function MyCart() {
   const cart = useSelector((state) => state.cart);
 
   const [cartState, setCartState] = useState();
   const [total, setTotal] = useState();
-
+  const {isAuthenticated} = useAuth0();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -134,7 +135,7 @@ export default function MyCart() {
                   Total a Pagar
                 </h3>
                 <p className="text-center fs-4 fw-semibold">$ {total}</p>
-                <button className="btn btn-success w-100 py-3 h3 fw-bold">
+                <button disabled={!isAuthenticated} className="btn btn-success w-100 py-3 h3 fw-bold">
                   COMFIRMAR COMPRA
                 </button>
               </div>
