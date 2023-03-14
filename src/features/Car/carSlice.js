@@ -19,6 +19,7 @@ export const carSlice = createSlice({
     },
     getCardProductToCard : (state, action) =>{
       var products = window.localStorage.getItem('mycart')
+      if(!products) products = '[]';
       return  JSON.parse(products)
     }
     
