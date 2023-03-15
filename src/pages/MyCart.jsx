@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProductsToCart } from "../features/Car/carSlice";
-import { useAuth0 }  from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -11,7 +11,7 @@ export default function MyCart() {
 
   const [cartState, setCartState] = useState();
   const [total, setTotal] = useState();
-  const {isAuthenticated} = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function MyCart() {
                         <tr>
                           <td className="text-center">
                             <img
-                            className="rounded-3"
+                              className="rounded-3"
                               src={p.image}
                               width="80px"
                               height={"80px"}
@@ -136,9 +136,19 @@ export default function MyCart() {
                   Total a Pagar
                 </h3>
                 <p className="text-center fs-4 fw-semibold">$ {total}</p>
-                <Link to={'/PurchaseConfirmation'}  disabled={!isAuthenticated} className="btn btn-success w-100 py-3 h3 fw-bold ">
-                  COMFIRMAR COMPRA
-                </Link>
+
+                {
+                  isAuthenticated ? (
+                    <Link to={'/PurchaseConfirmation'} disabled={!isAuthenticated} className="btn btn-success w-100 py-3 h3 fw-bold ">
+                      COMFIRMAR COMPRA
+                    </Link>
+                  ) : (
+                    <button disabled className="btn btn-success w-100 py-3 h3 fw-bold ">
+                      COMFIRMAR COMPRA
+                    </button>
+                  )
+                }
+
               </div>
             </div>
           </div>

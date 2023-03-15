@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SelectPaymentMethodsComponent() {
   return (
-    <div class="card ">
+    <div class="card border-0">
       <div class="card-body">
         <h4 class="card-title">Selecionar de Forma de Pago</h4>
         <p class="card-text">

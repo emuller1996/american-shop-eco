@@ -13,7 +13,7 @@ export default function ListProductsOrder({ products }) {
                 align-middle
                 "
           >
-            <thead class="table-dark ">
+            <thead class="table-secondary ">
               <tr>
                 <th>Img</th>
                 <th>Nombre</th>
@@ -25,9 +25,12 @@ export default function ListProductsOrder({ products }) {
             <tbody class="table-group-divider">
               {products &&
                 products.map((p) => (
-                  <tr class="table-primary">
+                  <tr class="table-secondary">
                     <td>
-                    <img src={p.image} width={'150px'} height={'100px'} class="img-thumbnail" alt="..."/>
+                      <div className="border-danger rounded-pill overflow-hidden" style={ { width : '50px', height : '50px' }}>
+                      <img src={p.image}  class="img-fluid" alt="..."/>
+                      </div>
+                    
                     </td>
                     <td scope="row">{p.name}</td>
                     <td>{p.cant}</td>
