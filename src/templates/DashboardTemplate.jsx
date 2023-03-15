@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from "react-router-dom";
 import { Switch, Route } from 'react-router-dom';
+import MyOrderComponent from '../components/Dashboard/MyOrder';
 import MyProfileComponent from '../components/Dashboard/MyProfile/MyProfile';
 import DropdownProfile from '../components/Nav/DropdownProfile'
 
@@ -140,7 +141,7 @@ export default function DasboardTemplate() {
                 </Route>
 
                 <Route strict  path={'/Dashboard/MyOrders'}>
-                    <h2> MY Orders</h2>
+                    <MyOrderComponent />
                 </Route>
 
                 <Route strict  path={'/Dashboard/MyFavorites'}>

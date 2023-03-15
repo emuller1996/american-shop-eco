@@ -6,6 +6,7 @@ import FilterProducts from './FilterProducts';
 import './index.css'
 import { addProductToCart } from '../../features/Car/carSlice'
 import { useDispatch, useSelector } from 'react-redux';
+import SpinnerComponent from '../Spinner';
 
 export default function Shop() {
 
@@ -119,11 +120,7 @@ export default function Shop() {
                                 productsAll ? productsAll.map(p => <CardProduct addProducToCart={addProducToCart} key={p.id} product={p} />)
                                     :
                                     (
-                                        <div className="container mx-auto text-center py-4 my-4">
-                                            <div class="spinner-border text-danger" role="status">
-                                                <span class="visually-hidden">Loading...</span>
-                                            </div>
-                                        </div>
+                                        <SpinnerComponent />
                                     )
                             }
 
