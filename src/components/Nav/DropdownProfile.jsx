@@ -43,7 +43,8 @@ export default function DropdownProfile() {
               </small>
              
               <Link className="btn btn-sm btn-light
-               w-100 rounded-3 text-decoration-none" to={"/Dashboard/MyProfile"}>Mi Perfil</Link>
+               w-100 rounded-3 text-decoration-none" to={"/Dashboard/MyProfile"}>
+                <i class="far fa-user-circle me-2"></i>Mi Perfil</Link>
               <small className="text-sm p-0 m-0 f-6 text-nowrap text-uppercase d-block mt-2">
               <LogoutButton />
               </small>
