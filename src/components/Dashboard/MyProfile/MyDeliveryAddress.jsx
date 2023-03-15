@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import FormDeliverAddressComponent from "./FormDeliveryAddress";
 import Spinner from "react-bootstrap/Spinner";
 import { toast } from "react-toastify";
+import SpinnerComponent from "../../Spinner";
 
 export default function MyDeliveryAddressComponent() {
   const [deliveryAddress, setDeliverAddress] = useState(undefined);
@@ -89,11 +90,7 @@ export default function MyDeliveryAddressComponent() {
                 </div>
               ))
             ) : (
-              <div className="col-12 text-center p-4">
-                <Spinner animation="border" variant="danger" role="danger">
-                  <span className="visually-hidden">Loading...</span>
-                </Spinner>
-              </div>
+              <SpinnerComponent />
             )}
           </div>
         </div>
