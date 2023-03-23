@@ -57,7 +57,7 @@ export default function MyOrderComponent() {
 
                                         <div class="card-body">
                                             <h4 class="card-title">{p.name}</h4>
-                                            <p class="card-text"> {p.OrderDetail.units} x {p.price.toLocaleString()}     <span className="text-end fw-bold fs-4 ms-4">$ { (p.OrderDetail.units * p.price).toLocaleString() }</span></p>
+                                            <p class="card-text"> {p.OrderDetail.units} x {p.OrderDetail.unitPrice.toLocaleString()}     <span className="text-end fw-bold fs-4 ms-4">$ { (p.OrderDetail.totalPrice).toLocaleString() }</span></p>
                                         </div>
                                     </div>
                                 )) : <SpinnerComponent />
