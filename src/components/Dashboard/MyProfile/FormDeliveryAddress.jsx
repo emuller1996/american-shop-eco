@@ -6,6 +6,7 @@ export default function FormDeliverAddressComponent({
   handleClose,
   onHandleInput,
   onHandleSubmit,
+  deliveryAddress
 }) {
   return (
     <>
@@ -17,6 +18,7 @@ export default function FormDeliverAddressComponent({
               class="form-control"
               id="name"
               name="name"
+              value={ deliveryAddress ? deliveryAddress.name : ''}
               onChange={onHandleInput}
             />
             <label htmlFor="name">Nombre</label>
@@ -26,8 +28,9 @@ export default function FormDeliverAddressComponent({
             <input
               type="text"
               class="form-control"
-              id="departament"
-              name="departament"
+              id="department"
+              name="department"
+              value={ deliveryAddress ? deliveryAddress.department : ''}
               onChange={onHandleInput}
             />
             <label htmlFor="departament">Departamento</label>
@@ -39,6 +42,7 @@ export default function FormDeliverAddressComponent({
               class="form-control"
               id="city"
               name="city"
+              value={ deliveryAddress ? deliveryAddress.city : ''}
               onChange={onHandleInput}
             />
             <label htmlFor="city">Ciudad</label>
@@ -50,6 +54,7 @@ export default function FormDeliverAddressComponent({
               class="form-control"
               id="address"
               name="address"
+              value={ deliveryAddress ? deliveryAddress.address : ''}
               onChange={onHandleInput}
             />
             <label htmlFor="address">Dirrecion</label>
@@ -62,6 +67,7 @@ export default function FormDeliverAddressComponent({
               id="neighborhood"
               name="neighborhood"
               onChange={onHandleInput}
+              value={ deliveryAddress ? deliveryAddress.neighborhood : ''}
             />
             <label htmlFor="neighborhood">Barrio</label>
           </div>
@@ -72,6 +78,7 @@ export default function FormDeliverAddressComponent({
               class="form-control"
               id="phone"
               name="phone"
+              value={ deliveryAddress ? deliveryAddress.phone : ''}
               onChange={onHandleInput}
             />
             <label htmlFor="phone">Telefono</label>
@@ -83,6 +90,7 @@ export default function FormDeliverAddressComponent({
               class="form-control"
               id="reference"
               name="reference"
+              value={ deliveryAddress ? deliveryAddress.reference : ''}
               onChange={onHandleInput}
             />
             <label htmlFor="reference">Referencia</label>

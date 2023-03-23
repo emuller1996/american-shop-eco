@@ -5,7 +5,6 @@ import ListOrderComponent from "./ListOrder";
 import SpinnerComponent from '../../Spinner'
 import { Button, Modal } from "react-bootstrap";
 
-
 export default function MyOrderComponent() {
 
     const [orders, setOrders] = useState(undefined);
@@ -34,7 +33,7 @@ export default function MyOrderComponent() {
 
     return (
         <>
-            <p>Mis Pedidos</p>
+            <h4>Mis Pedidos</h4>
             {orders ? (<ListOrderComponent setOrdersDetail={setOrdersDetail} handleShow={handleShow} orders={orders} />) : <SpinnerComponent />}
 
 
@@ -46,7 +45,9 @@ export default function MyOrderComponent() {
                     <div class="row justify-content-center align-items-center g-2">
                         <div class="col-4">Fecha : {ordersDetail && ordersDetail.purchase_date.substring(0, 10)}</div>
                         <div class="col-8">
-                            <p className=" fs-2 fw-bold text-success text-end">{ordersDetail && ordersDetail.total_payment}</p>
+                            <p className=" fs-2 fw-bold text-success text-end"> 
+                                ${ordersDetail && ordersDetail.total_payment.toLocaleString()}
+                            </p>
                         </div>
                         <div class="col-12">
                             <p className="mb-1 text-center fw-semibold">Productos del Pedido </p>
@@ -56,7 +57,7 @@ export default function MyOrderComponent() {
 
                                         <div class="card-body">
                                             <h4 class="card-title">{p.name}</h4>
-                                            <p class="card-text"> {p.OrderDetail.units} x {p.price}     <span className="text-end fw-bold fs-4 ms-4">  {p.OrderDetail.units * p.price}</span></p>
+                                            <p class="card-text"> {p.OrderDetail.units} x {p.OrderDetail.unitPrice.toLocaleString()}     <span className="text-end fw-bold fs-4 ms-4">$ { (p.OrderDetail.totalPrice).toLocaleString() }</span></p>
                                         </div>
                                     </div>
                                 )) : <SpinnerComponent />
@@ -83,11 +84,9 @@ export default function MyOrderComponent() {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Cerrar
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
+                    
                 </Modal.Footer>
             </Modal>
 

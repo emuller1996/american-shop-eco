@@ -5,42 +5,36 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
 export default function MyCart() {
   const cart = useSelector((state) => state.cart);
 
-  const [cartState, setCartState] = useState();
+  const [cartState, setCartState] = useState([]);
   const [total, setTotal] = useState();
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
 
   useEffect(() => {
     getProducts();
-
-
   }, [cart]);
 
   const getProducts = async () => {
+    setCartState([]);
     var s = await cart.map(async (c) => {
       const resutl = await axios.get(`/products/${c.id}`);
-      return Object.assign(resutl.data, c)
+      return Object.assign(resutl.data, c);
     });
     const result = await Promise.all(s);
-    console.log(result);
     setCartState(result);
     const sumWithInitial = result.reduce(
       (accumulator, currentValue) => accumulator + currentValue.price,
       0
     );
-    setTotal(sumWithInitial)
-
+    setTotal(sumWithInitial);
   };
 
-
   const HandledeleteProductsToCart = (id) => {
-    dispatch(deleteProductsToCart(id))
-    getProducts();
-  }
+    dispatch(deleteProductsToCart(id));
+  };
 
   return (
     <>
@@ -57,7 +51,9 @@ export default function MyCart() {
                       <td className="text-center fw-semibold"> Producto</td>
                       <td className="text-center fw-semibold">Precio</td>
                       <td className="text-center fw-semibold">Cantidad</td>
-                      <td className="text-center fw-semibold">Total Unitario</td>
+                      <td className="text-center fw-semibold">
+                        Total Unitario
+                      </td>
                       <td className="text-center fwsemibold-"></td>
                     </tr>
                   </thead>
@@ -85,41 +81,62 @@ export default function MyCart() {
                             />
                           </td>
                           <td className="text-center text-nowrap">{p.name}</td>
-                          <td className="text-center text-nowrap">{p.price}</td>
+                          <td className="text-center text-nowrap">
+                            $ {p.price.toLocaleString(undefined, {
+                              maximumFractionDigits: 2,
+                            })}
+                          </td>
                           <td className="text-center text-nowrap">{p.cant}</td>
-                          <td className="text-center text-nowrap">{p.price * p.cant}</td>
+                          <td className="text-center text-nowrap">
+                            $ {(p.price * p.cant).toLocaleString(undefined, {
+                              maximumFractionDigits: 2,
+                            })}
+                          </td>
                           <td className="text-cente text-nowrap">
                             <button
                               className="btn btn-sm rounded-3  btn-danger "
-                              onClick={(id) => { HandledeleteProductsToCart(p.id) }}
-                            ><i class="far fa-trash-alt fa-sm"></i></button>
+                              onClick={(id) => {
+                                HandledeleteProductsToCart(p.id);
+                              }}
+                            >
+                              <i class="far fa-trash-alt fa-sm"></i>
+                            </button>
                           </td>
-
                         </tr>
                       ))
                     ) : (
                       <tr>
-                        <td className="text-center"> <p class="placeholder-glow">
-                          <span class="placeholder col-6 py-3 rounded"></span>
-                        </p>
+                        <td className="text-center">
+                          {" "}
+                          <p class="placeholder-glow">
+                            <span class="placeholder col-6 py-3 rounded"></span>
+                          </p>
                         </td>
-                        <td className="text-center"> <p class="placeholder-glow">
-                          <span class="placeholder col-12 py-3 rounded"></span>
-                        </p>
+                        <td className="text-center">
+                          {" "}
+                          <p class="placeholder-glow">
+                            <span class="placeholder col-12 py-3 rounded"></span>
+                          </p>
                         </td>
 
-                        <td className="text-center"> <p class="placeholder-glow">
-                          <span class="placeholder col-3 py-3 rounded"></span>
-                        </p>
+                        <td className="text-center">
+                          {" "}
+                          <p class="placeholder-glow">
+                            <span class="placeholder col-3 py-3 rounded"></span>
+                          </p>
                         </td>
 
-                        <td className="text-center"> <p class="placeholder-glow">
-                          <span class="placeholder col-3 py-3 rounded"></span>
-                        </p>
+                        <td className="text-center">
+                          {" "}
+                          <p class="placeholder-glow">
+                            <span class="placeholder col-3 py-3 rounded"></span>
+                          </p>
                         </td>
-                        <td className="text-center"> <p class="placeholder-glow">
-                          <span class="placeholder col-3 py-3 rounded"></span>
-                        </p>
+                        <td className="text-center">
+                          {" "}
+                          <p class="placeholder-glow">
+                            <span class="placeholder col-3 py-3 rounded"></span>
+                          </p>
                         </td>
                       </tr>
                     )}
@@ -135,20 +152,29 @@ export default function MyCart() {
                 <h3 className="text-center text-success fw-normal">
                   Total a Pagar
                 </h3>
-                <p className="text-center fs-4 fw-semibold">$ {total}</p>
+                <p className="text-center fs-4 fw-semibold">
+                  {"$ "}
+                  {total && total.toLocaleString(undefined, {
+                    maximumFractionDigits: 2,
+                  })}
+                </p>
 
-                {
-                  isAuthenticated ? (
-                    <Link to={'/PurchaseConfirmation'} disabled={!isAuthenticated} className="btn btn-success w-100 py-3 h3 fw-bold ">
-                      COMFIRMAR COMPRA
-                    </Link>
-                  ) : (
-                    <button disabled className="btn btn-success w-100 py-3 h3 fw-bold ">
-                      COMFIRMAR COMPRA
-                    </button>
-                  )
-                }
-
+                {isAuthenticated && cart.length !== 0 ? (
+                  <Link
+                    to={"/PurchaseConfirmation"}
+                    disabled={!isAuthenticated}
+                    className="btn btn-success w-100 py-3 h3 fw-bold "
+                  >
+                    COMFIRMAR COMPRA
+                  </Link>
+                ) : (
+                  <button
+                    disabled
+                    className="btn btn-success w-100 py-3 h3 fw-bold "
+                  >
+                    COMFIRMAR COMPRA
+                  </button>
+                )}
               </div>
             </div>
           </div>
