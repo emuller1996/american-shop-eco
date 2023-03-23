@@ -13,7 +13,6 @@ export const carSlice = createSlice({
       }
     },
     deleteProductsToCart: ( state , action) => {
-      console.log(action.payload)
       window.localStorage.setItem( 'mycart' , JSON.stringify([ ...state.filter( p => p.id !== action.payload)]))
       return [ ...state.filter( p => p.id !== action.payload)]
     },
@@ -21,6 +20,10 @@ export const carSlice = createSlice({
       var products = window.localStorage.getItem('mycart')
       if(!products) products = '[]';
       return  JSON.parse(products)
+    },
+    resetCart:() => {
+      window.localStorage.setItem( 'mycart' , JSON.stringify([]))
+      return  []
     }
     
   
@@ -28,6 +31,6 @@ export const carSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addProductToCart, deleteProductsToCart,getCardProductToCard } = carSlice.actions
+export const { addProductToCart, deleteProductsToCart,getCardProductToCard,resetCart } = carSlice.actions
 
 export default carSlice.reducer

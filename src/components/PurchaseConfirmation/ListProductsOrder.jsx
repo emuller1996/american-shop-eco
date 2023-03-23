@@ -34,8 +34,12 @@ export default function ListProductsOrder({ products }) {
                     </td>
                     <td scope="row">{p.name}</td>
                     <td>{p.cant}</td>
-                    <td>{p.price}</td>
-                    <td>{p.price * p.cant}</td>
+                    <td>$ {p.price.toLocaleString(undefined, {
+                          maximumFractionDigits: 2,
+                        })}</td>
+                    <td>$ {(p.price * p.cant).toLocaleString(undefined, {
+                          maximumFractionDigits: 2,
+                        })}</td>
                   </tr>
                 ))}
             </tbody>

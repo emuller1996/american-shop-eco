@@ -76,6 +76,7 @@ export default function DasboardTemplate() {
                     activeClassName={"text-danger fw-semibold"}
                     className="nav-link text-decoration-none"
                   >
+                    <i className="far fa-user me-2"></i>
                     Mi Perfil   
                   </NavLink>
                 </li>
@@ -86,6 +87,7 @@ export default function DasboardTemplate() {
                     className="nav-link"
                     href="about.html"
                   >
+                    <i className="fas fa-space-shuttle me-2"></i>
                     Mis Pedidos
                   </NavLink>
                 </li>
@@ -96,6 +98,7 @@ export default function DasboardTemplate() {
                     className="nav-link"
                     href="shop.html"
                   >
+                    <i class="fas fa-heart me-2"></i>
                     Mis Favoritos
                   </NavLink>
                 </li>
