@@ -1,87 +1,55 @@
-import React from 'react';
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Switch, Route } from 'react-router-dom';
-import MyOrderComponent from '../components/Dashboard/MyOrder';
-import MyProfileComponent from '../components/Dashboard/MyProfile/MyProfile';
-import DropdownProfile from '../components/Nav/DropdownProfile'
+import { Switch, Route } from "react-router-dom";
+import MyOrderComponent from "../components/Dashboard/MyOrder";
+import MyProfileComponent from "../components/Dashboard/MyProfile/MyProfile";
+import DropdownProfile from "../components/Nav/DropdownProfile";
 
 export default function DasboardTemplate() {
-
-
-
-    return (
-        <>
-        <nav
-        className="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
-        id="templatemo_nav_top"
-      >
-        
-        <div className="container text-light">
-        <div className="d-flex align-items-center">
-              <Link 
-              to={'/'}
-              className="d-flex align-items-center text-decoration-none"  >
-              <div className="">
-                <img
-                  width={"50px"}
-                  src="/assets/img/Logo.png"
-                  alt="logo"
-                  srcset=""
-                />
-              </div>
-              <p className="ms-3 text-uppercase text-white fs-1">AmericanShop</p>
-              </Link>
-            </div>  
-          <div className="w-100 d-flex justify-content-center">
-            
-            <div>
-              {/* <DropdownProfile/> */}
-            </div>
-
-
-          </div>
-        </div>
-      </nav>
-
-      <nav className="navbar navbar-expand-lg navbar-light shadow">
-        <div className="container d-flex justify-content-between align-items-center">
+  return (
+    <>
+      
+      <nav class="navbar navbar-expand-lg shadow">
+        <div class="container">
           <Link
-            className="navbar-brand text-success logo h1 align-self-center"
-            to="/"
+            to={"/"}
+            className="d-flex align-items-center text-decoration-none"
           >
-            
+            <div className="">
+              <img
+                width={"50px"}
+                src="/assets/img/Logo.png"
+                alt="logo"
+                srcset=""
+              />
+            </div>
+            <p className="ms-3 text-uppercase text-danger fs-1">AmericanShop</p>
           </Link>
-
           <button
-            className="navbar-toggler border-0"
+            class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#templatemo_main_nav"
-            aria-controls="navbarSupportedContent"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
           </button>
-
-          <div
-            className="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
-            id="templatemo_main_nav"
-          >
-            <div className="flex-fill">
-              <ul className="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                <li className="nav-item ">
-                  <NavLink
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+              <NavLink
                     to={"/Dashboard/MyProfile"}
                     activeClassName={"text-danger fw-semibold"}
                     className="nav-link text-decoration-none"
                   >
                     <i className="far fa-user me-2"></i>
-                    Mi Perfil   
+                    Mi Perfil
                   </NavLink>
-                </li>
-                <li className="nav-item text-decoration-none">
-                  <NavLink
+              </li>
+              <li class="nav-item">
+              <NavLink
                     to={"/Dashboard/MyOrders"}
                     activeClassName={"text-danger fw-semibold"}
                     className="nav-link"
@@ -90,9 +58,9 @@ export default function DasboardTemplate() {
                     <i className="fas fa-space-shuttle me-2"></i>
                     Mis Pedidos
                   </NavLink>
-                </li>
-                <li className="nav-item text-decoration-none">
-                  <NavLink
+              </li>
+              <li class="nav-item">
+              <NavLink
                     to={"/Dashboard/MyFavorites"}
                     activeClassName={"text-danger fw-semibold"}
                     className="nav-link"
@@ -101,64 +69,34 @@ export default function DasboardTemplate() {
                     <i class="fas fa-heart me-2"></i>
                     Mis Favoritos
                   </NavLink>
-                </li>
-              </ul>
-            </div>
-
-            <DropdownProfile/>
-            <div className="navbar align-self-center d-flex">
-              <div className="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="inputMobileSearch"
-                    placeholder="Search ..."
-                  />
-                  <div className="input-group-text">
-                    <i className="fa fa-fw fa-search"></i>
-                  </div>
-                </div>
-              </div>
-              
-
-              
-
-              
-            </div>
+              </li>
+              <li class="nav-item text-center">
+              <DropdownProfile />
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
 
-
-
-
-      <div className='container mt-4'>
-
+      <div className="container mt-4">
         <div className="card rounded-3 shadow ">
-            <div className="card-body">
+          <div className="card-body">
             <Switch>
+              <Route strict path={"/Dashboard/MyProfile"}>
+                <MyProfileComponent />
+              </Route>
 
-                <Route strict  path={'/Dashboard/MyProfile'}>
-                    <MyProfileComponent />
-                </Route>
+              <Route strict path={"/Dashboard/MyOrders"}>
+                <MyOrderComponent />
+              </Route>
 
-                <Route strict  path={'/Dashboard/MyOrders'}>
-                    <MyOrderComponent />
-                </Route>
-
-                <Route strict  path={'/Dashboard/MyFavorites'}>
-                    <h2> MY Favorites</h2>
-                </Route>
-
+              <Route strict path={"/Dashboard/MyFavorites"}>
+                <h2> MY Favorites</h2>
+              </Route>
             </Switch>
-                
-
-            </div>
+          </div>
         </div>
-
       </div>
-        
-        </>
-    )
+    </>
+  );
 }
