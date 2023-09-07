@@ -22,7 +22,7 @@ export default function MyCart() {
     setCartState([]);
     var s = await cart.map(async (c) => {
       const resutl = await axios.get(`/products/${c.id}`);
-      return Object.assign(resutl.data, c);
+      return Object.assign(resutl.data, c,{talla_Strin: (resutl.data.Sizes.find(s => s.id === c.idSize)).size });
 
     });
     const result = await Promise.all(s);
@@ -95,6 +95,7 @@ export default function MyCart() {
                       <td className="text-center fw-semibold"> Producto</td>
                       <td className="text-center fw-semibold">Precio</td>
                       <td className="text-center fw-semibold">Cantidad</td>
+                      <td className="text-center fw-semibold">Talla</td>
                       <td className="text-center fw-semibold">
                         Total Unitario
                       </td>
@@ -131,6 +132,8 @@ export default function MyCart() {
                             })}
                           </td>
                           <td className="text-center text-nowrap">{p.cant}</td>
+                          <td className="text-center text-nowrap">{p.talla_Strin}</td>
+
                           <td className="text-center text-nowrap">
                             $ {(p.price * p.cant).toLocaleString(undefined, {
                               maximumFractionDigits: 2,

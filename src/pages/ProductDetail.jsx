@@ -286,9 +286,11 @@ const ProductDetail = () => {
                           type="button"
                           class="btn btn-danger btn-lg"
                           value="addtocard"
-                          disabled={productDetail && productDetail.stock === 0}
+                          disabled={productDetail && productDetail.stock === 0 || !TallaProducto || !CantidadTalla}
                           onClick={() => {
                             addProducToCart(productDetail.id,TallaProducto,CantidadTalla);
+                            setTallaProducto(undefined)
+                            setCantidadTalla(undefined)
                           }}
                         >
                           Añadir al Carrito
