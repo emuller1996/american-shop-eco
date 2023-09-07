@@ -4,6 +4,7 @@ import { deleteProductsToCart } from "../features/Car/carSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function MyCart() {
   const cart = useSelector((state) => state.cart);
@@ -22,9 +23,52 @@ export default function MyCart() {
     var s = await cart.map(async (c) => {
       const resutl = await axios.get(`/products/${c.id}`);
       return Object.assign(resutl.data, c);
+
     });
     const result = await Promise.all(s);
-    setCartState(result);
+    var arrayve= result.filter(c => {
+      /* console.log(c);
+      console.log((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant); */
+      try {
+        
+        if ((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant) {
+          return true
+        } else {
+          dispatch(deleteProductsToCart(c.id));
+          toast.error(`Error el Producto ${c.name} ya no tiene esas cantidad en stock`)
+          return false
+        }
+      } catch (error) {
+        dispatch(deleteProductsToCart(c.id));
+        
+      }
+      /* console.log((result.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity < c.cant); */
+    })
+    console.log(result.filter(c => {
+      /* console.log(c);
+      console.log((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant); */
+      if ((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant) {
+        return true
+      } else {
+
+        toast.error(`Error el Producto ${c.name} ya no tiene esas cantidad en stock`)
+        return false
+      }
+      /* console.log((result.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity < c.cant); */
+    }));
+    result.map(c => {
+      /* console.log(c);
+      console.log((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant); */
+      if ((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant) {
+        return true
+      } else {
+        return false
+      }
+
+      /* console.log((result.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity < c.cant); */
+    })
+
+    setCartState(arrayve);
     const sumWithInitial = result.reduce(
       (accumulator, currentValue) => accumulator + currentValue.price,
       0

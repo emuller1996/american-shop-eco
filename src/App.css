@@ -386,3 +386,9 @@ body, ul, li, p, a, label, input, div {
 
 
 
+.nav-bar-american{
+  background-color: #fed4d4;
+  border-bottom: #fa9e9e solid 1px;
+  box-shadow: 0px 1px 2px #ffd0d0, 0px 0 2px #888;
+
+}

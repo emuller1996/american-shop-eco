@@ -58,7 +58,7 @@ export default function Nav() {
         </div>
       </nav>
 
-      <nav class="navbar navbar-expand-lg bg-light">
+      <nav class="navbar navbar-expand-lg  nav-bar-american">
         <div class="container">
           <Link
             className="navbar-brand text-success logo h1 align-self-center m-0"

@@ -28,9 +28,9 @@ const ProductDetail = () => {
     setProductDetail(result.data);
   };
 
-  const addProducToCart = (idProduct) => {
-    console.log(idProduct);
-    dispatch(addProductToCart({ id: idProduct, cant: 1 }));
+  const addProducToCart = (idProduct,Talla,CantidadTalla) => {
+    console.log(Talla,CantidadTalla);
+    dispatch(addProductToCart({ id: idProduct, cant: CantidadTalla , idSize: Talla.id}));
   };
 
   return (
@@ -168,7 +168,7 @@ const ProductDetail = () => {
                       <div class="col-auto">
                         <ul class="list-inline pb-3">
                           <li class="list-inline-item">
-                            Size :
+                  <h6>Tallas :</h6>
                             <input
                               type="hidden"
                               name="product-size"
@@ -176,6 +176,11 @@ const ProductDetail = () => {
                               value="S"
                             />
                           </li>
+                          {
+                            productDetail && productDetail.stock === 0 && (
+                              <p className="text-danger fw-semibold m-0"> No tenemos este articulo en stock </p>
+                            )
+                          }
                           {productDetail &&
                             productDetail.Sizes.map((s) => (
                               <li
@@ -266,7 +271,7 @@ const ProductDetail = () => {
                       )}
                     </div>
                     <div class="row pb-3">
-                      <div class="col d-grid">
+                      {/* <div class="col d-grid">
                         <button
                           type="submit"
                           class="btn btn-danger btn-lg"
@@ -275,17 +280,18 @@ const ProductDetail = () => {
                         >
                           Buy
                         </button>
-                      </div>
+                      </div> */}
                       <div class="col d-grid">
                         <button
                           type="button"
                           class="btn btn-danger btn-lg"
                           value="addtocard"
+                          disabled={productDetail && productDetail.stock === 0}
                           onClick={() => {
-                            addProducToCart(productDetail.id);
+                            addProducToCart(productDetail.id,TallaProducto,CantidadTalla);
                           }}
                         >
-                          Add To Cart
+                          Añadir al Carrito
                         </button>
                       </div>
                     </div>
