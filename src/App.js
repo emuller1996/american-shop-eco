@@ -6,6 +6,7 @@ import "./App.css";
 import DasboardTemplate from "./templates/DashboardTemplate";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProtectedRouteMiProfile from "./utils/ProtectedRouteMiProfile";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <div className="App">
         <Switch>
           <Route path={"/Dashboard"}>
+            <ProtectedRouteMiProfile>
             <DasboardTemplate />
+            </ProtectedRouteMiProfile>
           </Route>
           <Route path={"/"}>
             <TemplateBase bootstrap={bootstrap} />

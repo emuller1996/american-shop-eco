@@ -18,7 +18,7 @@ export default function CardProduct({ product, addProducToCart }) {
           />
           <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
             <ul className="list-unstyled">
-              <li>
+              <li >
                 <span className="btn btn-dark rounded-4 text-white">
                   <i className="fas fa-eye"></i>
                 </span>
