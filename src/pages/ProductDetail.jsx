@@ -6,6 +6,8 @@ import { useHistory, useParams } from "react-router-dom";
 import { addProductToCart } from "../features/Car/carSlice";
 import { toast } from "react-toastify";
 import { MostrarPesoCOP } from "../utils";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getProductByIdServicio } from "../services/productos.servicios";
 
 const ProductDetail = () => {
   let { id } = useParams();
@@ -14,23 +16,33 @@ const ProductDetail = () => {
   const [CantidadTalla, setCantidadTalla] = useState(undefined);
   const history = useHistory();
   const dispatch = useDispatch();
+  const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
     getProductDetail(id);
   }, [id]);
 
-
   const getProductDetail = async (id) => {
-    console.log(id);
+    try {
+      var token = await getAccessTokenSilently();
+    } catch (error) {
+      console.log(error);
+    }
 
-    const result = await axios.get(`/Products/${id}`);
-    console.log(result.data);
-    setProductDetail(result.data);
+    try {
+      const result = await getProductByIdServicio(id, token);
+      console.log(result.data);
+      setProductDetail(result.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const addProducToCart = (idProduct,Talla,CantidadTalla) => {
-    console.log(Talla,CantidadTalla);
-    dispatch(addProductToCart({ id: idProduct, cant: CantidadTalla , idSize: Talla.id}));
+  const addProducToCart = (idProduct, Talla, CantidadTalla) => {
+    console.log(Talla, CantidadTalla);
+    dispatch(
+      addProductToCart({ id: idProduct, cant: CantidadTalla, idSize: Talla.id })
+    );
   };
 
   return (
@@ -168,7 +180,7 @@ const ProductDetail = () => {
                       <div class="col-auto">
                         <ul class="list-inline pb-3">
                           <li class="list-inline-item">
-                  <h6>Tallas :</h6>
+                            <h6>Tallas :</h6>
                             <input
                               type="hidden"
                               name="product-size"
@@ -176,11 +188,12 @@ const ProductDetail = () => {
                               value="S"
                             />
                           </li>
-                          {
-                            productDetail && productDetail.stock === 0 && (
-                              <p className="text-danger fw-semibold m-0"> No tenemos este articulo en stock </p>
-                            )
-                          }
+                          {productDetail && productDetail.stock === 0 && (
+                            <p className="text-danger fw-semibold m-0">
+                              {" "}
+                              No tenemos este articulo en stock{" "}
+                            </p>
+                          )}
                           {productDetail &&
                             productDetail.Sizes.map((s) => (
                               <li
@@ -286,11 +299,19 @@ const ProductDetail = () => {
                           type="button"
                           class="btn btn-danger btn-lg"
                           value="addtocard"
-                          disabled={productDetail && productDetail.stock === 0 || !TallaProducto || !CantidadTalla}
+                          disabled={
+                            (productDetail && productDetail.stock === 0) ||
+                            !TallaProducto ||
+                            !CantidadTalla
+                          }
                           onClick={() => {
-                            addProducToCart(productDetail.id,TallaProducto,CantidadTalla);
-                            setTallaProducto(undefined)
-                            setCantidadTalla(undefined)
+                            addProducToCart(
+                              productDetail.id,
+                              TallaProducto,
+                              CantidadTalla
+                            );
+                            setTallaProducto(undefined);
+                            setCantidadTalla(undefined);
                           }}
                         >
                           Añadir al Carrito
