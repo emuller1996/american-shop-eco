@@ -1,6 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
-import { Navigate } from "react-router-dom";
 import { Redirect, Route } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function ProtectedRouteMiProfile({ children, ...rest }) {
