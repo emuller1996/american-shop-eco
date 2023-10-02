@@ -5,13 +5,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { getProductByIdServicio } from "../services/productos.servicios";
 
 export default function MyCart() {
   const cart = useSelector((state) => state.cart);
 
   const [cartState, setCartState] = useState([]);
   const [total, setTotal] = useState();
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,53 +21,64 @@ export default function MyCart() {
 
   const getProducts = async () => {
     setCartState([]);
+    var token = await getAccessTokenSilently();
     var s = await cart.map(async (c) => {
-      const resutl = await axios.get(`/products/${c.id}`);
-      return Object.assign(resutl.data, c,{talla_Strin: (resutl.data.Sizes.find(s => s.id === c.idSize)).size });
-
+      const resutl = await getProductByIdServicio(c.id, token);
+      return Object.assign(resutl.data, c, {
+        talla_Strin: resutl.data.Sizes.find((s) => s.id === c.idSize).size,
+      });
     });
     const result = await Promise.all(s);
-    var arrayve= result.filter(c => {
+    var arrayve = result.filter((c) => {
       /* console.log(c);
       console.log((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant); */
       try {
-        
-        if ((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant) {
-          return true
+        if (
+          c.Sizes.find((s) => s.id === c.idSize).ProductSize.quantity >= c.cant
+        ) {
+          return true;
         } else {
           dispatch(deleteProductsToCart(c.id));
-          toast.error(`Error el Producto ${c.name} ya no tiene esas cantidad en stock`)
-          return false
+          toast.error(
+            `Error el Producto ${c.name} ya no tiene esas cantidad en stock`
+          );
+          return false;
         }
       } catch (error) {
         dispatch(deleteProductsToCart(c.id));
-        
       }
       /* console.log((result.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity < c.cant); */
-    })
-    console.log(result.filter(c => {
+    });
+    console.log(
+      result.filter((c) => {
+        /* console.log(c);
+      console.log((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant); */
+        if (
+          c.Sizes.find((s) => s.id === c.idSize).ProductSize.quantity >= c.cant
+        ) {
+          return true;
+        } else {
+          toast.error(
+            `Error el Producto ${c.name} ya no tiene esas cantidad en stock`
+          );
+          return false;
+        }
+        /* console.log((result.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity < c.cant); */
+      })
+    );
+    result.map((c) => {
       /* console.log(c);
       console.log((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant); */
-      if ((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant) {
-        return true
+      if (
+        c.Sizes.find((s) => s.id === c.idSize).ProductSize.quantity >= c.cant
+      ) {
+        return true;
       } else {
-
-        toast.error(`Error el Producto ${c.name} ya no tiene esas cantidad en stock`)
-        return false
-      }
-      /* console.log((result.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity < c.cant); */
-    }));
-    result.map(c => {
-      /* console.log(c);
-      console.log((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant); */
-      if ((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant) {
-        return true
-      } else {
-        return false
+        return false;
       }
 
       /* console.log((result.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity < c.cant); */
-    })
+    });
 
     setCartState(arrayve);
     const sumWithInitial = result.reduce(
@@ -127,15 +139,19 @@ export default function MyCart() {
                           </td>
                           <td className="text-center text-nowrap">{p.name}</td>
                           <td className="text-center text-nowrap">
-                            $ {p.price.toLocaleString(undefined, {
+                            ${" "}
+                            {p.price.toLocaleString(undefined, {
                               maximumFractionDigits: 2,
                             })}
                           </td>
                           <td className="text-center text-nowrap">{p.cant}</td>
-                          <td className="text-center text-nowrap">{p.talla_Strin}</td>
+                          <td className="text-center text-nowrap">
+                            {p.talla_Strin}
+                          </td>
 
                           <td className="text-center text-nowrap">
-                            $ {(p.price * p.cant).toLocaleString(undefined, {
+                            ${" "}
+                            {(p.price * p.cant).toLocaleString(undefined, {
                               maximumFractionDigits: 2,
                             })}
                           </td>
@@ -201,9 +217,10 @@ export default function MyCart() {
                 </h3>
                 <p className="text-center fs-4 fw-semibold">
                   {"$ "}
-                  {total && total.toLocaleString(undefined, {
-                    maximumFractionDigits: 2,
-                  })}
+                  {total &&
+                    total.toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                    })}
                 </p>
 
                 {isAuthenticated && cart.length !== 0 ? (

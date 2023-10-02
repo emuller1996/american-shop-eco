@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { MostrarPesoCOP } from "../utils";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getProductByIdServicio } from "../services/productos.servicios";
+import { useRef } from "react";
 
 const ProductDetail = () => {
   let { id } = useParams();
@@ -17,9 +18,12 @@ const ProductDetail = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { getAccessTokenSilently } = useAuth0();
+  const detail = useRef(null);
 
   useEffect(() => {
     getProductDetail(id);
+    console.log(detail.current);
+    detail.current.scrollIntoView();
   }, [id]);
 
   const getProductDetail = async (id) => {
@@ -47,7 +51,7 @@ const ProductDetail = () => {
 
   return (
     <>
-      <section class="bg-light">
+      <section ref={detail} class="bg-light">
         <div class="container pb-5">
           <div class="row">
             <div class="col-lg-5 mt-5">
@@ -73,17 +77,36 @@ const ProductDetail = () => {
                   {/*Start Slides*/}
                   <div class="carousel-inner product-links-wap" role="listbox">
                     {/*First slide*/}
+
                     <div class="carousel-item active">
                       <div class="row">
                         <div class="col-12">
                           <img
                             class="card-img img-fluid"
-                            src={productDetail && productDetail.image}
+                            src={
+                              productDetail && productDetail?.Images[0]?.url_image
+                            }
                             alt="ProductImage1"
                           />
                         </div>
                       </div>
                     </div>
+
+                    {productDetail &&
+                      Array.isArray(productDetail.Images) &&
+                      productDetail.Images.map((i, index) => (
+                        <div class={`carousel-item `}>
+                          <div class="row">
+                            <div class="col-12">
+                              <img
+                                class="card-img img-fluid"
+                                src={i && i.url_image}
+                                alt="ProductImage1"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )).splice(1, productDetail.Images.length)}
                   </div>
                   {/*End Slides*/}
                 </div>

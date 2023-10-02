@@ -12,13 +12,15 @@ export default function CardProduct({ product, addProducToCart }) {
         <div className="card  rounded-0 border-0">
           <Card.Img
             variant="top"
-            src={product.image}
+            src={
+              product.Images[0] ? product.Images[0].url_image : product.image
+            }
             style={{ maxWidth: "90%", minWidth: "100%", minHeight: "100%" }}
             className="img-product img-fluid w-50  mx-auto d-block p-3"
           />
           <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
             <ul className="list-unstyled">
-              <li >
+              <li>
                 <span className="btn btn-dark rounded-4 text-white">
                   <i className="fas fa-eye"></i>
                 </span>
