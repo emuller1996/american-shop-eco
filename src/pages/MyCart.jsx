@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProductsToCart } from "../features/Car/carSlice";
+import { deleteProductsToCart, resetCart } from "../features/Car/carSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -21,34 +21,29 @@ export default function MyCart() {
 
   const getProducts = async () => {
     setCartState([]);
-    var token = await getAccessTokenSilently();
-    var s = await cart.map(async (c) => {
-      const resutl = await getProductByIdServicio(c.id, token);
-      return Object.assign(resutl.data, c, {
-        talla_Strin: resutl.data.Sizes.find((s) => s.id === c.idSize).size,
-      });
-    });
-    const result = await Promise.all(s);
-    var arrayve = result.filter((c) => {
-      /* console.log(c);
-      console.log((c.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity >= c.cant); */
-      try {
-        if (
-          c.Sizes.find((s) => s.id === c.idSize).ProductSize.quantity >= c.cant
-        ) {
-          return true;
-        } else {
-          dispatch(deleteProductsToCart(c.id));
-          toast.error(
-            `Error el Producto ${c.name} ya no tiene esas cantidad en stock`
-          );
-          return false;
+
+    try {
+      
+      var s = await cart.map(async (c) => {
+        try {
+          
+          const resutl = await getProductByIdServicio(c.id, "s");
+          return Object.assign(resutl.data, c, {
+            talla_Strin: resutl.data.Sizes.find((s) => s.id === c.idSize).size,
+          });
+        } catch (error) {
+          
+          console.log("aca rompo");
+      dispatch( resetCart())
+
         }
-      } catch (error) {
-        dispatch(deleteProductsToCart(c.id));
-      }
-      /* console.log((result.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity < c.cant); */
-    });
+      });
+    } catch (error) {
+      dispatch( resetCart())
+      
+    }
+    const result = await Promise.all(s);
+    
     console.log(
       result.filter((c) => {
         /* console.log(c);
@@ -80,7 +75,7 @@ export default function MyCart() {
       /* console.log((result.Sizes.find(s => s.id === c.idSize)).ProductSize.quantity < c.cant); */
     });
 
-    setCartState(arrayve);
+    setCartState(result);
     const sumWithInitial = result.reduce(
       (accumulator, currentValue) => accumulator + currentValue.price,
       0

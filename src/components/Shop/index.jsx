@@ -51,9 +51,14 @@ export default function Shop() {
   const getProductAll = async (size, page, search, categoryFilter) => {
     setError(undefined);
     setIsLoading(true)
+    try {
+      
+      var token = await getAccessTokenSilently();
+    } catch (error) {
+      console.log(error);
+    }
 
     try {
-      const token = await getAccessTokenSilently();
 
       console.log(token);
       const result = await axios.get(

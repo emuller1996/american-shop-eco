@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function CardProduct({ product, addProducToCart }) {
   return (
-    <div className="col-md-4" data-aos="fade-up" data-aos-duration="3000">
+    <div className="col-md-4" data-aos="fade-out" data-aos-duration="300">
       <Link
         className="card card-product mb-4 product-wap rounded-0 text-decoration-none h-100"
         to={`/ProductDetail/${product.id}`}
