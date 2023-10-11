@@ -20,7 +20,7 @@ export default function TemplateBase() {
           <BannerCarousel />
           <BannerCategoryMoth />
         </Route>
-        <Route exact path={"/sobre-nosotros"}>
+        <Route exact path={"/nosotros"}>
           <About />
         </Route>
         <Route exact path={"/articulos"}>

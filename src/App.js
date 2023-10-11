@@ -13,9 +13,9 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route path={"/Dashboard"}>
+          <Route path={"/d"}>
             <ProtectedRouteMiProfile>
-            <DasboardTemplate />
+              <DasboardTemplate />
             </ProtectedRouteMiProfile>
           </Route>
           <Route path={"/"}>
