@@ -7,9 +7,9 @@ import BannerCategoryMoth from "../pages/Home/BannerCategoryMoth";
 import About from "../pages/About";
 import ProductDetail from "../pages/ProductDetail/ProductDetail";
 import MyCart from "../pages/MyCart/MyCart";
-import PurchaseConfirmation from "../pages/PurchaseConfirmation";
 import OrderPlaced from "../pages/PurchaseConfirmation/OrderPlaced";
 import Shop from "../pages/Shop";
+import PurchaseConfirmation from "../pages/PurchaseConfirmation";
 
 export default function TemplateBase() {
   return (

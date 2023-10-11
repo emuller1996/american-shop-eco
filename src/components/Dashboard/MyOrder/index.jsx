@@ -5,12 +5,13 @@ import ListOrderComponent from "./ListOrder";
 import SpinnerComponent from "../../Spinner";
 import { Button, Modal } from "react-bootstrap";
 import MessageComponent from "./Message";
+import { getOrdersByUserServicio } from "../../../services/orders.services";
 
 export default function MyOrderComponent() {
   const [orders, setOrders] = useState(undefined);
   const [ordersDetail, setOrdersDetail] = useState(undefined);
 
-  const { user } = useAuth0();
+  const { user, getAccessTokenSilently } = useAuth0();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -21,7 +22,8 @@ export default function MyOrderComponent() {
   }, [user]);
 
   const getOrderByEmail = async () => {
-    const result = await axios.get(`/order/${user.email}`);
+    const token = await getAccessTokenSilently();
+    const result = await getOrdersByUserServicio(user.email, token);
     console.log(result.data);
     setOrders(result.data);
   };
@@ -55,7 +57,10 @@ export default function MyOrderComponent() {
               </p>
             </div>
             <div class="col-12 text-center">
-              Estado: <span class="badge bg-primary">{ordersDetail && ordersDetail.status}</span>
+              Estado:{" "}
+              <span class="badge bg-primary">
+                {ordersDetail && ordersDetail.status}
+              </span>
             </div>
             <div class="col-12">
               <p className="mb-1 text-center fw-semibold">
