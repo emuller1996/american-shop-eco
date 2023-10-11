@@ -3,7 +3,7 @@ import MyDeliveryAddressComponent from "../../components/Dashboard/MyProfile/MyD
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import SpinnerComponent from "../../components/Spinner";
-import { getDeliveryAddressByIdUser } from "./services/delivery.services";
+import { getDeliveryAddressByIdUser } from "../../services/delivery.services";
 
 export default function SelectShippingAddressComponent({
   setShippingAddress,
