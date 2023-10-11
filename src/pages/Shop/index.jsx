@@ -6,8 +6,8 @@ import FilterProducts from "./FilterProducts";
 import "./index.css";
 import { addProductToCart } from "../../features/Car/carSlice";
 import { useDispatch, useSelector } from "react-redux";
-import SpinnerComponent from "../Spinner";
 import { useAuth0 } from "@auth0/auth0-react";
+import SpinnerComponent from "../../components/Spinner";
 
 export default function Shop() {
   const [productsAll, setProductsAll] = useState();

@@ -40,7 +40,7 @@ export default function DasboardTemplate() {
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
               <li class="nav-item">
               <NavLink
-                    to={"/Dashboard/MyProfile"}
+                    to={"/d/mi-perfil"}
                     activeClassName={"text-danger fw-semibold"}
                     className="nav-link text-decoration-none"
                   >
@@ -50,7 +50,7 @@ export default function DasboardTemplate() {
               </li>
               <li class="nav-item">
               <NavLink
-                    to={"/Dashboard/MyOrders"}
+                    to={"/d/mis-pedidos"}
                     activeClassName={"text-danger fw-semibold"}
                     className="nav-link"
                     href="about.html"
@@ -61,7 +61,7 @@ export default function DasboardTemplate() {
               </li>
               <li class="nav-item">
               <NavLink
-                    to={"/Dashboard/MyFavorites"}
+                    to={"/d/mis-favoritos"}
                     activeClassName={"text-danger fw-semibold"}
                     className="nav-link"
                     href="shop.html"
@@ -82,15 +82,15 @@ export default function DasboardTemplate() {
         <div className="card rounded-3 shadow ">
           <div className="card-body">
             <Switch>
-              <Route strict path={"/Dashboard/MyProfile"}>
+              <Route strict path={"/d/mi-perfil"}>
                 <MyProfileComponent />
               </Route>
 
-              <Route strict path={"/Dashboard/MyOrders"}>
+              <Route strict path={"/d/mis-pedidos"}>
                 <MyOrderComponent />
               </Route>
 
-              <Route strict path={"/Dashboard/MyFavorites"}>
+              <Route strict path={"/d/mis-favoritos"}>
                 <h2> MY Favorites</h2>
               </Route>
             </Switch>

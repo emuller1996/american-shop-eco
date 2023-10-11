@@ -92,6 +92,7 @@ export default function Nav() {
             <ul class="navbar-nav   ms-auto ">
               <li class="nav-item">
                 <NavLink
+                  exact
                   to={"/"}
                   activeClassName={"text-danger fw-semibold"}
                   className="nav-link text-decoration-none"
@@ -101,17 +102,17 @@ export default function Nav() {
               </li>
               <li class="nav-item">
                 <NavLink
-                  to={"/About"}
+                  to={"/nosotros"}
                   activeClassName={"text-danger fw-semibold"}
                   className="nav-link"
                   href="about.html"
                 >
-                  Sobre Nosotros
+                  Nosotros
                 </NavLink>
               </li>
               <li class="nav-item">
                 <NavLink
-                  to={"/Shop"}
+                  to={"/articulos"}
                   activeClassName={"text-danger fw-semibold"}
                   className="nav-link"
                   href="shop.html"
@@ -122,7 +123,7 @@ export default function Nav() {
               <li class="nav-item text-center ms-3 py-2">
                 <Link
                   className="nav-icon position-relative text-decoration-none"
-                  to={"/MyCart"}
+                  to={"/mi-carrito"}
                 >
                   <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                   <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">

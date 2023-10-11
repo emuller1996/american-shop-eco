@@ -1,5 +1,5 @@
 import React from 'react';
-import PurchaseConfirmationComponent from '../components/PurchaseConfirmation';
+import PurchaseConfirmationComponent from './PurchaseConfirmation';
 
 export default function PurchaseConfirmation(){
 

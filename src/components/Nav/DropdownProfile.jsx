@@ -1,26 +1,20 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import LogoutButton from "./LogoutButton";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import isClient from "../../utils/isClient";
 
-
 export default function DropdownProfile() {
-
-  const [ client, setClient] = useState(true);
+  const [client, setClient] = useState(true);
   const { user } = useAuth0();
 
+  useEffect(() => {
+    isClient(user)
+      .then((data) => setClient(data))
+      .catch((error) => setClient(error));
+  }, [user]);
 
-
-  useEffect( ()=> {
-    isClient(user).then((data)=>setClient(data)).catch((error)=>setClient(error));
-
-
-
-  },[user])
-
-  
   return (
     <>
       <Dropdown>
@@ -41,19 +35,20 @@ export default function DropdownProfile() {
               <small className="text-sm p-0 m-0 f-6 text-nowrap text-uppercase d-block">
                 {user ? user.name : "..."}
               </small>
-             
-              <Link className="btn btn-sm btn-light
-               w-100 rounded-3 text-decoration-none" to={"/Dashboard/MyProfile"}>
-                <i class="far fa-user-circle me-2"></i>Mi Perfil</Link>
+
+              <Link
+                className="btn btn-sm btn-light
+               w-100 rounded-3 text-decoration-none"
+                to={"/d/mi-perfil"}
+              >
+                <i class="far fa-user-circle me-2"></i>Mi Perfil
+              </Link>
               <small className="text-sm p-0 m-0 f-6 text-nowrap text-uppercase d-block mt-2">
-              <LogoutButton />
+                <LogoutButton />
               </small>
             </div>
           </Dropdown.ItemText>
-          <Dropdown.Item>
-            
-          </Dropdown.Item>
-          
+          <Dropdown.Item></Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </>

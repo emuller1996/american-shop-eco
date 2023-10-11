@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProductsToCart, resetCart } from "../features/Car/carSlice";
+import { deleteProductsToCart, resetCart } from "../../features/Car/carSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getProductByIdServicio } from "../services/productos.servicios";
+import { getProductByIdServicio } from "../../services/productos.servicios";
 
 export default function MyCart() {
   const cart = useSelector((state) => state.cart);
@@ -220,7 +220,7 @@ export default function MyCart() {
 
                 {isAuthenticated && cart.length !== 0 ? (
                   <Link
-                    to={"/PurchaseConfirmation"}
+                    to={"/comfirmar-compra"}
                     disabled={!isAuthenticated}
                     className="btn btn-success w-100 py-3 h3 fw-bold "
                   >

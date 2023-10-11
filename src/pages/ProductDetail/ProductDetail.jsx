@@ -3,11 +3,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { addProductToCart } from "../features/Car/carSlice";
+import { addProductToCart } from "../../features/Car/carSlice";
 import { toast } from "react-toastify";
-import { MostrarPesoCOP } from "../utils";
+import { MostrarPesoCOP } from "../../utils";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getProductByIdServicio } from "../services/productos.servicios";
+import { getProductByIdServicio } from "../../services/productos.servicios";
 import { useRef } from "react";
 
 const ProductDetail = () => {
