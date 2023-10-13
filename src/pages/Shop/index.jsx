@@ -62,7 +62,7 @@ export default function Shop() {
 
       console.log(token);
       const result = await axios.get(
-        `/products?size=${size}&page=${page}&search=${search}&cat=${categoryFilter}`,
+        `/products/published?size=${size}&page=${page}&search=${search}&cat=${categoryFilter}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
