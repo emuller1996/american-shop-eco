@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -84,7 +83,8 @@ const ProductDetail = () => {
                           <img
                             class="card-img img-fluid"
                             src={
-                              productDetail && productDetail?.Images[0]?.url_image
+                              productDetail &&
+                              productDetail?.Images[0]?.url_image
                             }
                             alt="ProductImage1"
                           />
@@ -152,7 +152,7 @@ const ProductDetail = () => {
                       <span class="placeholder col-3 rounded"></span>
                     )}
                   </p>
-                  <p class="py-2">
+                  {/* <p class="py-2">
                     <i class="fa fa-star text-warning"></i>
                     <i class="fa fa-star text-warning"></i>
                     <i class="fa fa-star text-warning"></i>
@@ -161,7 +161,7 @@ const ProductDetail = () => {
                     <span class="list-inline-item text-dark">
                       Rating 4.8 | 36 Comments
                     </span>
-                  </p>
+                  </p> */}
                   <ul class="list-inline">
                     <li class="list-inline-item">
                       <h6>Marca: </h6>
@@ -176,22 +176,6 @@ const ProductDetail = () => {
                       </h4>
                     </li>
                   </ul>
-
-                  <h6>Descripcion:</h6>
-                  <p className="placeholder-glow ">
-                    {productDetail ? (
-                      `${productDetail.description}`
-                    ) : (
-                      <>
-                        <span class="placeholder col-5 rounded"></span>
-                        <span class="placeholder col-7 rounded"></span>
-                        <span class="placeholder col-4 rounded"></span>
-                        <span class="placeholder col-6 rounded"></span>
-                        <span class="placeholder col-8 rounded"></span>
-                        <span class="placeholder col-4 rounded"></span>
-                      </>
-                    )}
-                  </p>
 
                   <form action="" method="GET">
                     <input
@@ -342,6 +326,25 @@ const ProductDetail = () => {
                       </div>
                     </div>
                   </form>
+
+                  <h6>Descripcion:</h6>
+                  <p
+                    className="placeholder-glow "
+                    style={{ whiteSpace: "pre-line" }}
+                  >
+                    {productDetail ? (
+                      `${productDetail.description}`
+                    ) : (
+                      <>
+                        <span class="placeholder col-5 rounded"></span>
+                        <span class="placeholder col-7 rounded"></span>
+                        <span class="placeholder col-4 rounded"></span>
+                        <span class="placeholder col-6 rounded"></span>
+                        <span class="placeholder col-8 rounded"></span>
+                        <span class="placeholder col-4 rounded"></span>
+                      </>
+                    )}
+                  </p>
                 </div>
               </div>
             </div>
