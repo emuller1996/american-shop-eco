@@ -9,13 +9,12 @@ export default function CardProduct({ product, addProducToCart }) {
         className="card card-product mb-4 product-wap rounded-0 text-decoration-none h-100"
         to={`/articulo/${product.id}`}
       >
-        <div className="card  rounded-0 border-0">
+        <div  className="card  rounded-0 border-0">
           <Card.Img
             variant="top"
             src={
               product.Images[0] ? product.Images[0].url_image : product.image
             }
-            style={{ maxWidth: "90%", minWidth: "100%", minHeight: "100%" }}
             className="img-product img-fluid w-50  mx-auto d-block p-3"
           />
           <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">

@@ -99,8 +99,8 @@ export default function Shop() {
           </div>
 
           <div className="col-lg-9">
-            <div className="row">
-              <div className="col-md-6">
+            <div className="row  justify-content-center">
+              {/* <div className="col-md-6">
                 <ul className="list-inline shop-top-menu pb-3 pt-1">
                   <li className="list-inline-item">
                     <a
@@ -124,15 +124,15 @@ export default function Shop() {
                     </a>
                   </li>
                 </ul>
-              </div>
-              <div className="col-md-6 pb-4">
+              </div> */}
+              <div className="col-md-6 py-3 align-self-center">
                 <div className="d-flex">
                   <input
                     type="text"
-                    className="form-control input-search-producto"
+                    className=" input-search-producto"
                     value={search}
                     onChange={handleSearch}
-                    placeholder="Search a product"
+                    placeholder="Buscar Producto"
                   />
                 </div>
               </div>

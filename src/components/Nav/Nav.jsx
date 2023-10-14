@@ -19,7 +19,7 @@ export default function Nav() {
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
+        className="navbar navbat-top-american navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
         id="templatemo_nav_top"
       >
         <div className="container text-light">
@@ -59,7 +59,7 @@ export default function Nav() {
       </nav>
 
       <nav class="navbar navbar-expand-lg  nav-bar-american">
-        <div class="container">
+        <div class="container ">
           <Link
             className="navbar-brand text-success logo h1 align-self-center m-0"
             to="/"
@@ -94,26 +94,26 @@ export default function Nav() {
                 <NavLink
                   exact
                   to={"/"}
-                  activeClassName={"text-danger fw-semibold"}
+                  activeClassName={"text-nav-active fw-semibold"}
                   className="nav-link text-decoration-none"
                 >
                   Inicio
                 </NavLink>
               </li>
-              <li class="nav-item">
+              {/* <li class="nav-item">
                 <NavLink
                   to={"/nosotros"}
-                  activeClassName={"text-danger fw-semibold"}
+                  activeClassName={"text-nav-active fw-semibold"}
                   className="nav-link"
                   href="about.html"
                 >
                   Nosotros
                 </NavLink>
-              </li>
+              </li> */}
               <li class="nav-item">
                 <NavLink
                   to={"/articulos"}
-                  activeClassName={"text-danger fw-semibold"}
+                  activeClassName={"text-nav-active fw-semibold"}
                   className="nav-link"
                   href="shop.html"
                 >
@@ -121,15 +121,16 @@ export default function Nav() {
                 </NavLink>
               </li>
               <li class="nav-item text-center ms-3 py-2">
-                <Link
+                <NavLink
                   className="nav-icon position-relative text-decoration-none"
+                  activeClassName={"text-nav-active fw-semibold"}
                   to={"/mi-carrito"}
                 >
                   <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                   <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
                     {cart.length}
                   </span>
-                </Link>
+                </NavLink>
               </li>
               <li class="nav-item text-center ms-3 ">
                 {isAuthenticated ? <DropdownProfile /> : <Login />}
