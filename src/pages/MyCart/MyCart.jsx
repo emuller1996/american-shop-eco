@@ -23,27 +23,22 @@ export default function MyCart() {
     setCartState([]);
 
     try {
-      
       var s = await cart.map(async (c) => {
         try {
-          
           const resutl = await getProductByIdServicio(c.id, "s");
           return Object.assign(resutl.data, c, {
             talla_Strin: resutl.data.Sizes.find((s) => s.id === c.idSize).size,
           });
         } catch (error) {
-          
           console.log("aca rompo");
-      dispatch( resetCart())
-
+          dispatch(resetCart());
         }
       });
     } catch (error) {
-      dispatch( resetCart())
-      
+      dispatch(resetCart());
     }
     const result = await Promise.all(s);
-    
+
     console.log(
       result.filter((c) => {
         /* console.log(c);
@@ -92,8 +87,68 @@ export default function MyCart() {
       <div className="container py-4">
         <h4 className="text-center mb-3">Mi Carrito</h4>
         <div className="row">
+          {cart.length === 0 && (
+            <div className="col-12">SIN PRODUCTOS EN EL CARRITO</div>
+          )}
           <div className="col-md-8 ">
-            <div className="card shadow mb-4 border  border-dark">
+            {cartState &&
+              cartState.map((p) => (
+                <>
+                  <div className="card mb-2">
+                    <div className="card-body">
+                      <div className="row align-items-start">
+                        <div className="col-4 col-md-3">
+                          <img
+                            className="rounded-3 img-fluid"
+                            src={
+                              p?.Images[0]?.url_image
+                                ? p?.Images[0]?.url_image
+                                : p.image
+                            }
+                            width="60px"
+                            height={"50px"}
+                            alt=""
+                            srcset=""
+                          />
+                        </div>
+                        <div className="col-8 col-md-9 align-self-center">
+                          <div className="row align-items-start">
+                            <div className="col-8 col-md-9 col-lg-10">
+                              <span>{p.name}</span>
+                            </div>
+                            <div className="col-4 col-md-3 col-lg-2 align-self-end text-end">
+                              <span className="text-nowrap">
+                                {p.talla_Strin}
+                              </span>
+                            </div>
+                            <div className="col-12">
+                              <div className="d-flex justify-content-between">
+                                <span>{`${p.price.toLocaleString(undefined, {
+                                  maximumFractionDigits: 2,
+                                })} x ${p.cant}`}</span>
+                                <span className="fw-semibold">{`${(
+                                  p.price * p.cant
+                                ).toLocaleString(undefined, {
+                                  maximumFractionDigits: 2,
+                                })}`}</span>
+                                <button
+                                  className="btn btn-sm rounded-3  btn-danger "
+                                  onClick={(id) => {
+                                    HandledeleteProductsToCart(p.id);
+                                  }}
+                                >
+                                  <i class="far fa-trash-alt fa-sm"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ))}
+            {/* <div className="card shadow mb-4 border  border-dark">
               <div className="table-responsive  rounded overflow">
                 <table className="table   p-0 m-0  ">
                   <thead className="bg-dark text-white ">
@@ -134,7 +189,6 @@ export default function MyCart() {
                           </td>
                           <td className="text-center text-nowrap">{p.name}</td>
                           <td className="text-center text-nowrap">
-                            ${" "}
                             {p.price.toLocaleString(undefined, {
                               maximumFractionDigits: 2,
                             })}
@@ -201,7 +255,7 @@ export default function MyCart() {
                   </tbody>
                 </table>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="col-md-4">
