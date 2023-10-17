@@ -221,80 +221,6 @@ Table of contents
   color: #000 !important;
 }
 
-/* Services */
-.services-icon-wap {
-  transition: .3s;
-}
-
-.services-icon-wap:hover,
-.services-icon-wap:hover i {
-  color: #fff;
-}
-
-.services-icon-wap:hover {
-  background: #e94d4d;
-}
-
-/* Contact map */
-.leaflet-control a,
-.leaflet-control {
-  font-size: 10px !important;
-}
-
-.form-control {
-  border: 1px solid #e8e8e8;
-}
-
-/* Footer */
-#tempaltemo_footer a {
-  color: #dcdde1;
-}
-
-#tempaltemo_footer a:hover {
-  color: #C74040;
-}
-
-#tempaltemo_footer ul.footer-link-list li {
-  padding-top: 10px;
-}
-
-#tempaltemo_footer ul.footer-icons li {
-  width: 2.6em;
-  height: 2.6em;
-  line-height: 2.6em;
-}
-
-#tempaltemo_footer ul.footer-icons li:hover {
-  background-color: #cfd6e1;
-  transition: .5s;
-}
-
-#tempaltemo_footer ul.footer-icons li:hover i {
-  color: #212934;
-  transition: .5s;
-}
-
-#tempaltemo_footer .border-light {
-  border-color: #2d343f !important;
-}
-
-/*
-// Extra small devices (portrait phones, less than 576px)
-// No media query since this is the default in Bootstrap
-*/
-/* Small devices (landscape phones, 576px and up)*/
-.product-wap .h3,
-.product-wap li,
-.product-wap i,
-.product-wap p {
-  font-size: 12px !important;
-}
-
-.product-wap .product-color-dot {
-  width: 6px;
-  height: 6px;
-}
-
 @media (min-width: 576px) {
   .tempaltemo-carousel .h1 {
     font-size: 1em !important;
@@ -566,3 +492,34 @@ Table of contents
   background-color: #011d79c2 !important;
 }
 
+.bg-footer-american {
+  background: #011d79c2 !important;
+  /* background: linear-gradient(90deg, rgba(27, 78, 218, 0.349) 0%, rgba(173, 10, 10, 0.623) 100%); */
+  /* background-color: rgba(188, 44, 44, 0.96); */
+
+  border-bottom: #000 2px solid;
+}
+
+.bg-footer-american-b {
+
+  /* background-color: rgba(12, 27, 161, 0.507); */
+
+  background: rgb(49, 53, 88);
+  background: linear-gradient(90deg, rgba(27, 78, 218, 0.349) 0%, rgba(173, 10, 10, 0.623) 100%);
+  border-top: rgba(173, 10, 10, 0.171) solid 2px;
+}
+
+.card-nuevos-american{
+  border: 2px solid #011d79c2;
+  border-radius: 0.8em !important;
+  overflow: hidden;
+}
+.card-body-nuevos-american{
+  background: rgb(49, 53, 88);
+  background: linear-gradient(180deg, rgba(27, 78, 218, 0.185) 0%, rgba(173, 10, 10, 0.316) 100%);
+  border-top: rgb(49, 53, 88) solid 2px !important;
+}
+
+.bg-nuevos-productos{
+  background-color: #efefff;
+}

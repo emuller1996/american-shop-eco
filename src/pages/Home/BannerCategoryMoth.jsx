@@ -6,7 +6,7 @@ export default function BannerCategoryMoth() {
 
     return (
         <>
-            <section className="bg-light">
+            <section className=" bg-nuevos-productos">
                 <div className="container py-5">
                     <div className="row text-center py-3">
                         <div className="col-lg-6 m-auto">
@@ -18,77 +18,78 @@ export default function BannerCategoryMoth() {
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-4 mb-4">
-                            <div className="card h-100">
+                            <div className="card card-nuevos-american h-100">
                                 <a href="shop-single.html">
                                     <img src="./assets/img/feature_prod_01.jpg" className="card-img-top" alt="..."/>
                                 </a>
-                                <div className="card-body">
+                                <div className="card-body card-body-nuevos-american">
                                     <ul className="list-unstyled d-flex justify-content-between">
-                                        <li>
+                                        {/* <li>
                                             <i className="text-warning fa fa-star"></i>
                                             <i className="text-warning fa fa-star"></i>
                                             <i className="text-warning fa fa-star"></i>
                                             <i className="text-muted fa fa-star"></i>
                                             <i className="text-muted fa fa-star"></i>
-                                        </li>
-                                        <li className="text-muted text-right">$240.00</li>
+                                        </li> */}
+                                        <li className="text-dark fs-4 m-0 p-0 text-right">$240.00</li>
                                     </ul>
                                     <a href="shop-single.html" className="h2 text-decoration-none text-dark">Gym Weight</a>
                                     <p className="card-text">
                                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
                                     </p>
-                                    <p className="text-muted">Reviews (24)</p>
+                                    <p className="text-dark">2 Dias</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-12 col-md-4 mb-4">
-                            <div className="card h-100">
+                            <div className="card card-nuevos-american h-100">
                                 <a href="shop-single.html">
-                                    <img src="./assets/img/feature_prod_02.jpg" className="card-img-top" alt="..." />
+                                    <img src="./assets/img/feature_prod_02.jpg" className="card-img-top" alt="..."/>
                                 </a>
-                                <div className="card-body">
+                                <div className="card-body card-body-nuevos-american">
                                     <ul className="list-unstyled d-flex justify-content-between">
-                                        <li>
+                                        {/* <li>
                                             <i className="text-warning fa fa-star"></i>
                                             <i className="text-warning fa fa-star"></i>
                                             <i className="text-warning fa fa-star"></i>
                                             <i className="text-muted fa fa-star"></i>
                                             <i className="text-muted fa fa-star"></i>
-                                        </li>
-                                        <li className="text-muted text-right">$480.00</li>
+                                        </li> */}
+                                        <li className="text-dark fs-4 m-0 p-0 text-right">$240.00</li>
                                     </ul>
-                                    <a href="shop-single.html" className="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
+                                    <a href="shop-single.html" className="h2 text-decoration-none text-dark">Gym Weight</a>
                                     <p className="card-text">
-                                        Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
                                     </p>
-                                    <p className="text-muted">Reviews (48)</p>
+                                    <p className="text-dark">2 Dias</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-12 col-md-4 mb-4">
-                            <div className="card h-100">
+                            <div className="card card-nuevos-american h-100">
                                 <a href="shop-single.html">
-                                    <img src="./assets/img/feature_prod_03.jpg" className="card-img-top" alt="..." />
+                                    <img src="./assets/img/feature_prod_03.jpg" className="card-img-top" alt="..."/>
                                 </a>
-                                <div className="card-body">
+                                <div className="card-body card-body-nuevos-american">
                                     <ul className="list-unstyled d-flex justify-content-between">
-                                        <li>
+                                        {/* <li>
                                             <i className="text-warning fa fa-star"></i>
                                             <i className="text-warning fa fa-star"></i>
                                             <i className="text-warning fa fa-star"></i>
-                                            <i className="text-warning fa fa-star"></i>
-                                            <i className="text-warning fa fa-star"></i>
-                                        </li>
-                                        <li className="text-muted text-right">$360.00</li>
+                                            <i className="text-muted fa fa-star"></i>
+                                            <i className="text-muted fa fa-star"></i>
+                                        </li> */}
+                                        <li className="text-dark fs-4 m-0 p-0 text-right">$240.00</li>
                                     </ul>
-                                    <a href="shop-single.html" className="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
+                                    <a href="shop-single.html" className="h2 text-decoration-none text-dark">Gym Weight</a>
                                     <p className="card-text">
-                                        Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
                                     </p>
-                                    <p className="text-muted">Reviews (74)</p>
+                                    <p className="text-dark">2 Dias</p>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </section>

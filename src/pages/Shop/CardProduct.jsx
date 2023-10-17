@@ -43,26 +43,24 @@ export default function CardProduct({ product, addProducToCart }) {
           </p>
 
           <p className="text-center m-0 fs-6 placeholder-glow">
-            {product.Category.name}{" "}
+            {product.Category.name}
           </p>
-          <p className="text-center m-0 fs-6 placeholder-glow">
-            {product.stock}
-          </p>
+          
 
-          <ul className="list-unstyled d-flex justify-content-center mb-1">
+          {/* <ul className="list-unstyled d-flex justify-content-center mb-1">
             <li>
               {[1, 2, 3, 4, 5].map((n) => {
                 if (n <= product.rating)
                   return <i key={n} className="text-warning fa fa-star"></i>;
                 else return <i key={n} className="text-muted fa fa-star"></i>;
               })}
-              {/* <i className="text-warning fa fa-star"></i>
+              <i className="text-warning fa fa-star"></i>
                             <i className="text-warning fa fa-star"></i>
                             <i className="text-warning fa fa-star"></i>
                             <i className="text-muted fa fa-star"></i>
-                            <i className="text-muted fa fa-star"></i> */}
+                            <i className="text-muted fa fa-star"></i>
             </li>
-          </ul>
+          </ul> */}
           <p className="text-center mb-0 text-danger fw-normal">
             $
             {`${product.price.toLocaleString(undefined, {
