@@ -1,0 +1,21 @@
+.contenedor-carrito-items {
+    border: 1px solid #6a54e3;
+    border-radius: 0.9em;
+}
+
+.card-carrito-producto {
+    border-radius: 0.9em;
+    border-color: #e03d4084;
+}
+
+.btn-success-carrito {
+    border: none;
+    background: rgb(49, 53, 88);
+    background: linear-gradient(90deg, rgba(40, 218, 27, 0.349) 0%, rgba(10, 173, 83, 0.623) 100%);
+}
+
+.btn-success-carrito:hover {
+    background: rgb(49, 53, 88);
+    background: linear-gradient(-90deg, rgba(40, 218, 27, 0.349) 0%, rgba(10, 173, 83, 0.623) 100%);
+    transition: 0.7s;
+}

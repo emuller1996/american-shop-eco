@@ -70,22 +70,18 @@ export default function PurchaseConfirmationComponent() {
 
   return (
     <div className="row justify-content-center align-items-center g-4">
-      <div className="col-md-6 ">
+      <div className="col-md-6 order-0 order-md-1 ">
         <ListProductsOrder products={cartState} />
       </div>
 
       <div className="col-md-6 ">
+        <div className="container">
+
         <SelectShippingAddressComponent
           setShippingAddress={setShippingAddress}
           shippingAddress={shippingAddress}
         />
-      </div>
-
-      <div className="col-md-6">
         <SelectPaymentMethodsComponent />
-      </div>
-
-      <div className="col-md-6">
         <button
           type="button"
           onClick={onSaveOrder}
@@ -93,6 +89,7 @@ export default function PurchaseConfirmationComponent() {
         >
           COMPRAR
         </button>
+        </div>
       </div>
     </div>
   );
