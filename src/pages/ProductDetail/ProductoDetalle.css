@@ -1,0 +1,30 @@
+.card-producto-detalle{
+
+    border-radius: 0.9em !important;
+    border-color: rgba(173, 10, 10, 0.623);
+    background-color:  #c3d1ff44;
+
+}
+
+.btn-size{
+    border:solid 1px #ad0a0ae0;
+    border-radius: 0.9em;
+    padding: 0.3em;
+    cursor: pointer;
+    text-align: center;
+    color: #ad0a0a;
+}
+
+.btn-size-seleted{
+    border:solid 1px #ad0a0ae0;
+    border-radius: 0.9em;
+    background-color: #ad0a0ae0;
+    padding: 0.3em;
+    cursor: pointer;
+    text-align: center;
+    color: #fdfdfdc2;
+}
+.btn-danger{
+    background-color: #ad0a0ae0;
+
+}

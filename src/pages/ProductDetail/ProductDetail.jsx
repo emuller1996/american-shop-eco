@@ -8,12 +8,15 @@ import { MostrarPesoCOP } from "../../utils";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getProductByIdServicio } from "../../services/productos.servicios";
 import { useRef } from "react";
+import img from "./img-place.gif";
+import "./ProductoDetalle.css";
 
 const ProductDetail = () => {
   let { id } = useParams();
   const [productDetail, setProductDetail] = useState(undefined);
   const [TallaProducto, setTallaProducto] = useState(undefined);
   const [CantidadTalla, setCantidadTalla] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
   const dispatch = useDispatch();
   const { getAccessTokenSilently } = useAuth0();
@@ -26,6 +29,7 @@ const ProductDetail = () => {
   }, [id]);
 
   const getProductDetail = async (id) => {
+    setIsLoading(true);
     try {
       var token = await getAccessTokenSilently();
     } catch (error) {
@@ -36,8 +40,11 @@ const ProductDetail = () => {
       const result = await getProductByIdServicio(id, token);
       console.log(result.data);
       setProductDetail(result.data);
+
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
 
@@ -53,81 +60,94 @@ const ProductDetail = () => {
       <section ref={detail} class="bg-light">
         <div class="container pb-5">
           <div class="row">
-            <div class="col-lg-5 mt-5">
-              <div class="row">
+            <div class="col-lg-5 mt-5 align-self-center">
+              <div class="row align-items-center">
                 {/*Start Controls*/}
-                <div class="col-1 align-self-center">
-                  <a
-                    href="#multi-item-example"
-                    role="button"
-                    data-bs-slide="prev"
-                  >
-                    <i class="text-dark fas fa-chevron-left"></i>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                </div>
+
                 {/*End Controls*/}
                 {/*Start Carousel Wrapper*/}
-                <div
-                  id="multi-item-example"
-                  class="col-10 carousel slide carousel-multi-item"
-                  data-bs-ride="carousel"
-                >
-                  {/*Start Slides*/}
-                  <div class="carousel-inner product-links-wap" role="listbox">
-                    {/*First slide*/}
 
-                    <div class="carousel-item active">
-                      <div class="row">
-                        <div class="col-12">
-                          <img
-                            class="card-img img-fluid"
-                            src={
-                              productDetail &&
-                              productDetail?.Images[0]?.url_image
-                            }
-                            alt="ProductImage1"
-                          />
-                        </div>
-                      </div>
+                {isLoading ? (
+                  <div className="col-12 align-self-center text-center">
+                    <img style={{ width: "250px" }} src={img} alt="s" />
+                  </div>
+                ) : (
+                  <>
+                    <div class="col-1 align-self-center">
+                      <a
+                        href="#multi-item-example"
+                        role="button"
+                        data-bs-slide="prev"
+                      >
+                        <i class="text-dark fas fa-chevron-left"></i>
+                        <span class="sr-only">Previous</span>
+                      </a>
                     </div>
-
-                    {productDetail &&
-                      Array.isArray(productDetail.Images) &&
-                      productDetail.Images.map((i, index) => (
-                        <div class={`carousel-item `}>
+                    <div
+                      id="multi-item-example"
+                      class="col-10 carousel slide carousel-multi-item"
+                      data-bs-ride="carousel"
+                    >
+                      <div
+                        class="carousel-inner product-links-wap"
+                        role="listbox"
+                      >
+                        <div class="carousel-item active">
                           <div class="row">
                             <div class="col-12">
                               <img
                                 class="card-img img-fluid"
-                                src={i && i.url_image}
+                                src={
+                                  productDetail &&
+                                  productDetail?.Images[0]?.url_image
+                                }
                                 alt="ProductImage1"
                               />
                             </div>
                           </div>
                         </div>
-                      )).splice(1, productDetail.Images.length)}
-                  </div>
-                  {/*End Slides*/}
-                </div>
-                {/*End Carousel Wrapper*/}
-                {/*Start Controls*/}
-                <div class="col-1 align-self-center">
-                  <a
-                    href="#multi-item-example"
-                    role="button"
-                    data-bs-slide="next"
-                  >
-                    <i class="text-dark fas fa-chevron-right"></i>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
+
+                        {productDetail &&
+                          Array.isArray(productDetail.Images) &&
+                          productDetail.Images.map((i, index) => (
+                            <div class={`carousel-item `}>
+                              <div class="row">
+                                <div class="col-12">
+                                  <img
+                                    class="card-img img-fluid"
+                                    src={i && i.url_image}
+                                    alt="ProductImage1"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          )).splice(1, productDetail.Images.length)}
+                      </div>
+                    </div>
+
+                    <div class="col-1 align-self-center">
+                      <a
+                        href="#multi-item-example"
+                        role="button"
+                        data-bs-slide="next"
+                      >
+                        <i class="text-dark fas fa-chevron-right"></i>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+                  </>
+                )}
+
                 {/*End Controls*/}
               </div>
             </div>
             {/* col end */}
             <div class="col-lg-7 mt-5">
-              <div class="card" data-aos="fade-out" data-aos-delay="200">
+              <div
+                class="card card-producto-detalle"
+                data-aos="fade-out"
+                data-aos-delay="200"
+              >
                 <div class="card-body">
                   <button
                     type="button"
@@ -168,7 +188,7 @@ const ProductDetail = () => {
                     </li>
                     <li class="list-inline-item">
                       <h4 class="text-muted placeholder-glow">
-                        {productDetail ? (
+                        {!isLoading ? (
                           `${productDetail.brand}`
                         ) : (
                           <span class="placeholder col-6"></span>
@@ -208,17 +228,17 @@ const ProductDetail = () => {
                                   setTallaProducto(s);
                                   setCantidadTalla(1);
                                 }}
-                                class="list-inline-item"
+                                class={`list-inline-item  ${TallaProducto===s ? "btn-size-seleted" : "btn-size"}`}
                               >
-                                <span class="btn btn-danger btn-size">
+                                <span class="">
                                   {s.size}
+                                </span>
                                   <span
                                     class="d-block"
                                     style={{ fontSize: "0.7em" }}
                                   >
-                                    {`Cantidad : ${s.ProductSize.quantity}`}
+                                    {`Disponible: ${s.ProductSize.quantity}`}
                                   </span>
-                                </span>
                               </li>
                             ))}
                           {/* <li class="list-inline-item">
@@ -321,6 +341,7 @@ const ProductDetail = () => {
                             setCantidadTalla(undefined);
                           }}
                         >
+                          <i className="fas fa-cart-plus me-2"></i>
                           Añadir al Carrito
                         </button>
                       </div>
@@ -332,7 +353,7 @@ const ProductDetail = () => {
                     className="placeholder-glow "
                     style={{ whiteSpace: "pre-line" }}
                   >
-                    {productDetail ? (
+                    {!isLoading ? (
                       `${productDetail.description}`
                     ) : (
                       <>

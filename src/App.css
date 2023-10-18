@@ -523,3 +523,7 @@ Table of contents
 .bg-nuevos-productos{
   background-color: #efefff;
 }
+
+.btn{
+  border-radius: 0.9em;
+}
