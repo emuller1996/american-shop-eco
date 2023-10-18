@@ -56,7 +56,11 @@ export default function SelectShippingAddressComponent({
                       }}
                     />
                     <label class="form-check-label w-100" for={d.name}>
-                      {d.name}
+                      <div className=" d-flex flex-column">
+                        <span>{`${d.name} - ${d.phone}`}</span>
+                        <span className="text-muted">{`${d.city}, ${d.department}`}</span>
+                        <span className="text-muted">{`${d.neighborhood}, ${d.reference}`}</span>
+                      </div>
                     </label>
                   </div>
                 </div>
@@ -65,6 +69,7 @@ export default function SelectShippingAddressComponent({
           ) : (
             <SpinnerComponent />
           )}
+          {deliveryAddress && <div className="card border-secondary w-100 mb-3"> Registra Dirreccion</div>}
         </p>
       </div>
     </div>

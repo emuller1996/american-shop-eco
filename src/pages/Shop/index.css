@@ -27,14 +27,14 @@
 .card-product {
     border-radius: 0.8em !important;
     overflow: hidden;
-    border: 2px solid #4772fdc5 ;
+    border: 1px solid #4772fdc5 ;
 }
 
 .card-product:hover {
     border: 0.11em solid #808080a2;
-    border: 2px solid #fd4750c5 ;
+    border: 1px solid #fd4750c5 ;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     /* box-shadow: #8686867a 0px 2px 4px 0px, #888888a1 0px 2px 4px 0px !important; */
     background: rgb(49, 53, 88) !important;
-    background: linear-gradient(90deg, rgba(12, 27, 161, 0.1) 0%, rgba(173, 10, 10, 0.1) 100%) !important;
+    background: linear-gradient(90deg, rgba(55, 71, 215, 0.143) 0%, rgba(255, 255, 255, 0.514) 100%) !important;
 }

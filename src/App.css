@@ -510,13 +510,14 @@ Table of contents
 }
 
 .card-nuevos-american{
-  border: 2px solid #011d79c2;
+  border: 1px solid #011d79c2;
   border-radius: 0.8em !important;
   overflow: hidden;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .card-body-nuevos-american{
   background: rgb(49, 53, 88);
-  background: linear-gradient(180deg, rgba(27, 78, 218, 0.185) 0%, rgba(173, 10, 10, 0.316) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.185) 0%, rgba(66, 71, 228, 0.178) 100%);
   border-top: rgb(49, 53, 88) solid 2px !important;
 }
 
