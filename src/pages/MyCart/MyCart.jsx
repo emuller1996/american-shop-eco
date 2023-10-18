@@ -24,9 +24,9 @@ export default function MyCart() {
 
   const getProducts = async () => {
     setCartState([]);
-    setisLoading(true);
-
+    
     try {
+      setisLoading(true);
       var s = await cart.map(async (c) => {
         try {
           const resutl = await getProductByIdServicio(c.id, "s");
@@ -64,7 +64,7 @@ export default function MyCart() {
           <div className="row g-3 align-items-start">
             <div className="col-md-8 ">
               <div className="p-3 contenedor-carrito-items">
-                {cart.length === 0 && (
+                {!isLoading && cart.length === 0 && (
                   <div className="w-100 tex-center py-4">
                     SIN PRODUCTOS EN EL CARRITO
                   </div>
