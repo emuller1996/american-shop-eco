@@ -29,39 +29,39 @@ export default function SelectShippingAddressComponent({
   return (
     <div class="card text-center border-0">
       <div class="card-body ">
-        <h4 class="card-title">Selecionar de Dirrecion de Envio</h4>
+        <h4 class="card-title">Informacion de Envio</h4>
+        <hr className="border-danger" />
         <p class="card-text">
+          {deliveryAddress && (
+            <div className="card-new-envio border-secondary w-100 mb-3">
+              Registra Dirreccion
+            </div>
+          )}
+
           {deliveryAddress && deliveryAddress.length === 0 && (
             <p> No tiene Registradas Direciones</p>
           )}
-
           {deliveryAddress ? (
             deliveryAddress.map((d) => (
               <div
                 class={
                   shippingAddress.id === d.id
-                    ? "card border-dark bg-light  border-3 w-100 mb-3"
-                    : "card border-secondary w-100 mb-3"
+                    ? "card-new-envio-selected  border-secondary w-100 mb-3"
+                    : " card-new-envio  w-100 mb-3"
                 }
               >
-                <div class="card-body m-0 p-0">
-                  <div class="form-check ms-2">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="direccionEnvio"
-                      id={d.name}
-                      onClick={() => {
-                        setShippingAddress(d);
-                      }}
-                    />
-                    <label class="form-check-label w-100" for={d.name}>
-                      <div className=" d-flex flex-column">
-                        <span>{`${d.name} - ${d.phone}`}</span>
-                        <span className="text-muted">{`${d.city}, ${d.department}`}</span>
-                        <span className="text-muted">{`${d.neighborhood}, ${d.reference}`}</span>
-                      </div>
-                    </label>
+                <div class="">
+                  <div
+                    class=" ms-2"
+                    onClick={() => {
+                      setShippingAddress(d);
+                    }}
+                  >
+                    <div className=" d-flex flex-column">
+                      <span>{`${d.name} - ${d.phone}`}</span>
+                      <span className="">{`${d.city}, ${d.department}`}</span>
+                      <span className="">{`${d.neighborhood}, ${d.reference}`}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -69,7 +69,6 @@ export default function SelectShippingAddressComponent({
           ) : (
             <SpinnerComponent />
           )}
-          {deliveryAddress && <div className="card border-secondary w-100 mb-3"> Registra Dirreccion</div>}
         </p>
       </div>
     </div>

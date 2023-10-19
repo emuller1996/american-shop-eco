@@ -1,0 +1,32 @@
+.card-detalle-producto{
+    border: 1px solid #bb6060;
+    border-radius: 0.9em;
+}
+
+.card-new-envio{
+    padding: 0.5em;
+    border-radius: 0.9em;
+    border: #bb6060 solid 1px;
+    cursor: pointer;
+  color: #190b4b !important;
+
+}
+
+.card-new-envio:hover{
+    padding: 0.5em;
+    border-radius: 0.9em;
+    border: #bb6060 solid 1px;
+    cursor: pointer;
+    background-color: #aaadfd4a;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+}
+.card-new-envio-selected{
+    padding: 0.5em;
+    border-radius: 0.9em;
+    border: #7760bb solid 1px;
+    cursor: pointer;
+    background: rgb(49, 53, 88);
+  background: linear-gradient(90deg, rgba(27, 78, 218, 0.15) 0%, rgba(173, 10, 10, 0.4) 100%);
+  color: #e40f3d !important;
+}

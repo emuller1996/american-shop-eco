@@ -1,50 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
+import { MostrarPesoCOP } from "../../utils";
+import { useEffect } from "react";
 
 export default function ListProductsOrder({ products }) {
+  const [total, setTotal] = useState(
+    products
+      ? products.reduce(
+          (accumulator, currentValue) => accumulator + currentValue.price,
+          0
+        )
+      : 0
+  );
+
+  useEffect(() => {
+    setTotal(
+      products &&
+        products.reduce(
+          (accumulator, currentValue) => accumulator + currentValue.price,
+          0
+        )
+    );
+  }, [products]);
+
   return (
     <div class="card text-center border-0 ">
       <div class="card-body m-0 p-0 ">
-        <div class="table-responsive rounded ">
-          <table
-            class="table table-striped
-                table-hover	
-                table-borderless
-                table-dark
-                align-middle
-                "
-          >
-            <thead class="table-secondary ">
-              <tr>
-                <th>Img</th>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-                <th>Valor Unitario</th>
-                <th>Valor Total</th>
-              </tr>
-            </thead>
-            <tbody class="table-group-divider">
-              {products &&
-                products.map((p) => (
-                  <tr class="table-secondary">
-                    <td>
-                      <div className="border-danger rounded-pill overflow-hidden" style={ { width : '50px', height : '50px' }}>
-                      <img src={p.image}  class="img-fluid" alt="..."/>
-                      </div>
-                    
-                    </td>
-                    <td scope="row">{p.name}</td>
-                    <td>{p.cant}</td>
-                    <td>$ {p.price.toLocaleString(undefined, {
-                          maximumFractionDigits: 2,
-                        })}</td>
-                    <td>$ {(p.price * p.cant).toLocaleString(undefined, {
-                          maximumFractionDigits: 2,
-                        })}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+        <p>Detalles de Pedido </p>
+        <div className="row">
+          {products &&
+            products.map((p) => (
+              <div className="col-12 text-center mt-2">
+                <div className="p-2 card-detalle-producto d-flex justify-content-around text-center gap-4">
+                  <span>{p.name}</span>
+                  <span>{p.cant}</span>
+                  <span>{`${p.cant} x ${MostrarPesoCOP(p.price).substring(
+                    4
+                  )}`}</span>
+                  <span>{`${MostrarPesoCOP(p.price * p.cant).substring(
+                    4
+                  )}`}</span>
+                </div>
+              </div>
+            ))}
         </div>
+        <p>Total a Pagar</p>
+        <h3>{MostrarPesoCOP(total)}</h3>
       </div>
     </div>
   );

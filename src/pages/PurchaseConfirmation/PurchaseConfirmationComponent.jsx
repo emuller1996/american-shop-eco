@@ -70,11 +70,11 @@ export default function PurchaseConfirmationComponent() {
 
   return (
     <div className="row justify-content-center align-items-center g-4">
-      <div className="col-md-6 order-0 order-md-1 ">
+      <div className="col-md-4 order-0 order-md-1 ">
         <ListProductsOrder products={cartState} />
       </div>
 
-      <div className="col-md-6 ">
+      <div className="col-md-8 ">
         <div className="container">
 
         <SelectShippingAddressComponent
