@@ -1,8 +1,14 @@
 import React from "react";
 import { Accordion, Form } from "react-bootstrap";
 import "./Filter.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategory } from "../../features/Products/ProductSlice";
 
 export default function FilterProducts({ categories, setCategoryFilter }) {
+  const dispatch = useDispatch();
+  const category = useSelector((state) => state.products.category);
+
+
   return (
     <>
       <Accordion defaultActiveKey="0" className="border-0" flush alwaysOpen>
@@ -12,11 +18,12 @@ export default function FilterProducts({ categories, setCategoryFilter }) {
             <Form.Check
               key={99}
               type="radio"
+              checked={category===""}
               value={""}
               name={"category"}
               id={99}
               label={"All"}
-              onChange={(e) => setCategoryFilter(e.target.value)}
+              onChange={(e) => dispatch(setCategory(e.target.value))}
             />
             {categories &&
               categories.map((c) => (
@@ -24,10 +31,11 @@ export default function FilterProducts({ categories, setCategoryFilter }) {
                   key={c.id}
                   type="radio"
                   value={c.id}
+                  checked={parseInt(category)===c.id}
                   name={"category"}
                   id={c.id}
                   label={c.name}
-                  onChange={(e) => setCategoryFilter(e.target.value)}
+                  onChange={(e) => dispatch(setCategory(e.target.value))}
                 />
               ))}
           </Accordion.Body>

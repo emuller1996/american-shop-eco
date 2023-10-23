@@ -528,3 +528,14 @@ Table of contents
 .btn{
   border-radius: 0.9em;
 }
+
+.page-link{
+  background: rgb(49, 53, 88);
+  background: linear-gradient(90deg, rgba(27, 78, 218, 0.249) 0%, rgba(255, 157, 157, 0.223) 100%);
+  border-color: #2965dea0;
+  margin-right: 0.2em;
+}
+
+.page-link:focus{
+  box-shadow: none !important;
+}

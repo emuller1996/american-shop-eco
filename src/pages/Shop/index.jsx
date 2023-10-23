@@ -8,20 +8,28 @@ import { addProductToCart } from "../../features/Car/carSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import SpinnerComponent from "../../components/Spinner";
-import { SetProducts } from "../../features/Products/ProductSlice";
+import {
+  SetProducts,
+  setCategory,
+  setPage,
+  setTotalPages,
+} from "../../features/Products/ProductSlice";
 
 export default function Shop() {
-  const protuctosTodos = useSelector((state) => state.products);
+  const protuctosTodos = useSelector((state) => state.products.products);
+  const page = useSelector((state) => state.products.page);
+  const category = useSelector((state) => state.products.category);
+  const totalPages = useSelector((state) => state.products.totalPages);
 
   const [productsAll, setProductsAll] = useState();
   const [categories, setCategories] = useState();
-  const [size] = useState(6);
-  const [page, setPage] = useState();
-  const [total, setTotal] = useState();
+  const [size] = useState(3);
+  /* const [page, setPage] = useState(); */
+  /* const [total, setTotal] = useState(); */
   const [isLoading, setIsLoading] = useState(false);
 
   const [search, setSearch] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("");
+  /*  const [categoryFilter, setCategoryFilter] = useState(""); */
 
   const { getAccessTokenSilently } = useAuth0();
 
@@ -37,13 +45,13 @@ export default function Shop() {
   };
 
   useEffect(() => {
-    getProductAll(size, page, search, categoryFilter);
+    getProductAll(size, page, search, category);
 
     getCategoryAll();
-  }, [size, page, search, total, categoryFilter]);
+  }, [size, page, search, totalPages, category]);
 
   const handlePageClick = (event) => {
-    setPage(event.selected);
+    dispatch(setPage(event.selected));
   };
 
   const getCategoryAll = async () => {
@@ -53,17 +61,14 @@ export default function Shop() {
 
   const getProductAll = async (size, page, search, categoryFilter) => {
     setError(undefined);
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      
       var token = await getAccessTokenSilently();
     } catch (error) {
       console.log(error);
     }
 
     try {
-
-      console.log(token);
       const result = await axios.get(
         `/products/published?size=${size}&page=${page}&search=${search}&cat=${categoryFilter}`,
         {
@@ -73,13 +78,14 @@ export default function Shop() {
         }
       );
       setProductsAll(result.data.products);
-      dispatch(SetProducts(result.data.products))
-      setIsLoading(false)
-
-      setTotal(result.data.totalPages);
-      console.log(result.data);
+      dispatch(SetProducts(result.data.products));
+      if (result.data.totalPages < totalPages) {
+        dispatch(setPage(0));
+      }
+      dispatch(setTotalPages(result.data.totalPages));
+      setIsLoading(false);
     } catch (error) {
-      setIsLoading(false)
+      setIsLoading(false);
 
       console.log(error);
       setError(`${error?.code}  ::  ${error?.message}`);
@@ -98,7 +104,7 @@ export default function Shop() {
           <div className="col-lg-3">
             <FilterProducts
               categories={categories}
-              setCategoryFilter={setCategoryFilter}
+              setCategoryFilter={dispatch(setCategory)}
             />
           </div>
 
@@ -141,46 +147,50 @@ export default function Shop() {
                 </div>
               </div>
             </div>
-            <div className="row g-3 mb-4">
+            <div className="row g-3 justify-content-center mb-4" style={{ minHeight:"50vh" }}>
               {error && (
                 <div class="alert alert-danger" role="alert">
                   {error}
                 </div>
               )}
 
-              {productsAll && productsAll.length === 0 && (
-                <p> No products found</p>
+              {productsAll && !isLoading && productsAll.length === 0 && (
+                <p className="text-center py-2"> No hay Productos Encontrados </p>
               )}
-              {protuctosTodos &&
+              {!isLoading ? (
                 protuctosTodos.map((p) => (
                   <CardProduct
                     addProducToCart={addProducToCart}
                     key={p.id}
                     product={p}
                   />
-                ))}
-              {isLoading && <SpinnerComponent />}
+                ))
+              ) : (
+                <SpinnerComponent />
+              )}
+              {/* {isLoading && <SpinnerComponent />} */}
             </div>
             <div div="row">
               <ReactPaginate
-                initialPage={0}
+                forcePage={page}
                 breakLabel="..."
-                breakLinkClassName="page-link rounded-3 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
+                breakLinkClassName="page-link "
                 nextLabel=">"
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={2}
-                pageCount={total !== 0 ? total : 1}
+                pageRangeDisplayed={1}
+                marginPagesDisplayed={2}
+                pageCount={totalPages !== 0 ? totalPages : 1}
                 previousLabel="<"
-                renderOnZeroPageCount={1}
-                className="pagination pagination-lg justify-content-end"
+                /* renderOnZeroPageCount={1} */
+                className="pagination  justify-content-end"
                 pageClassName="page-item "
-                pageLinkClassName="page-link page-link rounded-3 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
-                activeLinkClassName="active rounded mr-3 shadow-sm border-top-0 border-left-0"
+                pageLinkClassName="page-link"
+                activeLinkClassName=" page-link active "
                 activeClassName="page-item disabled"
                 previousClassName="page-item"
                 nextClassName="page-item"
-                previousLinkClassName="page-link rounded-3 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
-                nextLinkClassName="page-link rounded-3 mr-3 shadow-sm border-top-0 border-left-0 text-dark fw-semibold"
+                previousLinkClassName="page-link"
+                nextLinkClassName="page-link"
               />
             </div>
           </div>
