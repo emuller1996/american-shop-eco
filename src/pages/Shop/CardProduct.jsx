@@ -15,12 +15,12 @@ export default function CardProduct({ product, addProducToCart }) {
             src={
               product.Images[0] ? product.Images[0].url_image : product.image
             }
-            className="img-product img-fluid w-50  mx-auto d-block p-3"
+            className=" img-fluid mx-auto d-block"
           />
           <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
             <ul className="list-unstyled">
               <li>
-                <span className="btn btn-dark rounded-4 text-white">
+                <span title="Vista Rapida" /* onClick={( e) => e.preventDefault()} */ className="btn btn-light rounded-4 text-danger">
                   <i className="fas fa-eye"></i>
                 </span>
               </li>

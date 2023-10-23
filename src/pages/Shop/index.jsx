@@ -8,8 +8,11 @@ import { addProductToCart } from "../../features/Car/carSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import SpinnerComponent from "../../components/Spinner";
+import { SetProducts } from "../../features/Products/ProductSlice";
 
 export default function Shop() {
+  const protuctosTodos = useSelector((state) => state.products);
+
   const [productsAll, setProductsAll] = useState();
   const [categories, setCategories] = useState();
   const [size] = useState(6);
@@ -70,6 +73,7 @@ export default function Shop() {
         }
       );
       setProductsAll(result.data.products);
+      dispatch(SetProducts(result.data.products))
       setIsLoading(false)
 
       setTotal(result.data.totalPages);
@@ -147,8 +151,8 @@ export default function Shop() {
               {productsAll && productsAll.length === 0 && (
                 <p> No products found</p>
               )}
-              {productsAll &&
-                productsAll.map((p) => (
+              {protuctosTodos &&
+                protuctosTodos.map((p) => (
                   <CardProduct
                     addProducToCart={addProducToCart}
                     key={p.id}
