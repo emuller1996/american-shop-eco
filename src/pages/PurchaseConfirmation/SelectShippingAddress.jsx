@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import MyDeliveryAddressComponent from "../../components/Dashboard/MyProfile/MyDeliveryAddress";
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
 import SpinnerComponent from "../../components/Spinner";
 import { getDeliveryAddressByIdUser } from "../../services/delivery.services";
+import { Button, Modal } from "react-bootstrap";
+import FormDeliverAddressComponent from "../../components/Dashboard/MyProfile/FormDeliveryAddress";
 
 export default function SelectShippingAddressComponent({
   setShippingAddress,
   shippingAddress,
 }) {
   const [deliveryAddress, setDeliverAddress] = useState(undefined);
+  const [showDe, setshowDe] = useState(false);
   const { user, getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
@@ -33,8 +34,18 @@ export default function SelectShippingAddressComponent({
         <hr className="border-danger" />
         <p class="card-text">
           {deliveryAddress && (
-            <div className="card-new-envio border-secondary w-100 mb-3">
-              Registra Dirreccion
+            <div className="card-new-envio border-secondary w-100 mb-3 ">
+              <div
+                onClick={() => {
+                  setshowDe(true);
+                }}
+                class="row justify-content-evenly"
+              >
+                <div className="col-2  align-self-center">
+                  <i class="fas fa-plus-circle me-3 fa-2x"></i>
+                </div>
+                <div class="col-10 align-self-center ">Registra Dirreccion</div>
+              </div>
             </div>
           )}
 
@@ -50,13 +61,16 @@ export default function SelectShippingAddressComponent({
                     : " card-new-envio  w-100 mb-3"
                 }
               >
-                <div class="">
-                  <div
-                    class=" ms-2"
-                    onClick={() => {
-                      setShippingAddress(d);
-                    }}
-                  >
+                <div
+                  onClick={() => {
+                    setShippingAddress(d);
+                  }}
+                  class="row justify-content-evenly"
+                >
+                  <div className="col-2  align-self-center">
+                    <i class="fas fa-map-marker-alt fa-3x"></i>
+                  </div>
+                  <div class="col-10 ">
                     <div className=" d-flex flex-column">
                       <span>{`${d.name} - ${d.phone}`}</span>
                       <span className="">{`${d.city}, ${d.department}`}</span>
@@ -71,6 +85,25 @@ export default function SelectShippingAddressComponent({
           )}
         </p>
       </div>
+      <Modal backdrop="static"
+        keyboard={false} centered show={showDe} onHide={() => setshowDe(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Registrando Dirrecion de Envio</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <FormDeliverAddressComponent
+            /* handleClose={handleClose}
+            onHandleSubmit={onHandleSubmit}
+            onHandleInput={onHandleInput}
+            deliveryAddress={deliveryAddressInsert} */
+          />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={() => setshowDe(false)}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
     </div>
   );
 }

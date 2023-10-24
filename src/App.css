@@ -539,3 +539,24 @@ Table of contents
 .page-link:focus{
   box-shadow: none !important;
 }
+
+
+
+.modal-content{
+  border-radius: 0.9em !important;
+  border: 0;
+  background: rgb(228, 231, 255);
+
+}
+
+.modal-header,.modal-footer{
+  border-radius: 0.9em !important;
+  background: rgb(49, 53, 88);
+  background: linear-gradient(90deg, rgba(27, 78, 218, 0.349) 0%, rgba(173, 10, 10, 0.623) 100%);
+  overflow: hidden !important;
+}
+.modal-body{
+  overflow: hidden !important;
+
+
+}

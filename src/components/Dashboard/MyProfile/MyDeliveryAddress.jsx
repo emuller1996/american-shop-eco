@@ -155,12 +155,23 @@ export default function MyDeliveryAddressComponent() {
         <Modal.Header closeButton>
           <Modal.Title>Editar Direccion</Modal.Title>
         </Modal.Header>
-        <FormDeliverAddressComponent
-          handleClose={handleClose}
-          deliveryAddress={addressUpdated}
-          onHandleInput={onHandleInputEdit}
-          onHandleSubmit={onHandleSubmitEdit}
-        />
+        <Modal.Body>
+          <FormDeliverAddressComponent
+            handleClose={handleClose}
+            deliveryAddress={addressUpdated}
+            onHandleInput={onHandleInputEdit}
+            onHandleSubmit={onHandleSubmitEdit}
+          />
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cerrar
+          </Button>
+          <Button variant="primary" type="submit" onClick={handleClose}>
+            Guardar
+          </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   );
