@@ -41,7 +41,7 @@ export default function SelectPaymentMethodsComponent() {
               <label for="inputPassword6" class="col-form-label">
                 Tipo Personal
               </label>
-              <InputSelect options={options} />
+              <InputSelect  onChange={(e) => console.log(e)} options={options} />
               {/* <select
                 className="form-select"
                 aria-label="size 3 select example"
@@ -82,7 +82,7 @@ export default function SelectPaymentMethodsComponent() {
             <label for="inputPassword6" class="col-form-label">
               Seleccione un Banco
             </label>
-            <InputSelect options={AllInsFinance} />
+            <InputSelect onChange={(e) => console.log(e)} options={AllInsFinance} />
 
             {/* <select
               size={4}

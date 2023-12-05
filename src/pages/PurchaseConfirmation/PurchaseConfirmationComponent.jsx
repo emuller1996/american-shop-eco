@@ -62,9 +62,10 @@ export default function PurchaseConfirmationComponent() {
         })
       );
       console.log(result.data);
-      toast.success(result.data.message);
+      /* toast.success(result.data.message); */
       dispatch(resetCart());
-      history.push(`OrderPlaced/${result.data.order.id}`);
+      window.location.replace(`${result.data}`)
+      /* history.push(`OrderPlaced/${result.data.order.id}`); */
     } catch (error) {}
   };
 

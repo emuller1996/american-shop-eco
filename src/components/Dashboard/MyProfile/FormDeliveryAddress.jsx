@@ -4,19 +4,40 @@ import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 import InputText from "../../Atomos/InputText";
 import { useForm } from "react-hook-form";
+import { postCreateDeliveryAddressByIdUser } from "../../../services/delivery.services";
+import { useAuth0 } from "@auth0/auth0-react";
+import { toast } from "react-toastify";
 
 export default function FormDeliverAddressComponent({
   handleClose,
-  onHandleInput,
-  onHandleSubmit,
+  getDeliverAddress,
   deliveryAddress,
 }) {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
+
+  const { getAccessTokenSilently, user } = useAuth0();
+
+  const onHandleSubmit = async (data) => {
+    console.log(data);
+
+    try {
+      const token = await getAccessTokenSilently();
+      const r = await postCreateDeliveryAddressByIdUser(
+        { data, email: user?.email },
+        token
+      );
+      console.log(r);
+      toast.success(r.data.response);
+      getDeliverAddress();
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <Form
@@ -44,93 +65,50 @@ export default function FormDeliverAddressComponent({
           label={"Departamento"}
           placeholder={"Valle del Cauca, Antioquia ..."}
         />
-        {/* <InputText name={"department"} label={"Departamento"} /> */}
+        <InputText
+          register={register}
+          rules={{
+            required: "La Cuidad es Obligatoria",
+          }}
+          error={errors}
+          name={"city"}
+          label={"Cuidad"}
+          placeholder={"Cali, Bogota ..."}
+        />
+        <InputText
+          register={register}
+          rules={{
+            required: "La Dirrecion es Obligatoria",
+          }}
+          error={errors}
+          name={"address"}
+          label={"Dirrecion"}
+          placeholder={"Cll 13, Cra 123 # 231..."}
+        />
+        <InputText
+          register={register}
+          error={errors}
+          name={"neighborhood"}
+          label={"Barrio"}
+          placeholder={"Cll 13, Cra 123 # 231..."}
+        />
+        <InputText
+          register={register}
+          error={errors}
+          name={"phone"}
+          label={"Telefono"}
+          placeholder={"318 825 ..."}
+        />
+        <InputText
+          register={register}
+          error={errors}
+          name={"reference"}
+          label={"Referencia"}
+          placeholder={"AP 2##, LOC 3##"}
+        />
 
-        {/* <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="name"
-            name="name"
-            value={deliveryAddress ? deliveryAddress.name : ""}
-            onChange={onHandleInput}
-          />
-          <label htmlFor="name">Nombre</label>
-        </div>
-
-        <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="department"
-            name="department"
-            value={deliveryAddress ? deliveryAddress.department : ""}
-            onChange={onHandleInput}
-          />
-          <label htmlFor="departament">Departamento</label>
-        </div>
-
-        <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="city"
-            name="city"
-            value={deliveryAddress ? deliveryAddress.city : ""}
-            onChange={onHandleInput}
-          />
-          <label htmlFor="city">Ciudad</label>
-        </div>
-
-        <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="address"
-            name="address"
-            value={deliveryAddress ? deliveryAddress.address : ""}
-            onChange={onHandleInput}
-          />
-          <label htmlFor="address">Dirrecion</label>
-        </div>
-
-        <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="neighborhood"
-            name="neighborhood"
-            onChange={onHandleInput}
-            value={deliveryAddress ? deliveryAddress.neighborhood : ""}
-          />
-          <label htmlFor="neighborhood">Barrio</label>
-        </div>
-
-        <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="phone"
-            name="phone"
-            value={deliveryAddress ? deliveryAddress.phone : ""}
-            onChange={onHandleInput}
-          />
-          <label htmlFor="phone">Telefono</label>
-        </div>
-
-        <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="reference"
-            name="reference"
-            value={deliveryAddress ? deliveryAddress.reference : ""}
-            onChange={onHandleInput}
-          />
-          <label htmlFor="reference">Referencia</label>
-        </div> */}
         <div class="text-center mb-3">
-          <Button variant="success" type="submit" onClick={handleClose}>
+          <Button variant="success" type="submit" /* onClick={handleClose} */>
             <i class="far fa-save me-2"></i>
             Guardar
           </Button>

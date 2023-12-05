@@ -85,17 +85,20 @@ export default function SelectShippingAddressComponent({
           )}
         </p>
       </div>
-      <Modal backdrop="static"
-        keyboard={false} centered show={showDe} onHide={() => setshowDe(false)}>
+      <Modal
+        backdrop="static"
+        keyboard={false}
+        centered
+        show={showDe}
+        onHide={() => setshowDe(false)}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Registrando Dirrecion de Envio</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <FormDeliverAddressComponent
-            /* handleClose={handleClose}
-            onHandleSubmit={onHandleSubmit}
-            onHandleInput={onHandleInput}
-            deliveryAddress={deliveryAddressInsert} */
+            getDeliverAddress={getDeliverAddress}
+            handleClose={ () => setshowDe(false)}
           />
         </Modal.Body>
         {/* <Modal.Footer>

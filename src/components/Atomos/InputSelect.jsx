@@ -1,6 +1,6 @@
 import Select from "react-select";
 
-export default function InputSelect({ options }) {
+export default function InputSelect({ options, onChange }) {
   return (
     <div>
       <Select
@@ -56,6 +56,7 @@ export default function InputSelect({ options }) {
         }}
         placeholder="Selecioner una opcion"
         options={options}
+        onChange={onChange}
       />
     </div>
   );
