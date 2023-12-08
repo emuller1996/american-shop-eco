@@ -6,7 +6,8 @@ export default function ListProductsOrder({ products }) {
   const [total, setTotal] = useState(
     products
       ? products.reduce(
-          (accumulator, currentValue) => accumulator + currentValue.price,
+          (accumulator, currentValue) =>
+            accumulator + currentValue.price * currentValue.cant,
           0
         )
       : 0
@@ -16,7 +17,8 @@ export default function ListProductsOrder({ products }) {
     setTotal(
       products &&
         products.reduce(
-          (accumulator, currentValue) => accumulator + currentValue.price,
+          (accumulator, currentValue) =>
+            accumulator + currentValue.price * currentValue.cant,
           0
         )
     );

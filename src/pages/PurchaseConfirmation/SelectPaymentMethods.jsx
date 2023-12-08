@@ -1,14 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import InputSelect from "../../components/Atomos/InputSelect";
-
+import { initMercadoPago } from "@mercadopago/sdk-react";
+import { Payment } from "@mercadopago/sdk-react";
+import SpinnerComponent from "../../components/Spinner";
+initMercadoPago(process.env.REACT_APP_MERCA_PUBLIC_KEY);
 const options = [
   { value: "Natural", label: "Natural" },
   { value: "Juridica", label: "Juridica" },
 ];
 
-export default function SelectPaymentMethodsComponent() {
+export default function SelectPaymentMethodsComponent({ data }) {
   const [AllInsFinance, setAllInsFinance] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [referenceId, setreferenceId] = useState(null);
 
   useEffect(() => {
     getInstuticionFinancieras();
@@ -31,70 +37,74 @@ export default function SelectPaymentMethodsComponent() {
     }
   };
 
+  const initialization = {
+    amount: parseInt(data.total_payment),
+    preferenceId: referenceId,
+  };
+  const customization = {
+    paymentMethods: {
+      ticket: "all",
+      bankTransfer: "all",
+      creditCard: "all",
+      debitCard: "all",
+      mercadoPago: "all",
+    },
+    visual: { font: "Arial" },
+  };
+  const onSubmit = async ({ selectedPaymentMethod, formData }) => {
+    // callback llamado al hacer clic en el botón enviar datos
+    return new Promise((resolve, reject) => {
+      const datas = formData;
+
+      datas.products = data.products;
+      datas.DeliveryAddressId = data.DeliveryAddressId;
+      datas.purchase_date = data.purchase_date;
+      datas.user_email = data.user_email;
+      axios
+        .post("/Order", datas, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+        .then((response) => {
+          // recibir el resultado del pago
+          console.log(response);
+          resolve();
+        })
+        .catch((error) => {
+          // manejar la respuesta de error al intentar crear el pago
+          console.log(error);
+          reject();
+        });
+    });
+  };
+  const onError = async (error) => {
+    // callback llamado para todos los casos de error de Brick
+    console.log(error);
+  };
+  const onReady = async () => {
+    /*
+      Callback llamado cuando el Brick está listo.
+      Aquí puede ocultar cargamentos de su sitio, por ejemplo.
+    */
+    console.log("ready");
+    setIsLoading(false);
+  };
+
+  console.log(initialization);
   return (
     <div className="card border-0">
-      <div className="card-body">
-        <h4 className="card-title text-center">Informacion de Facturacion</h4>
-        <div className="row">
-          <div className="col-md-5">
-            <div className="mb-3">
-              <label for="inputPassword6" class="col-form-label">
-                Tipo Personal
-              </label>
-              <InputSelect  onChange={(e) => console.log(e)} options={options} />
-              {/* <select
-                className="form-select"
-                aria-label="size 3 select example"
-              >
-                <option selected>Selecionar una opcion</option>
-                <option value="1">Natural.</option>
-                <option value="2">Juridica</option>
-              </select> */}
-            </div>
-          </div>
-          <div className="col-md-7">
-            <div className="mb-3 ">
-              <label for="inputPassword6" class="col-form-label">
-                Tipo y Numero De Documento.
-              </label>
-              <div className="d-flex gap-4">
-                <select
-                  className="form-select"
-                  aria-label="size 3 select example"
-                  style={{ width: "150px" }}
-                >
-                  <option selected>Selecionar una opcion</option>
-                  <option value="1">CC : Cedual de Cuidadania.</option>
-                  <option value="1">CE : Cedual de Extranjeria.</option>
-                  <option value="1">PA : Pasaporte.</option>
-                  <option value="2">Otro</option>
-                </select>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                ></input>
-              </div>
-            </div>
-          </div>
-          <div className="col-12">
-            <label for="inputPassword6" class="col-form-label">
-              Seleccione un Banco
-            </label>
-            <InputSelect onChange={(e) => console.log(e)} options={AllInsFinance} />
-
-            {/* <select
-              size={4}
-              className="form-select"
-              aria-label="size 3 select example"
-            >
-              {AllInsFinance.map((c) => (
-                <option value="1">{c.description}.</option>
-              ))}
-            </select> */}
-          </div>
-        </div>
+      <div className="">
+        {isLoading && <SpinnerComponent />}
+        <Payment
+          initialization={initialization}
+          customization={customization}
+          onSubmit={onSubmit}
+          onReady={onReady}
+          onError={onError}
+        />
       </div>
     </div>
   );

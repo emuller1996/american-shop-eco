@@ -33,7 +33,7 @@ export default function PurchaseConfirmationComponent() {
     console.log(result);
     setCartState(result);
     const sumWithInitial = result.reduce(
-      (accumulator, currentValue) => accumulator + currentValue.price,
+      (accumulator, currentValue) => accumulator +  (currentValue.price * currentValue.cant),
       0
     );
     setTotal(sumWithInitial);
@@ -64,7 +64,7 @@ export default function PurchaseConfirmationComponent() {
       console.log(result.data);
       /* toast.success(result.data.message); */
       dispatch(resetCart());
-      window.location.replace(`${result.data}`)
+      window.location.replace(`${result.data}`);
       /* history.push(`OrderPlaced/${result.data.order.id}`); */
     } catch (error) {}
   };
@@ -77,19 +77,26 @@ export default function PurchaseConfirmationComponent() {
 
       <div className="col-md-8 ">
         <div className="container">
-
-        <SelectShippingAddressComponent
-          setShippingAddress={setShippingAddress}
-          shippingAddress={shippingAddress}
-        />
-        <SelectPaymentMethodsComponent />
-        <button
-          type="button"
-          onClick={onSaveOrder}
-          class="btn btn-success w-100 py-4 fs-4 fw-bold"
-        >
-          COMPRAR
-        </button>
+          <SelectShippingAddressComponent
+            setShippingAddress={setShippingAddress}
+            shippingAddress={shippingAddress}
+          />
+          <SelectPaymentMethodsComponent
+            data={{
+              products: cartState,
+              DeliveryAddressId: shippingAddress.id,
+              user_email: user.email,
+              purchase_date: new Date().toISOString(),
+              total_payment: total,
+            }}
+          />
+          <button
+            type="button"
+            onClick={onSaveOrder}
+            class="btn btn-success w-100 py-4 fs-4 fw-bold"
+          >
+            COMPRAR
+          </button>
         </div>
       </div>
     </div>

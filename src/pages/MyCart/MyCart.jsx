@@ -42,7 +42,7 @@ export default function MyCart() {
 
       setCartState(results);
       const sumWithInitial = results.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.price,
+        (accumulator, currentValue) => accumulator +  (currentValue.price * currentValue.cant),
         0
       );
       setTotal(sumWithInitial);
