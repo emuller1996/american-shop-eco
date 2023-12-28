@@ -10,7 +10,7 @@ import { getProductByIdServicio } from "../../services/productos.servicios";
 import { useRef } from "react";
 import img from "./img-place.gif";
 import "./ProductoDetalle.css";
-
+import axios from "axios";
 const ProductDetail = () => {
   let { id } = useParams();
   const [productDetail, setProductDetail] = useState(undefined);
@@ -19,13 +19,17 @@ const ProductDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently, isAuthenticated, user } = useAuth0();
   const detail = useRef(null);
+
+  const [comment, setComment] = useState("");
+  const [AllComments, setAllComments] = useState(undefined);
 
   useEffect(() => {
     getProductDetail(id);
     console.log(detail.current);
     detail.current.scrollIntoView();
+    getAllCommnet();
   }, [id]);
 
   const getProductDetail = async (id) => {
@@ -53,6 +57,13 @@ const ProductDetail = () => {
     dispatch(
       addProductToCart({ id: idProduct, cant: CantidadTalla, idSize: Talla.id })
     );
+  };
+  const getAllCommnet = async () => {
+    try {
+      const r = await axios.get(`/products/${id}/comments`);
+      console.log(r);
+      setAllComments(r.data);
+    } catch (error) {}
   };
 
   return (
@@ -379,49 +390,78 @@ const ProductDetail = () => {
               <div className="card">
                 <div className="card-body">
                   <div className="row g-3 ">
-                    <div className="col-12">
-                      <div className="border py-1 px-3  rounded-3 ">
-                        <div className="d-flex gap-3 ">
-                          <div className=" align-self-center d-flex gap-2">
-                            <img
-                              width={40}
-                              height={40}
-                              src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp"
-                              alt=""
-                            />
-                            <div className="d-flex flex-column gap-0 text-muted ">
-                              <span className="text-nowrap ">
-                                Estefano Muller
-                              </span>
-                              <small className="text-nowrap ">27/12/2023</small>
+                    {AllComments &&
+                      AllComments.map((c) => (
+                        <div className="col-12">
+                          <div className="border py-1 px-3  rounded-3 ">
+                            <div className="d-flex gap-3 ">
+                              <div className=" align-self-center d-flex gap-2">
+                                <img
+                                  width={40}
+                                  height={40}
+                                  src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp"
+                                  alt=""
+                                />
+                                <div className="d-flex flex-column gap-0 text-muted ">
+                                  <span className="text-nowrap ">
+                                    {c?.User?.name}
+                                  </span>
+                                  <small className="text-nowrap ">
+                                    {c?.createdAt.substring(0,10)}
+                                  </small>
+                                  <small className="text-nowrap ">
+                                    {c?.createdAt.substring(11,16)}
+                                  </small>
+                                </div>
+                              </div>
+                              <div className="align-self-center ">
+                                <p
+                                  className="m-0 text-start "
+                                  style={{ whiteSpace: "balance" }}
+                                >
+                                  {c?.comment}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                          <div className="align-self-center ">
-                            <p
-                              className="m-0 text-start "
-                              style={{ whiteSpace: "balance" }}
-                            >
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Ut qui molestiae, corrupti aliquid doloribus
-                              quo animi, voluptatibus doloremque magni
-                              repellendus mollitia eligendi maxime soluta
-                              aspernatur culpa ratione optio fuga ex!
-                            </p>
-                          </div>
                         </div>
-                      </div>
-                    </div>
+                      ))}
 
                     <div className="col-12">
                       {isAuthenticated ? (
                         <div className="d-flex gap-3">
                           <textarea
                             className="form-control "
-                            name=""
-                            id=""
-                            rows="2"
+                            name="comment"
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
                           ></textarea>
-                          <button className="btn btn-secondary">Enviar</button>
+                          <button
+                            onClick={async () => {
+                              console.log(comment);
+                              const token = await getAccessTokenSilently();
+                              const r = await axios.post(
+                                `/products/${id}/comments`,
+                                {
+                                  comment,
+                                  email: user.email,
+                                  ProductId: id,
+                                },
+                                {
+                                  headers: {
+                                    Authorization: `Bearer ${token}`,
+                                  },
+                                }
+                              );
+                              console.log(r);
+                              toast.success(r.data.message);
+                              await getAllCommnet();
+                              setComment("")
+                            }}
+                            className="btn btn-secondary"
+                          >
+                            Enviar
+                          </button>
                         </div>
                       ) : (
                         <p>Debes inicar seccion para comentar </p>
