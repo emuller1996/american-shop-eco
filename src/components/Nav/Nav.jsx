@@ -67,6 +67,7 @@ export default function Nav() {
             <div className="d-flex align-items-center">
               <div className="">
                 <img
+                className="img-nav-bar"
                   width={"50px"}
                   src="/assets/img/Logo.png"
                   alt="logo"

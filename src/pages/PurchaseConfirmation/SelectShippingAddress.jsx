@@ -34,7 +34,7 @@ export default function SelectShippingAddressComponent({
         <hr className="border-danger" />
         <p class="card-text">
           {deliveryAddress && (
-            <div className="card-new-envio border-secondary w-100 mb-3 ">
+            <div className="card-new-envio  w-100 mb-3 ">
               <div
                 onClick={() => {
                   setshowDe(true);
@@ -56,8 +56,8 @@ export default function SelectShippingAddressComponent({
             deliveryAddress.map((d) => (
               <div
                 class={
-                  shippingAddress.id === d.id
-                    ? "card-new-envio-selected  border-secondary w-100 mb-3"
+                  shippingAddress?.id === d.id
+                    ? "card-new-envio-selected  w-100 mb-3"
                     : " card-new-envio  w-100 mb-3"
                 }
               >

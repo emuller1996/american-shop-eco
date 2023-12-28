@@ -26,7 +26,7 @@ const OrderPlaced = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-4" style={{minHeight:"60vh"}} >
       <h3 className="text-center">Su pedido ha realizo con exito</h3>
       <hr className="border-danger" />
       <div class="row justify-content-center align-items-start g-2">
@@ -44,27 +44,29 @@ const OrderPlaced = () => {
               </thead>
               <tbody>
                 {order ? (
-                  order.Products.map((o) => (
+                  order.OrderDetails.map((o) => (
                     <tr class="">
                       <td scope="row">
                         <img
-                          src={o.image}
-                          class="rounded-circle shadow-4"
-                          style={{ width: "60px" }}
+                        width={40}
+                        height={40}
+                          src={o?.Product?.image}
+                          class="border rounded-circle shadow-4"
+                          style={{ width: "40px" }}
                           alt="Avatar"
                         />
                       </td>
                       <td className="text-nowrap">{o.name}</td>
                       <td>
                         $
-                        {o.OrderDetail.unitPrice.toLocaleString(undefined, {
+                        {o?.unitPrice.toLocaleString(undefined, {
                           maximumFractionDigits: 2,
                         })}
                       </td>
-                      <td>{o.OrderDetail.units}</td>
+                      <td>{o?.units}</td>
                       <td>
                         $
-                        {o.OrderDetail.totalPrice.toLocaleString(undefined, {
+                        {o?.totalPrice.toLocaleString(undefined, {
                           maximumFractionDigits: 2,
                         })}
                       </td>

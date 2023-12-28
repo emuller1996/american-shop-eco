@@ -1,11 +1,17 @@
 .contenedor-carrito-items {
-    border: 1px solid #6a54e3;
-    border-radius: 0.9em;
+    border: 1px solid #ffadad;
+    border-radius: 0.6em;
 }
 
 .card-carrito-producto {
-    border-radius: 0.9em;
-    border-color: #e03d4084;
+    border-radius: 0.6em;
+    border-color: #ffb7b9;
+    background-color: #ffeeee;
+}
+.card-carrito-producto:hover {
+    border-color: #ff979b;
+    background-color: #ffdbdb;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
 
 .btn-success-carrito {

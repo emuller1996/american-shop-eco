@@ -4,6 +4,9 @@ import InputSelect from "../../components/Atomos/InputSelect";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import { Payment } from "@mercadopago/sdk-react";
 import SpinnerComponent from "../../components/Spinner";
+import { useDispatch } from "react-redux";
+import { resetCart } from "../../features/Car/carSlice";
+import { useHistory } from "react-router-dom";
 initMercadoPago(process.env.REACT_APP_MERCA_PUBLIC_KEY);
 const options = [
   { value: "Natural", label: "Natural" },
@@ -13,6 +16,8 @@ const options = [
 export default function SelectPaymentMethodsComponent({ data }) {
   const [AllInsFinance, setAllInsFinance] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  let history = useHistory();
 
   const [referenceId, setreferenceId] = useState(null);
 
@@ -71,6 +76,17 @@ export default function SelectPaymentMethodsComponent({ data }) {
         .then((response) => {
           // recibir el resultado del pago
           console.log(response);
+          console.log(response.data.payment_data.status === "approved");
+          dispatch(resetCart());
+          if(response.data.payment_data.external_resource_url){
+            window.location.replace(response.data.payment_data.external_resource_url)
+          }
+          if(response.data.payment_data.status === "approved"){
+            history.push(`/compra-exitosa/${response.data.order.id}`);
+          }
+          if(response.data.payment_data.status === "rejected"){
+            history.push(`/pago-rechazado/${response.data.order.id}`);
+          }
           resolve();
         })
         .catch((error) => {

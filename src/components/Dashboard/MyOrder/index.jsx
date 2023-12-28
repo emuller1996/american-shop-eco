@@ -27,13 +27,20 @@ export default function MyOrderComponent() {
     console.log(result.data);
     setOrders(result.data);
   };
+  const setOrdersDetailOn = async (o) => {
+    try {
+      const r = await axios.get(`/order/comfirmation/${o.id}`);
+      console.log(r.data);
+      setOrdersDetail(r.data.order);
+    } catch (error) {}
+  };
 
   return (
     <>
       <h4>Mis Pedidos</h4>
       {orders ? (
         <ListOrderComponent
-          setOrdersDetail={setOrdersDetail}
+          setOrdersDetail={setOrdersDetailOn}
           handleShow={handleShow}
           orders={orders}
         />
@@ -67,16 +74,15 @@ export default function MyOrderComponent() {
                 Productos del Pedido{" "}
               </p>
               {ordersDetail ? (
-                ordersDetail.Products.map((p) => (
+                ordersDetail.OrderDetails.map((p) => (
                   <div class="card mb-2">
                     <div class="card-body">
-                      <h4 class="card-title">{p.name}</h4>
+                      <h4 class="card-title">{p?.name}</h4>
                       <p class="card-text">
                         {" "}
-                        {p.OrderDetail.units} x{" "}
-                        {p.OrderDetail.unitPrice.toLocaleString()}{" "}
+                        {p?.units} x {p?.unitPrice.toLocaleString()}{" "}
                         <span className="text-end fw-bold fs-4 ms-4">
-                          $ {p.OrderDetail.totalPrice.toLocaleString()}
+                          $ {p?.totalPrice.toLocaleString()}
                         </span>
                       </p>
                     </div>
@@ -95,6 +101,40 @@ export default function MyOrderComponent() {
                   <h4 class="card-title">
                     {ordersDetail && ordersDetail.DeliveryAddress.name}
                   </h4>
+                  <p class="card-text m-0">
+                    Direccion :{" "}
+                    {ordersDetail &&
+                      `${ordersDetail.DeliveryAddress.address} -  ${ordersDetail.DeliveryAddress.reference} Br : ${ordersDetail.DeliveryAddress.neighborhood}`}
+                  </p>
+
+                  <p class="card-text  m-0">
+                    {ordersDetail &&
+                      `${ordersDetail.DeliveryAddress.department} -  ${ordersDetail.DeliveryAddress.city} Tel : ${ordersDetail.DeliveryAddress.phone}`}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <p className="mb-1 text-center fw-semibold">Datos de Pago</p>
+              <div class="card mb-2">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    {ordersDetail && ordersDetail?.Payments[0].status}
+                  </h4>
+                  <p>{ordersDetail && ordersDetail?.Payments[0].net_amount}</p>
+                  {ordersDetail &&
+                    ordersDetail?.Payments[0].external_resource_url && (
+                      <a
+                        target="_blank"
+                        without rel="noreferrer"
+                        href={
+                          ordersDetail &&
+                          ordersDetail?.Payments[0].external_resource_url
+                        }
+                      >
+                        Link Pagar
+                      </a>
+                    )}
                   <p class="card-text m-0">
                     Direccion :{" "}
                     {ordersDetail &&

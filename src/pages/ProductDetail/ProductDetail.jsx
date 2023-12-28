@@ -19,7 +19,7 @@ const ProductDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
   const detail = useRef(null);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const ProductDetail = () => {
     <>
       <section ref={detail} class="bg-light">
         <div class="container pb-5">
-          <div class="row">
+          <div class="row g-4">
             <div class="col-lg-5 mt-5 align-self-center">
               <div class="row align-items-center">
                 {/*Start Controls*/}
@@ -98,10 +98,11 @@ const ProductDetail = () => {
                               <img
                                 class="card-img img-fluid"
                                 src={
-                                  productDetail &&
-                                  productDetail?.Images[0]?.url_image
+                                  productDetail.Images.url_image
+                                    ? productDetail?.Images[0]?.url_image
+                                    : "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
                                 }
-                                alt="ProductImage1"
+                                alt={"IMG PRODUCTO"}
                               />
                             </div>
                           </div>
@@ -228,17 +229,19 @@ const ProductDetail = () => {
                                   setTallaProducto(s);
                                   setCantidadTalla(1);
                                 }}
-                                class={`list-inline-item  ${TallaProducto===s ? "btn-size-seleted" : "btn-size"}`}
+                                class={`list-inline-item  ${
+                                  TallaProducto === s
+                                    ? "btn-size-seleted"
+                                    : "btn-size"
+                                }`}
                               >
-                                <span class="">
-                                  {s.size}
+                                <span class="">{s.size}</span>
+                                <span
+                                  class="d-block"
+                                  style={{ fontSize: "0.7em" }}
+                                >
+                                  {`Disponible: ${s.ProductSize.quantity}`}
                                 </span>
-                                  <span
-                                    class="d-block"
-                                    style={{ fontSize: "0.7em" }}
-                                  >
-                                    {`Disponible: ${s.ProductSize.quantity}`}
-                                  </span>
                               </li>
                             ))}
                           {/* <li class="list-inline-item">
@@ -366,6 +369,65 @@ const ProductDetail = () => {
                       </>
                     )}
                   </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-12">
+              <h4 className="text-center">Comentarios</h4>
+
+              <div className="card">
+                <div className="card-body">
+                  <div className="row g-3 ">
+                    <div className="col-12">
+                      <div className="border py-1 px-3  rounded-3 ">
+                        <div className="d-flex gap-3 ">
+                          <div className=" align-self-center d-flex gap-2">
+                            <img
+                              width={40}
+                              height={40}
+                              src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp"
+                              alt=""
+                            />
+                            <div className="d-flex flex-column gap-0 text-muted ">
+                              <span className="text-nowrap ">
+                                Estefano Muller
+                              </span>
+                              <small className="text-nowrap ">27/12/2023</small>
+                            </div>
+                          </div>
+                          <div className="align-self-center ">
+                            <p
+                              className="m-0 text-start "
+                              style={{ whiteSpace: "balance" }}
+                            >
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Ut qui molestiae, corrupti aliquid doloribus
+                              quo animi, voluptatibus doloremque magni
+                              repellendus mollitia eligendi maxime soluta
+                              aspernatur culpa ratione optio fuga ex!
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="col-12">
+                      {isAuthenticated ? (
+                        <div className="d-flex gap-3">
+                          <textarea
+                            className="form-control "
+                            name=""
+                            id=""
+                            rows="2"
+                          ></textarea>
+                          <button className="btn btn-secondary">Enviar</button>
+                        </div>
+                      ) : (
+                        <p>Debes inicar seccion para comentar </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

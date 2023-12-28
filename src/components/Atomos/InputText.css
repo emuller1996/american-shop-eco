@@ -1,10 +1,9 @@
 .form-control,
 .form-select {
-    background-color: #ececff;
-    border-color: #a8b2ff;
-    border-radius: 0.9em;
-    padding: 0.6em 0.9em !important;
-    color: #979dff;
+    border-color: #bababa;
+    border-radius: 0.6em;
+    padding: 0.6em 0.6em !important;
+    color: #535353;
 
 }
 
@@ -15,10 +14,10 @@
 
 .form-control:focus,
 .form-select:focus {
-    color: #6065ff;
+    color: #ff2828;
 
     background-color: rgb(255, 255, 255);
-    border-color: #ac9fff;
+    border-color: #ff9f9f;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px !important;
 }
 
@@ -27,5 +26,5 @@
 }
 
 .label-ame {
-    color: #6065ff !important;
+    color: #ff5a5a !important;
 }

@@ -10,6 +10,7 @@ import MyCart from "../pages/MyCart/MyCart";
 import OrderPlaced from "../pages/PurchaseConfirmation/OrderPlaced";
 import Shop from "../pages/Shop";
 import PurchaseConfirmation from "../pages/PurchaseConfirmation";
+import PagoRechazadoPage from "../pages/PagoRechazado/PagoRechazadoPage";
 
 export default function TemplateBase() {
   return (
@@ -37,6 +38,9 @@ export default function TemplateBase() {
         </Route>
         <Route exact path={"/compra-exitosa/:idOrder"}>
           <OrderPlaced />
+        </Route>
+        <Route exact path={"/pago-rechazado/"}>
+          <PagoRechazadoPage />
         </Route>
       </Switch>
 

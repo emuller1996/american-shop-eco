@@ -3,10 +3,10 @@
     font-weight: 400 !important;
     font-size: 1.12em !important; */
 
-    border: 1px solid #003cff !important;
+    border: 1px solid #7f9dff !important;
     width: 100% !important;
     padding: 0.5em !important;
-    border-radius: 0.8em;
+    border-radius: 0.6em;
 
 }
 
@@ -19,20 +19,20 @@
 
 .input-search-producto:focus {
     color: #003cff;
-    background: rgb(49, 53, 88) !important;
-    background: linear-gradient(90deg, rgba(12, 27, 161, 0.1) 0%, rgba(173, 10, 10, 0.1) 100%) !important;
+    /* background: rgb(49, 53, 88) !important;
+    background: linear-gradient(90deg, rgba(12, 27, 161, 0.1) 0%, rgba(173, 10, 10, 0.1) 100%) !important; */
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px !important;
 }
 
 .card-product {
-    border-radius: 0.8em !important;
+    border-radius: 0.6em !important;
     overflow: hidden;
-    border: 1px solid #4772fdc5 ;
+    border: 1px solid #a8bcff ;
 }
 
 .card-product:hover {
     border: 0.11em solid #808080a2;
-    border: 1px solid #fd4750c5 ;
+    border: 1px solid #ff8c92 ;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     /* box-shadow: #8686867a 0px 2px 4px 0px, #888888a1 0px 2px 4px 0px !important; */
     background: rgb(49, 53, 88) !important;

@@ -447,22 +447,24 @@ Table of contents
 
 
 .nav-bar-american {
-  background: rgb(49, 53, 88);
-  background: linear-gradient(90deg, rgba(27, 78, 218, 0.349) 0%, rgba(173, 10, 10, 0.623) 100%);
-  border-bottom: #a49efa solid 1px;
+  /* background: rgb(49, 53, 88);
+  background: linear-gradient(360deg, rgba(90, 124, 217, 0.71) 0%, rgba(214, 52, 52, 0.676) 100%); */
+  background-color: #ffe0e0;
+  border-bottom: #ffdce4 solid 1px;
   box-shadow: 0px 1px 2px #ffd0d0, 0px 0 2px #888;
 
 }
 
+.navbat-top-american {
+  background-color: #f53636e7 !important;
+}
+
 .img-nav-bar {
-  background-image: url("https://png.pngtree.com/png-clipart/20210311/original/pngtree-american-flag-vector-material-png-image_6018205.jpg");
-  background-blend-mode: soft-light;
-  opacity: 0.1;
+  opacity: 0.6;
 }
 
 .accordion-button {
-  background: rgb(49, 53, 88) !important;
-  background: linear-gradient(90deg, rgba(12, 27, 161, 0.322) 0%, rgba(173, 10, 10, 0.623) 100%) !important;
+  background-color: #ffe0e0;
   border-radius: 0.5em !important;
   box-shadow: 0px 1px 2px #ffd0d0, 0px 0 2px #888 !important;
 
@@ -471,7 +473,7 @@ Table of contents
 .accordion-button:not(.collapsed) {
   color: rgb(15, 29, 156) !important;
   box-shadow: 0px 1px 2px #ffd0d0, 0px 0 2px #888 !important;
-
+  background-color: #ffc7c7;
 }
 
 .accordion-body {
@@ -484,16 +486,17 @@ Table of contents
 }
 
 .text-nav-active {
-  color: rgb(51, 70, 236) !important;
-
+  color: rgb(233, 72, 80) !important;
+  /*  border-bottom: 2px rgb(202, 69, 85) solid;
+  border-left: 1px rgb(202, 69, 85) solid;;
+  border-radius: 0.6em;
+  box-shadow: rgba(197, 111, 111, 0.773) 0px 1px 2px 0px;
+ */
 }
 
-.navbat-top-american {
-  background-color: #011d79c2 !important;
-}
 
 .bg-footer-american {
-  background: #011d79c2 !important;
+  background: #d43744c2 !important;
   /* background: linear-gradient(90deg, rgba(27, 78, 218, 0.349) 0%, rgba(173, 10, 10, 0.623) 100%); */
   /* background-color: rgba(188, 44, 44, 0.96); */
 
@@ -502,60 +505,67 @@ Table of contents
 
 .bg-footer-american-b {
 
-  /* background-color: rgba(12, 27, 161, 0.507); */
+  background-color: rgba(52, 71, 237, 0.766);
 
-  background: rgb(49, 53, 88);
-  background: linear-gradient(90deg, rgba(27, 78, 218, 0.349) 0%, rgba(173, 10, 10, 0.623) 100%);
-  border-top: rgba(173, 10, 10, 0.171) solid 2px;
+
 }
 
-.card-nuevos-american{
-  border: 1px solid #011d79c2;
+.card-nuevos-american {
+  border: 1px solid #8498ff;
   border-radius: 0.8em !important;
   overflow: hidden;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.card-body-nuevos-american{
+
+.card-body-nuevos-american {
   background: rgb(49, 53, 88);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.185) 0%, rgba(66, 71, 228, 0.178) 100%);
   border-top: rgb(49, 53, 88) solid 2px !important;
 }
 
-.bg-nuevos-productos{
+.bg-nuevos-productos {
   background-color: #efefff;
 }
 
-.btn{
-  border-radius: 0.9em;
+.btn {
+  border-radius: 0.6em;
 }
 
-.page-link{
-  background: rgb(49, 53, 88);
-  background: linear-gradient(90deg, rgba(27, 78, 218, 0.249) 0%, rgba(255, 157, 157, 0.223) 100%);
-  border-color: #2965dea0;
+.page-link {
+  background-color: #ffe0e0;
+  border-color: #ffb7b7;
   margin-right: 0.2em;
+  color: #636363;
 }
 
-.page-link:focus{
+.pag-active{
+  background-color: #ff8e8e;
+  border-color: #ff7979;
+
+}
+
+.page-link:focus {
   box-shadow: none !important;
 }
 
 
 
-.modal-content{
+.modal-content {
   border-radius: 0.9em !important;
   border: 0;
-  background: rgb(228, 231, 255);
+  background: rgb(255, 248, 248);
 
 }
 
-.modal-header,.modal-footer{
-  border-radius: 0.9em !important;
-  background: rgb(49, 53, 88);
-  background: linear-gradient(90deg, rgba(27, 78, 218, 0.349) 0%, rgba(173, 10, 10, 0.623) 100%);
+.modal-header,
+.modal-footer {
+  border-radius: 0.6em !important;
+  background-color: #ff9999;
+
   overflow: hidden !important;
 }
-.modal-body{
+
+.modal-body {
   overflow: hidden !important;
 
 

@@ -1,25 +1,25 @@
 .card-producto-detalle{
 
-    border-radius: 0.9em !important;
-    border-color: rgba(173, 10, 10, 0.623);
+    border-radius: 0.6em !important;
+    border-color: rgba(255, 157, 157, 0.851);
     background-color:  #ffe0e956;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
 }
 
 .btn-size{
-    border:solid 1px #ad0a0ae0;
-    border-radius: 0.9em;
+    border:solid 1px #f78383e0;
+    border-radius: 0.6em;
     padding: 0.3em;
     cursor: pointer;
     text-align: center;
-    color: #ad0a0a;
+    color: #c32d2d;
 }
 
 .btn-size-seleted{
-    border:solid 1px #ad0a0ae0;
-    border-radius: 0.9em;
-    background-color: #ad0a0ae0;
+    border:solid 1px #bd4646e0;
+    border-radius: 0.6em;
+    background-color: #bd4646e0;
     padding: 0.3em;
     cursor: pointer;
     text-align: center;

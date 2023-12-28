@@ -61,7 +61,7 @@ export default function MyCart() {
       <div className="container " style={{ minHeight: "66vh" }}>
         <h4 className="text-center mb-3 mt-4">Mi Carrito</h4>
         <div className="">
-          <div className="row g-3 align-items-start">
+          <div className="row g-3 align-items-start pb-4">
             <div className="col-md-8 ">
               <div className="p-3 contenedor-carrito-items">
                 {!isLoading && cart.length === 0 && (
