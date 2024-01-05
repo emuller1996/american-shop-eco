@@ -9,18 +9,23 @@ export default function CardProduct({ product, addProducToCart }) {
         className="card card-product mb-4 product-wap rounded-0 text-decoration-none h-100"
         to={`/articulo/${product.id}`}
       >
-        <div  className="card  rounded-0 border-0">
+        <div className="card  rounded-0 border-0">
           <Card.Img
             variant="top"
             src={
-              product.Images[0] ? product.Images[0].url_image : product.image
+              product.image
+                ? product.image
+                : "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
             }
             className=" img-fluid mx-auto d-block"
           />
           <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
             <ul className="list-unstyled">
               <li>
-                <span title="Vista Rapida" /* onClick={( e) => e.preventDefault()} */ className="btn btn-light rounded-4 text-danger">
+                <span
+                  title="Vista Rapida"
+                  /* onClick={( e) => e.preventDefault()} */ className="btn btn-light rounded-4 text-danger"
+                >
                   <i className="fas fa-eye"></i>
                 </span>
               </li>
@@ -45,7 +50,6 @@ export default function CardProduct({ product, addProducToCart }) {
           <p className="text-center m-0 fs-6 placeholder-glow">
             {product.Category.name}
           </p>
-          
 
           {/* <ul className="list-unstyled d-flex justify-content-center mb-1">
             <li>
