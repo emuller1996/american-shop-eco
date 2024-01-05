@@ -118,10 +118,12 @@ export default function MyOrderComponent() {
               <p className="mb-1 text-center fw-semibold">Datos de Pago</p>
               <div class="card mb-2">
                 <div class="card-body">
-                  <h4 class="card-title">
-                    {ordersDetail && ordersDetail?.Payments[0].status}
-                  </h4>
-                  <p>{ordersDetail && ordersDetail?.Payments[0].net_amount}</p>
+                  <h5 class="card-title">
+                    Estado : {ordersDetail && ordersDetail?.Payments[0].status}
+                  </h5>
+                  <p>Monto Total{ordersDetail && ordersDetail?.Payments[0].net_amount}</p>
+                  <p>Metodo de Pago {ordersDetail && ordersDetail?.Payments[0].payment_method}</p>
+                  <p>Estado Detalle {ordersDetail && ordersDetail?.Payments[0].status_detail}</p>
                   {ordersDetail &&
                     ordersDetail?.Payments[0].external_resource_url && (
                       <a
@@ -135,16 +137,8 @@ export default function MyOrderComponent() {
                         Link Pagar
                       </a>
                     )}
-                  <p class="card-text m-0">
-                    Direccion :{" "}
-                    {ordersDetail &&
-                      `${ordersDetail.DeliveryAddress.address} -  ${ordersDetail.DeliveryAddress.reference} Br : ${ordersDetail.DeliveryAddress.neighborhood}`}
-                  </p>
-
-                  <p class="card-text  m-0">
-                    {ordersDetail &&
-                      `${ordersDetail.DeliveryAddress.department} -  ${ordersDetail.DeliveryAddress.city} Tel : ${ordersDetail.DeliveryAddress.phone}`}
-                  </p>
+                 
+                 
                 </div>
               </div>
             </div>
