@@ -9,7 +9,7 @@ export default function MyProfileComponent() {
     return (
         <>
             
-            <div className="p-4">
+            <div className="container  p-4" style={{minHeight:"65vh"}}>
                 <h2 clas> Mis Datos</h2>
                 <FormProfileComponent />
 

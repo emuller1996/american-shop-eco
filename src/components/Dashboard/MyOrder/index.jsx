@@ -36,8 +36,9 @@ export default function MyOrderComponent() {
   };
 
   return (
-    <>
-      <h4>Mis Pedidos</h4>
+    <div className="container " style={{ minHeight: "65vh" }}>
+      <h4 className="mt-4">Mis Pedidos</h4>
+
       {orders ? (
         <ListOrderComponent
           setOrdersDetail={setOrdersDetailOn}
@@ -53,32 +54,32 @@ export default function MyOrderComponent() {
           <Modal.Title> Order # {ordersDetail && ordersDetail.id}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div class="row justify-content-center align-items-center g-2">
-            <div class="col-4">
+          <div className="row justify-content-center align-items-center g-2">
+            <div className="col-4">
               Fecha :{" "}
               {ordersDetail && ordersDetail.purchase_date.substring(0, 10)}
             </div>
-            <div class="col-8">
+            <div className="col-8">
               <p className=" fs-2 fw-bold text-success text-end">
                 ${ordersDetail && ordersDetail.total_payment.toLocaleString()}
               </p>
             </div>
-            <div class="col-12 text-center">
+            <div className="col-12 text-center">
               Estado:{" "}
-              <span class="badge bg-primary">
+              <span className="badge bg-primary">
                 {ordersDetail && ordersDetail.status}
               </span>
             </div>
-            <div class="col-12">
+            <div className="col-12">
               <p className="mb-1 text-center fw-semibold">
                 Productos del Pedido{" "}
               </p>
               {ordersDetail ? (
                 ordersDetail.OrderDetails.map((p) => (
-                  <div class="card mb-2">
-                    <div class="card-body">
-                      <h4 class="card-title">{p?.name}</h4>
-                      <p class="card-text">
+                  <div className="card mb-2">
+                    <div className="card-body">
+                      <h4 className="card-title">{p?.name}</h4>
+                      <p className="card-text">
                         {" "}
                         {p?.units} x {p?.unitPrice.toLocaleString()}{" "}
                         <span className="text-end fw-bold fs-4 ms-4">
@@ -92,43 +93,53 @@ export default function MyOrderComponent() {
                 <SpinnerComponent />
               )}
             </div>
-            <div class="col-12">
+            <div className="col-12">
               <p className="mb-1 text-center fw-semibold">
                 Dirrecion del Pedido{" "}
               </p>
-              <div class="card mb-2">
-                <div class="card-body">
-                  <h4 class="card-title">
+              <div className="card mb-2">
+                <div className="card-body">
+                  <h4 className="card-title">
                     {ordersDetail && ordersDetail.DeliveryAddress.name}
                   </h4>
-                  <p class="card-text m-0">
+                  <p className="card-text m-0">
                     Direccion :{" "}
                     {ordersDetail &&
                       `${ordersDetail.DeliveryAddress.address} -  ${ordersDetail.DeliveryAddress.reference} Br : ${ordersDetail.DeliveryAddress.neighborhood}`}
                   </p>
 
-                  <p class="card-text  m-0">
+                  <p className="card-text  m-0">
                     {ordersDetail &&
                       `${ordersDetail.DeliveryAddress.department} -  ${ordersDetail.DeliveryAddress.city} Tel : ${ordersDetail.DeliveryAddress.phone}`}
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-12">
+            <div className="col-12">
               <p className="mb-1 text-center fw-semibold">Datos de Pago</p>
-              <div class="card mb-2">
-                <div class="card-body">
-                  <h5 class="card-title">
+              <div className="card mb-2">
+                <div className="card-body">
+                  <h6 className="card-title m-0">
                     Estado : {ordersDetail && ordersDetail?.Payments[0].status}
-                  </h5>
-                  <p>Monto Total{ordersDetail && ordersDetail?.Payments[0].net_amount}</p>
-                  <p>Metodo de Pago {ordersDetail && ordersDetail?.Payments[0].payment_method}</p>
-                  <p>Estado Detalle {ordersDetail && ordersDetail?.Payments[0].status_detail}</p>
+                  </h6>
+                  <p className="m-0">
+                    Monto Total :
+                    {ordersDetail && ordersDetail?.Payments[0].net_amount}
+                  </p>
+                  <p className="m-0">
+                    Metodo de Pago{" : "}
+                    {ordersDetail && ordersDetail?.Payments[0].payment_method}
+                  </p>
+                  <p className="m-0">
+                    Estado Detalle{" : "}
+                    {ordersDetail && ordersDetail?.Payments[0].status_detail}
+                  </p>
                   {ordersDetail &&
                     ordersDetail?.Payments[0].external_resource_url && (
                       <a
                         target="_blank"
-                        without rel="noreferrer"
+                        without
+                        rel="noreferrer"
                         href={
                           ordersDetail &&
                           ordersDetail?.Payments[0].external_resource_url
@@ -137,8 +148,6 @@ export default function MyOrderComponent() {
                         Link Pagar
                       </a>
                     )}
-                 
-                 
                 </div>
               </div>
             </div>
@@ -151,6 +160,6 @@ export default function MyOrderComponent() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 }

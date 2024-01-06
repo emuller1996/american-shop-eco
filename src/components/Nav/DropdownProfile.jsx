@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LogoutButton from "./LogoutButton";
 import { Dropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import isClient from "../../utils/isClient";
 
@@ -28,7 +28,7 @@ export default function DropdownProfile() {
                 <img
                   src={user ? user.picture : "..."}
                   width="60px"
-                  class="img-fluid rounded-pill mb-2"
+                  className="img-fluid rounded-pill mb-2"
                   alt="..."
                 />
               </div>
@@ -36,13 +36,23 @@ export default function DropdownProfile() {
                 {user ? user.name : "..."}
               </small>
 
-              <Link
-                className="btn btn-sm btn-light
+              <div className="d-flex  flex-column  gap-2 ">
+                <NavLink
+                  className="btn btn-sm btn-light
                w-100 rounded-3 text-decoration-none"
-                to={"/d/mi-perfil"}
-              >
-                <i class="far fa-user-circle me-2"></i>Mi Perfil
-              </Link>
+                  to={"/d/mi-perfil"}
+                >
+                  <i className="far fa-user-circle me-2"></i>Mi Perfil
+                </NavLink>
+                <NavLink
+                  className="btn btn-sm btn-light
+               w-100 rounded-3 text-decoration-none"
+                  to={"/d/mis-pedidos"}
+                >
+                  <i className="fas fa-shipping-fast me-2"></i>
+                  Mis Pedidos
+                </NavLink>
+              </div>
               <small className="text-sm p-0 m-0 f-6 text-nowrap text-uppercase d-block mt-2">
                 <LogoutButton />
               </small>

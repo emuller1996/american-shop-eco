@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Modal from "react-bootstrap/Modal";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 import InputText from "../../Atomos/InputText";
@@ -107,9 +106,9 @@ export default function FormDeliverAddressComponent({
           placeholder={"AP 2##, LOC 3##"}
         />
 
-        <div class="text-center mb-3">
+        <div className="text-center mb-3">
           <Button variant="success" type="submit" /* onClick={handleClose} */>
-            <i class="far fa-save me-2"></i>
+            <i className="far fa-save me-2"></i>
             Guardar
           </Button>
         </div>

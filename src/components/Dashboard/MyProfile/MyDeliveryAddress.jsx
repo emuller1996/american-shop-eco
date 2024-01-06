@@ -114,7 +114,7 @@ export default function MyDeliveryAddressComponent() {
                         <button
                           onClick={() => onSetAddress(c)}
                           type="button"
-                          class="btn btn-sm btn-primary"
+                          className="btn btn-sm btn-primary"
                         >
                           Editar
                         </button>

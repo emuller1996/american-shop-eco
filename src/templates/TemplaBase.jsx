@@ -11,6 +11,9 @@ import OrderPlaced from "../pages/PurchaseConfirmation/OrderPlaced";
 import Shop from "../pages/Shop";
 import PurchaseConfirmation from "../pages/PurchaseConfirmation";
 import PagoRechazadoPage from "../pages/PagoRechazado/PagoRechazadoPage";
+import MyProfileComponent from "../components/Dashboard/MyProfile/MyProfile";
+import MyOrderComponent from "../components/Dashboard/MyOrder";
+import ProtectedRouteMiProfile from "../utils/ProtectedRouteMiProfile";
 
 export default function TemplateBase() {
   return (
@@ -41,6 +44,16 @@ export default function TemplateBase() {
         </Route>
         <Route exact path={"/pago-rechazado/"}>
           <PagoRechazadoPage />
+        </Route>
+        <Route strict path={"/d/mis-pedidos"}>
+          <ProtectedRouteMiProfile>
+            <MyOrderComponent />
+          </ProtectedRouteMiProfile>
+        </Route>
+        <Route strict path={"/d/mi-perfil"}>
+          <ProtectedRouteMiProfile>
+            <MyProfileComponent />
+          </ProtectedRouteMiProfile>
         </Route>
       </Switch>
 
