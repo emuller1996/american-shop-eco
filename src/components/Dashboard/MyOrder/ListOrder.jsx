@@ -6,7 +6,7 @@ export default function ListOrderComponent({
   handleShow,
 }) {
   return (
-    <div className="row justify-content-start align-items-center g-2">
+    <div className="row justify-content-start align-items-center g-2 pb-2">
       {orders && orders.length === 0 && (
         <div className="col">
           <p>No tienes Ordens Registradas</p>
