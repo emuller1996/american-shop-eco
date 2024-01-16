@@ -24,7 +24,7 @@ export default function MyCart() {
 
   const getProducts = async () => {
     setCartState([]);
-    
+
     try {
       setisLoading(true);
       var s = await cart.map(async (c) => {
@@ -42,7 +42,8 @@ export default function MyCart() {
 
       setCartState(results);
       const sumWithInitial = results.reduce(
-        (accumulator, currentValue) => accumulator +  (currentValue.price * currentValue.cant),
+        (accumulator, currentValue) =>
+          accumulator + currentValue.price * currentValue.cant,
         0
       );
       setTotal(sumWithInitial);
@@ -69,7 +70,11 @@ export default function MyCart() {
                     SIN PRODUCTOS EN EL CARRITO
                   </div>
                 )}
-                {isLoading ? <div><SpinnerComponent/></div> :
+                {isLoading ? (
+                  <div>
+                    <SpinnerComponent />
+                  </div>
+                ) : (
                   cartState.map((p) => (
                     <>
                       <div className="card card-carrito-producto mb-2">
@@ -128,7 +133,8 @@ export default function MyCart() {
                         </div>
                       </div>
                     </>
-                  ))}
+                  ))
+                )}
               </div>
               {/* <div className="card shadow mb-4 border  border-dark">
               <div className="table-responsive  rounded overflow">
@@ -272,6 +278,20 @@ export default function MyCart() {
                   )}
                 </div>
               </div>
+            </div>
+
+            <div className="col-md-6">
+              <p>
+                En AMERICANSHOPVIP, nos complace informarte que ofrecemos
+                servicios de envío a nivel nacional. Sea cual sea tu ubicación
+                dentro del país, ¡podemos enviarte nuestros productos directamente
+                a tu puerta!
+              </p>
+              <p>
+                Si tienes alguna pregunta adicional sobre nuestros servicios de
+                envío o necesitas asistencia con tu pedido, no dudes en
+                contactarnos. Estamos aquí para ayudarte.
+              </p>
             </div>
           </div>
         </div>

@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+function useQuery() {
+  const { search } = useLocation();
 
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 export default function BannerCarousel() {
+  let query = useQuery();
+  let history = useHistory();
+  useEffect(() => {
+    if (query.get("payment_id")) {
+      console.log(query.get("payment_id"));
+      history.push(`/pago/${query.get("payment_id")}`);
+    }
+  }, []);
   return (
     <>
       <div
@@ -14,7 +28,7 @@ export default function BannerCarousel() {
             data-bs-slide-to="0"
             className="active"
           ></li>
-         {/*  <li
+          {/*  <li
             data-bs-target="#template-mo-zay-hero-carousel"
             data-bs-slide-to="1"
           ></li>

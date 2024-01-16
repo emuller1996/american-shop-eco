@@ -33,40 +33,36 @@ export default function PurchaseConfirmationComponent() {
     console.log(result);
     setCartState(result);
     const sumWithInitial = result.reduce(
-      (accumulator, currentValue) => accumulator +  (currentValue.price * currentValue.cant),
+      (accumulator, currentValue) =>
+        accumulator + currentValue.price * currentValue.cant,
       0
     );
     setTotal(sumWithInitial);
   };
 
-  
-
   return (
     <div className="row justify-content-center align-items-center g-4">
-      <div className="col-md-4 order-0 order-md-1 ">
+      <div className="col-lg-4 order-0 order-md-1 ">
         <ListProductsOrder products={cartState} />
       </div>
 
-      <div className="col-md-8 ">
+      <div className="col-lg-8 ">
         <div className="container">
           <SelectShippingAddressComponent
             setShippingAddress={setShippingAddress}
             shippingAddress={shippingAddress}
           />
-          {
-            shippingAddress && ( 
-
-              <SelectPaymentMethodsComponent
-                data={{
-                  products: cartState,
-                  DeliveryAddressId: shippingAddress?.id,
-                  user_email: user.email,
-                  purchase_date: new Date().toISOString(),
-                  total_payment: total,
-                }}
-              />
-            )
-          }
+          {shippingAddress && (
+            <SelectPaymentMethodsComponent
+              data={{
+                products: cartState,
+                DeliveryAddressId: shippingAddress?.id,
+                user_email: user.email,
+                purchase_date: new Date().toISOString(),
+                total_payment: total,
+              }}
+            />
+          )}
           {/* <button
             type="button"
             onClick={onSaveOrder}
@@ -75,6 +71,28 @@ export default function PurchaseConfirmationComponent() {
             COMPRAR
           </button> */}
         </div>
+      </div>
+
+      <div className="col-md-9 order-2">
+        <h4 className="text-danger fs-1 ">Nota!</h4>
+        <p>
+          Es un placer Atenderte, Queremos informarle que el costo del envío para su
+          pedido será manejado mediante el método de "Contra Entrega". Esto
+          significa que el pago del
+          <span className="text-uppercase  fw-bold  text-success ">
+            {" valor del ENVIO "}
+          </span>
+          se realizará en el momento de la entrega de sus productos.
+        </p>
+        <p>
+          Este método le debe pagar el envío directamente al mensajero al
+          recibir solo del
+          <span className="text-uppercase  fw-bold  text-success ">
+            {" valor del ENVIO "}
+          </span>
+          su pedido. Agradecemos su confianza en nuestros servicios y estamos
+          aquí para cualquier pregunta adicional que pueda tener.
+        </p>
       </div>
     </div>
   );

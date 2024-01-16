@@ -20,37 +20,37 @@ export default function Nav() {
     <>
       <nav
         className="navbar navbat-top-american navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
-        id="templatemo_nav_top"
+        id=""
       >
-        <div className="container text-light">
+        <div className="container text-dark">
           <div className="w-100 d-flex justify-content-between">
             <div>
               <i className="fa fa-envelope mx-2"></i>
               <a
-                className="navbar-sm-brand text-light text-decoration-none m-0"
+                className="navbar-sm-brand text-dark text-decoration-none m-0"
                 href="mailto:info@company.com"
               >
                 americanshopbtura@gmail.com
               </a>
               <i className="fa fa-phone mx-2"></i>
               <a
-                className="navbar-sm-brand text-light text-decoration-none"
+                className="navbar-sm-brand text-dark text-decoration-none"
                 href="tel:010-020-0340"
               >
                 +57 3184612011
               </a>
             </div>
             <div>
-              <span className="text-light" target="_blank" rel="sponsored">
+              <span className="" target="_blank" rel="sponsored">
                 <i className="fab fa-facebook-f fa-sm fa-fw me-2"></i>
               </span>
-              <span className="text-light" target="_blank">
+              <span className="" target="_blank">
                 <i className="fab fa-instagram fa-sm fa-fw me-2"></i>
               </span>
-              <span className="text-light" target="_blank">
+              <span className="" target="_blank">
                 <i className="fab fa-twitter fa-sm fa-fw me-2"></i>
               </span>
-              <span className="text-light">
+              <span className="">
                 <i className="fab fa-linkedin fa-sm fa-fw"></i>
               </span>
             </div>
@@ -67,7 +67,7 @@ export default function Nav() {
             <div className="d-flex align-items-center">
               <div className="">
                 <img
-                className="img-nav-bar"
+                  className="img-nav-bar"
                   width={"50px"}
                   src="/assets/img/Logo.png"
                   alt="logo"
