@@ -84,7 +84,7 @@
 .image {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 60%;
   /*  width: 100px;
     height: auto; */
   filter: drop-shadow(3px 3px 5px #18181815);
@@ -115,7 +115,7 @@
 .text {
   position: absolute;
   top: 15%;
-  left: -80%;
+  left: -99%;
   color: #181818;
   transition: all .3s ease-in;
 }
