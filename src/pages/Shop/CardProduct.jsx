@@ -53,25 +53,26 @@ export default function CardProduct({ product, addProducToCart }) {
           </p>
         </div>
       </Link> */}
-      <Link  to={`/articulo/${product.id}`} class="card">
+      <Link to={`/articulo/${product.id}`} class="card card_pro">
         <div class="image">
           <img
-          height={"400px"}
-          className="img-product"
+            height={"400px"}
+            className="img-product"
             src={
               product.image
                 ? product.image
                 : "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
             }
             alt=""
-          />          
+          />
         </div>
         <div class="text">
           <span>{product.name}</span>
-          <p>{MostrarPesoCOP(product.price)}</p>
+          <p className="m-0">{MostrarPesoCOP(product.price)}</p>
+          <div className="text_brand "> {product.Category.name}</div>
+          <div className="text_brand_category "> {product.brand}</div>
         </div>
       </Link>
-
     </div>
   );
 }
