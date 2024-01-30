@@ -146,23 +146,28 @@ const ProductDetail = () => {
                   </>
                 )}
               </div> */}
-
+              {productDetail && productDetail.Images.length === 0 && (
+                <img
+                  class="card-img img-fluid"
+                  src={
+                    "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
+                  }
+                  alt={"IMG PRODUCTO"}
+                />
+              )}
               <Carousel className=" rounded-2" interval={1500}>
                 {productDetail &&
                   Array.isArray(productDetail.Images) &&
                   productDetail.Images.map((i, index) => (
-                    <Carousel.Item className=" rounded-2"> 
+                    <Carousel.Item className=" rounded-2">
                       <img
                         class="card-img img-fluid rounded-2 overflow-auto "
                         src={i && i.url_image}
                         alt="ProductImage1"
                       />
-                      <Carousel.Caption>
-                        
-                      </Carousel.Caption>
+                      <Carousel.Caption></Carousel.Caption>
                     </Carousel.Item>
                   ))}
-              
               </Carousel>
             </div>
 
@@ -355,7 +360,9 @@ const ProductDetail = () => {
                             );
                             setTallaProducto(undefined);
                             setCantidadTalla(undefined);
-                            toast.success("Se ha agregado con exito el producto al carrito ")
+                            toast.success(
+                              "Se ha agregado con exito el producto al carrito "
+                            );
                           }}
                         >
                           <i className="fas fa-cart-plus me-2"></i>

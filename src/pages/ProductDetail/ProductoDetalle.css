@@ -17,7 +17,7 @@
 }
 
 .btn-size-seleted {
-    border: solid 1px #bd4646e0;
+    border: solid 1px #ff9090e0;
     border-radius: 0.6em;
     background: rgb(203, 203, 203);
     background: linear-gradient(135deg, rgb(255, 191, 191) 0%, rgb(228, 57, 57) 100%);
@@ -25,8 +25,8 @@
     cursor: pointer;
     text-align: center;
     color: #fffffff6;
-    transition:  0.7s ease;
-    box-shadow: rgb(255, 188, 188) 4px 4px 0px 0px , rgb(252, 210, 210) 8px 8px 0px 0px;
+    transition: all 0.7s ease;
+    box-shadow: rgb(255, 188, 188) 4px 4px 0px 0px, rgb(252, 210, 210) 8px 8px 0px 0px;
 
 }
 
