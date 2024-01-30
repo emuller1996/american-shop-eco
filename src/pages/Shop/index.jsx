@@ -174,7 +174,7 @@ export default function Shop() {
               <ReactPaginate
                 forcePage={page}
                 breakLabel="..."
-                breakLinkClassName="page-link "
+                breakLinkClassName="btn-outline-danger-pag "
                 nextLabel=">"
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={1}
@@ -182,15 +182,15 @@ export default function Shop() {
                 pageCount={totalPages !== 0 ? totalPages : 1}
                 previousLabel="<"
                 /* renderOnZeroPageCount={1} */
-                className="pagination  justify-content-end"
-                pageClassName="page-item "
-                pageLinkClassName="page-link"
-                activeLinkClassName=" page-link pag-active "
-                activeClassName="page-item "
-                previousClassName="page-item"
-                nextClassName="page-item"
-                previousLinkClassName="page-link"
-                nextLinkClassName="page-link"
+                className="pagination gap-1  justify-content-end"
+                pageClassName=""
+                pageLinkClassName=" btn-outline-danger-pag "
+                activeLinkClassName=" btn-outline-danger-pag-act text-white"
+                activeClassName=""
+                previousClassName=""
+                nextClassName=""
+                previousLinkClassName=" btn-outline-danger-pag"
+                nextLinkClassName=" btn-outline-danger-pag"
               />
             </div>
           </div>

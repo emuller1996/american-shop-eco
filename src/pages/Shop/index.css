@@ -84,7 +84,7 @@
 .image {
   position: absolute;
   top: 50%;
-  left: 60%;
+  left: 50%;
   /*  width: 100px;
     height: auto; */
   filter: drop-shadow(3px 3px 5px #18181815);
@@ -142,10 +142,50 @@
 }
 
 .card_pro:hover .text {
-  top: 15%;
+  top: 2%;
   left: 5%;
 }
 
 .fil-shoes2 {
   fill: #a59573
+}
+
+
+.btn-outline-danger-pag {
+  padding: 0.6em 0.9em;
+  border-radius: 9px;
+  border: 0;
+  background-color: rgb(255, 214, 217);
+  letter-spacing: 1.5px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: rgba(255, 203, 208, 0.658) 0px 6px 0px 0px;
+  color: rgb(253, 70, 85);
+  cursor: pointer;
+  text-decoration-line: none;
+}
+
+.btn-outline-danger-pag-act {
+  padding: 0.6em 0.9em;
+  border-radius: 9px;
+  border: 0;
+  background-color:  rgb(253, 70, 85);
+  letter-spacing: 1.5px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: rgba(255, 163, 171, 0.658) 0px 6px 0px 0px;
+  color: rgb(255, 240, 241) !important; 
+
+  cursor: pointer;
+  text-decoration-line: none;
+}
+
+.btn-outline-danger-pag:hover {
+  box-shadow: rgb(201, 46, 70) 0px 7px 0px 0px;
+  color: rgb(136, 28, 28) !important; 
+}
+
+.disabled >.btn-outline-danger-pag{
+opacity: 0.4;  
+
 }
