@@ -1,31 +1,36 @@
-.card-producto-detalle{
+.card-producto-detalle {
 
     border-radius: 0.6em !important;
     border-color: rgba(255, 157, 157, 0.851);
-    background-color:  #ffe0e956;
+    background-color: #ffe0e956;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
 }
 
-.btn-size{
-    border:solid 1px #f78383e0;
+.btn-size {
+    border: solid 1px #f78383e0;
     border-radius: 0.6em;
-    padding: 0.3em;
+    padding: 0.5em;
     cursor: pointer;
     text-align: center;
     color: #c32d2d;
 }
 
-.btn-size-seleted{
-    border:solid 1px #bd4646e0;
+.btn-size-seleted {
+    border: solid 1px #bd4646e0;
     border-radius: 0.6em;
-    background-color: #bd4646e0;
-    padding: 0.3em;
+    background: rgb(203, 203, 203);
+    background: linear-gradient(135deg, rgb(255, 191, 191) 0%, rgb(228, 57, 57) 100%);
+    padding: 0.5em;
     cursor: pointer;
     text-align: center;
-    color: #fdfdfdc2;
+    color: #fffffff6;
+    transition:  0.7s ease;
+    box-shadow: rgb(255, 188, 188) 4px 4px 0px 0px , rgb(252, 210, 210) 8px 8px 0px 0px;
+
 }
-.btn-danger{
+
+.btn-danger {
     background-color: #ad0a0ae0;
 
 }

@@ -11,6 +11,7 @@ import { useRef } from "react";
 import img from "./img-place.gif";
 import "./ProductoDetalle.css";
 import axios from "axios";
+import Carousel from "react-bootstrap/Carousel";
 const ProductDetail = () => {
   let { id } = useParams();
   const [productDetail, setProductDetail] = useState(undefined);
@@ -72,12 +73,7 @@ const ProductDetail = () => {
         <div class="container pb-5">
           <div class="row g-4">
             <div class="col-lg-5 mt-5 align-self-center">
-              <div class="row align-items-center">
-                {/*Start Controls*/}
-
-                {/*End Controls*/}
-                {/*Start Carousel Wrapper*/}
-
+              {/* <div class="row align-items-center">
                 {isLoading ? (
                   <div className="col-12 align-self-center text-center">
                     <img style={{ width: "250px" }} src={img} alt="s" />
@@ -149,11 +145,27 @@ const ProductDetail = () => {
                     </div>
                   </>
                 )}
+              </div> */}
 
-                {/*End Controls*/}
-              </div>
+              <Carousel className=" rounded-2" interval={1500}>
+                {productDetail &&
+                  Array.isArray(productDetail.Images) &&
+                  productDetail.Images.map((i, index) => (
+                    <Carousel.Item className=" rounded-2"> 
+                      <img
+                        class="card-img img-fluid rounded-2 overflow-auto "
+                        src={i && i.url_image}
+                        alt="ProductImage1"
+                      />
+                      <Carousel.Caption>
+                        
+                      </Carousel.Caption>
+                    </Carousel.Item>
+                  ))}
+              
+              </Carousel>
             </div>
-            {/* col end */}
+
             <div class="col-lg-7 mt-5">
               <div
                 class="card card-producto-detalle"
@@ -184,16 +196,6 @@ const ProductDetail = () => {
                       <span class="placeholder col-3 rounded"></span>
                     )}
                   </p>
-                  {/* <p class="py-2">
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-secondary"></i>
-                    <span class="list-inline-item text-dark">
-                      Rating 4.8 | 36 Comments
-                    </span>
-                  </p> */}
                   <ul class="list-inline">
                     <li class="list-inline-item">
                       <h6>Marca: </h6>
@@ -353,6 +355,7 @@ const ProductDetail = () => {
                             );
                             setTallaProducto(undefined);
                             setCantidadTalla(undefined);
+                            toast.success("Se ha agregado con exito el producto al carrito ")
                           }}
                         >
                           <i className="fas fa-cart-plus me-2"></i>
