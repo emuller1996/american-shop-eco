@@ -109,7 +109,7 @@ const ProductDetail = () => {
                               <img
                                 class="card-img img-fluid"
                                 src={
-                                  productDetail.Images.url_image
+                                  productDetail.Images.length !== 0 
                                     ? productDetail?.Images[0]?.url_image
                                     : "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
                                 }
