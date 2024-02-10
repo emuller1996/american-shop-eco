@@ -97,8 +97,8 @@ export default function MyCart() {
                               <img
                                 className="rounded-3 img-fluid"
                                 src={
-                                  p.image
-                                    ? p.image
+                                  p?.image
+                                    ? p?.image
                                     : "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
                                 }
                                 width="60px"
@@ -120,7 +120,7 @@ export default function MyCart() {
                                     >
                                       Talla :{" "}
                                     </b>
-                                    {p.talla_Strin}
+                                    {p?.talla_Strin}
                                   </span>
                                 </div>
                                 <div className="col-12">
@@ -128,25 +128,25 @@ export default function MyCart() {
                                     <div  className="d-flex justify-content-between flex-wrap gap-1  ">
                                       <span
                                         className={`${
-                                          !p.is_discount
+                                          !p?.is_discount
                                             ? ""
                                             : "text-decoration-line-through text-muted"
                                         } `}
                                       >
-                                        {`${MostrarPesoCOP(p.price)}`}
+                                        {`${MostrarPesoCOP(p?.price)}`}
                                       </span>
                                       {p.is_discount && (
                                         <span className="">
                                           {`${MostrarPesoCOP(
-                                            p.price -
-                                              p.price *
-                                                (p.discount_percentage / 100)
+                                            p?.price -
+                                              p?.price *
+                                                (p?.discount_percentage / 100)
                                           )}`}
                                         </span>
                                       )}
                                       <span>
                                         {`
-                                        x ${p.cant}
+                                        x ${p?.cant}
                                         `}
                                       </span>
                                     </div>
@@ -162,7 +162,7 @@ export default function MyCart() {
                                     <button
                                       className="btn btn-sm rounded-3  btn-danger "
                                       onClick={(id) => {
-                                        HandledeleteProductsToCart(p.id);
+                                        HandledeleteProductsToCart(p?.id);
                                       }}
                                     >
                                       <i class="far fa-trash-alt fa-sm"></i>
