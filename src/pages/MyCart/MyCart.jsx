@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { getProductByIdServicio } from "../../services/productos.servicios";
 import "./MyCart.css";
 import SpinnerComponent from "../../components/Spinner";
+import { MostrarPesoCOP } from "../../utils";
 
 export default function MyCart() {
   const cart = useSelector((state) => state.cart);
@@ -41,11 +42,18 @@ export default function MyCart() {
       const results = await Promise.all(s);
 
       setCartState(results);
-      const sumWithInitial = results.reduce(
-        (accumulator, currentValue) =>
-          accumulator + currentValue.price * currentValue.cant,
-        0
-      );
+      const sumWithInitial = results.reduce((accumulator, currentValue) => {
+        if (currentValue.is_discount) {
+          return (
+            accumulator +
+            (currentValue.price -
+              currentValue.price * (currentValue.discount_percentage / 100)) *
+              currentValue.cant
+          );
+        } else {
+          return accumulator + currentValue.price * currentValue.cant;
+        }
+      }, 0);
       setTotal(sumWithInitial);
       setisLoading(false);
     } catch (error) {
@@ -77,16 +85,21 @@ export default function MyCart() {
                 ) : (
                   cartState.map((p) => (
                     <>
-                      <div className="card card-carrito-producto mb-2">
+                      <div className="card card-carrito-producto mb-2 position-relative ">
+                        {p?.is_discount && (
+                          <div className="position-absolute top-0 start-50 translate-middle badge bg-danger">
+                            En Descuento
+                          </div>
+                        )}
                         <div className="card-body">
                           <div className="row align-items-start">
                             <div className="col-4 col-md-3">
                               <img
                                 className="rounded-3 img-fluid"
                                 src={
-                                  p?.Images[0]?.url_image
-                                    ? p?.Images[0]?.url_image
-                                    : p.image
+                                  p.image
+                                    ? p.image
+                                    : "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
                                 }
                                 width="60px"
                                 height={"50px"}
@@ -96,27 +109,56 @@ export default function MyCart() {
                             </div>
                             <div className="col-8 col-md-9 align-self-center">
                               <div className="row align-items-start">
-                                <div className="col-8 col-md-9 col-lg-10">
+                                <div className="col-8 col-md-8 col-lg-9">
                                   <span>{p.name}</span>
                                 </div>
-                                <div className="col-4 col-md-3 col-lg-2 align-self-end text-end">
+                                <div className="col-4 col-md-3 col-lg-2  text-start">
                                   <span className="text-nowrap">
+                                    <b
+                                      className="me-2"
+                                      style={{ fontSize: "0.8em" }}
+                                    >
+                                      Talla :{" "}
+                                    </b>
                                     {p.talla_Strin}
                                   </span>
                                 </div>
                                 <div className="col-12">
-                                  <div className="d-flex justify-content-between">
-                                    <span>{`${p.price.toLocaleString(
-                                      undefined,
-                                      {
-                                        maximumFractionDigits: 2,
-                                      }
-                                    )} x ${p.cant}`}</span>
-                                    <span className="fw-semibold">{`${(
-                                      p.price * p.cant
-                                    ).toLocaleString(undefined, {
-                                      maximumFractionDigits: 2,
-                                    })}`}</span>
+                                  <div className="d-flex justify-content-between flex-wrap ">
+                                    <div  className="d-flex justify-content-between flex-wrap gap-1  ">
+                                      <span
+                                        className={`${
+                                          !p.is_discount
+                                            ? ""
+                                            : "text-decoration-line-through text-muted"
+                                        } `}
+                                      >
+                                        {`${MostrarPesoCOP(p.price)}`}
+                                      </span>
+                                      {p.is_discount && (
+                                        <span className="">
+                                          {`${MostrarPesoCOP(
+                                            p.price -
+                                              p.price *
+                                                (p.discount_percentage / 100)
+                                          )}`}
+                                        </span>
+                                      )}
+                                      <span>
+                                        {`
+                                        x ${p.cant}
+                                        `}
+                                      </span>
+                                    </div>
+
+                                    <span className="fw-semibold">{`${MostrarPesoCOP(
+                                      (!p.is_discount
+                                        ? p.price
+                                        : p.price -
+                                          p.price *
+                                            (p.discount_percentage / 100)) *
+                                        p.cant
+                                    )}`}</span>
                                     <button
                                       className="btn btn-sm rounded-3  btn-danger "
                                       onClick={(id) => {
@@ -254,10 +296,7 @@ export default function MyCart() {
                   </h3>
                   <p className="text-center fs-4 fw-semibold">
                     {"$ "}
-                    {total &&
-                      total.toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      })}
+                    {total && MostrarPesoCOP(total)}
                   </p>
 
                   {isAuthenticated && cart.length !== 0 ? (
@@ -284,8 +323,8 @@ export default function MyCart() {
               <p>
                 En AMERICANSHOPVIP, nos complace informarte que ofrecemos
                 servicios de envío a nivel nacional. Sea cual sea tu ubicación
-                dentro del país, ¡podemos enviarte nuestros productos directamente
-                a tu puerta!
+                dentro del país, ¡podemos enviarte nuestros productos
+                directamente a tu puerta!
               </p>
               <p>
                 Si tienes alguna pregunta adicional sobre nuestros servicios de

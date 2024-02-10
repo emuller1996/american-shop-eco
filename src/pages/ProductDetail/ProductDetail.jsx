@@ -173,10 +173,11 @@ const ProductDetail = () => {
 
             <div class="col-lg-7 mt-5">
               <div
-                class="card card-producto-detalle"
+                class="card card-producto-detalle position-relative "
                 data-aos="fade-out"
                 data-aos-delay="200"
               >
+                {productDetail?.is_discount && <div className="position-absolute top-0 start-50 translate-middle badge bg-danger">En Descuento</div>}
                 <div class="card-body">
                   <button
                     type="button"
@@ -194,13 +195,27 @@ const ProductDetail = () => {
                       <span className="placeholder col-8 rounded"></span>
                     )}
                   </h1>
-                  <p class="h3 py-2  placeholder-glow">
+                  <p
+                    class={`h3   placeholder-glow ${
+                      productDetail?.is_discount &&
+                      "text-decoration-line-through text-muted"
+                    }`}
+                  >
                     {productDetail ? (
-                      `${MostrarPesoCOP(productDetail.price)}`
+                      `${MostrarPesoCOP(productDetail?.price)}`
                     ) : (
                       <span class="placeholder col-3 rounded"></span>
                     )}
                   </p>
+                  {productDetail && productDetail?.is_discount && (
+                    <p class="h3  ">
+                      {`${MostrarPesoCOP(
+                        productDetail.price -
+                          productDetail.price *
+                            (productDetail.discount_percentage / 100)
+                      )}`}
+                    </p>
+                  )}
                   <ul class="list-inline">
                     <li class="list-inline-item">
                       <h6>Marca: </h6>

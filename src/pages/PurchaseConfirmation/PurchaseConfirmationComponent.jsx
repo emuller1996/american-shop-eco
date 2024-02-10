@@ -32,11 +32,18 @@ export default function PurchaseConfirmationComponent() {
     const result = await Promise.all(s);
     console.log(result);
     setCartState(result);
-    const sumWithInitial = result.reduce(
-      (accumulator, currentValue) =>
-        accumulator + currentValue.price * currentValue.cant,
-      0
-    );
+    const sumWithInitial = result.reduce((accumulator, currentValue) => {
+      if (currentValue.is_discount) {
+        return (
+          accumulator +
+          (currentValue.price -
+            currentValue.price * (currentValue.discount_percentage / 100)) *
+            currentValue.cant
+        );
+      } else {
+        return accumulator + currentValue.price * currentValue.cant;
+      }
+    }, 0);
     setTotal(sumWithInitial);
   };
 
@@ -76,9 +83,9 @@ export default function PurchaseConfirmationComponent() {
       <div className="col-md-9 order-2">
         <h4 className="text-danger fs-1 ">Nota!</h4>
         <p>
-          Es un placer Atenderte, Queremos informarle que el costo del envío para su
-          pedido será manejado mediante el método de "Contra Entrega". Esto
-          significa que el pago del
+          Es un placer Atenderte, Queremos informarle que el costo del envío
+          para su pedido será manejado mediante el método de "Contra Entrega".
+          Esto significa que el pago del
           <span className="text-uppercase  fw-bold  text-success ">
             {" valor del ENVIO "}
           </span>

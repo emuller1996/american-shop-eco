@@ -53,7 +53,18 @@ export default function CardProduct({ product, addProducToCart }) {
           </p>
         </div>
       </Link> */}
-      <Link to={`/articulo/${product.id}`} class="card card_pro">
+      <Link
+        to={`/articulo/${product.id}`}
+        class="card card_pro position-relative "
+      >
+        {product.is_discount && (
+          <div
+            style={{ zIndex: 2 }}
+            className="position-absolute top-50 start-50 translate-middle badge bg-danger"
+          >
+            {`${product.discount_percentage}% Descuento`} 
+          </div>
+        )}
         <div class="image">
           <img
             height={"400px"}
@@ -68,7 +79,26 @@ export default function CardProduct({ product, addProducToCart }) {
         </div>
         <div class="text">
           <span>{product.name}</span>
-          <p className="m-0">{MostrarPesoCOP(product.price)}</p>
+          <p
+            className={`m-0  ${
+              product.is_discount && "text-decoration-line-through text-muted"
+            }`}
+          >
+            {MostrarPesoCOP(product.price)}
+            {/* {product.is_discount && (
+              <span className="ms-2 badge bg-danger ">
+                {product.discount_percentage}%
+              </span>
+            )} */}
+          </p>
+          {product.is_discount && (
+            <p className="m-0">
+              {MostrarPesoCOP(
+                product.price -
+                  product.price * (product.discount_percentage / 100)
+              )}
+            </p>
+          )}
           <div className="text_brand "> {product.Category.name}</div>
           <div className="text_brand_category "> {product.brand}</div>
         </div>
