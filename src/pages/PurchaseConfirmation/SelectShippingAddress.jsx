@@ -2,16 +2,22 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import SpinnerComponent from "../../components/Spinner";
 import { getDeliveryAddressByIdUser } from "../../services/delivery.services";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Offcanvas } from "react-bootstrap";
 import FormDeliverAddressComponent from "../../components/Dashboard/MyProfile/FormDeliveryAddress";
+import { TextField } from "@mui/material";
 
 export default function SelectShippingAddressComponent({
   setShippingAddress,
   shippingAddress,
+  setErrorDirecion
 }) {
   const [deliveryAddress, setDeliverAddress] = useState(undefined);
   const [showDe, setshowDe] = useState(false);
   const { user, getAccessTokenSilently } = useAuth0();
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     getDeliverAddress();
@@ -30,27 +36,31 @@ export default function SelectShippingAddressComponent({
   return (
     <div class="card text-center border-0">
       <div class="card-body ">
-        <h4 class="card-title">Informacion de Envio</h4>
-        <hr className="border-danger" />
-        <p class="card-text">
+        <div
+          className="pe-3 p-1 "
+          style={{
+            maxHeight: "400px",
+            overflowX: "hidden",
+            overflowY: "scroll",
+          }}
+        >
           {deliveryAddress && (
-            <div className="card-new-envio  w-100 mb-3 ">
-              <div
-                onClick={() => {
-                  setshowDe(true);
-                }}
-                class="row justify-content-evenly"
-              >
-                <div className="col-2  align-self-center">
-                  <i class="fas fa-plus-circle me-3 fa-2x"></i>
-                </div>
-                <div class="col-10 align-self-center ">Registra Dirreccion</div>
+            <button
+              className=" button-6 rounded-2   w-100 mb-3 "
+              onClick={() => {
+                /* setshowDe(true); */
+                handleShow();
+              }}
+            >
+              <div class="d-flex gap-3" style={{ color: "#707070" }}>
+                <i class="fas fa-plus-circle me-3 fa-2x"></i>
+                <span class="align-self-center ">Registra Dirreccion</span>
               </div>
-            </div>
+            </button>
           )}
 
           {deliveryAddress && deliveryAddress.length === 0 && (
-            <p> No tiene Registradas Direciones</p>
+            <p className="fw-bold"> No tiene Registradas Direciones</p>
           )}
           {deliveryAddress ? (
             deliveryAddress.map((d) => (
@@ -64,26 +74,42 @@ export default function SelectShippingAddressComponent({
                 <div
                   onClick={() => {
                     setShippingAddress(d);
+                    setErrorDirecion(undefined)
                   }}
-                  class="row justify-content-evenly"
+                  class="px-4 py-2"
                 >
-                  <div className="col-2  align-self-center">
-                    <i class="fas fa-map-marker-alt fa-3x"></i>
+                  <div className="d-flex gap-4 ">
+                    <div className="align-self-center ">
+                      <i class="fas fa-map-marker-alt fa-2x"></i>
+                    </div>
+                    <div className="w-100">
+                      <div className="d-flex justify-content-between ">
+                        <span className="fw-bold fs-5">{`${d.name}`}</span>
+                        <span>{`${d.phone}`}</span>
+                      </div>
+                      <div className="d-flex justify-content-between ">
+                        <span className="">{`${d.city}, ${d.department}`}</span>
+                        <span>{`${d.address}, ${d.neighborhood}`}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-10 ">
+                  {/* <div className=" align-self-center">
+                    <i class="fas fa-map-marker-alt fa-2x"></i>
+                  </div>
+                  <div class="">
                     <div className=" d-flex flex-column">
                       <span>{`${d.name} - ${d.phone}`}</span>
                       <span className="">{`${d.city}, ${d.department}`}</span>
                       <span className="">{`${d.neighborhood}, ${d.reference}`}</span>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))
           ) : (
             <SpinnerComponent />
           )}
-        </p>
+        </div>
       </div>
       <Modal
         backdrop="static"
@@ -98,7 +124,7 @@ export default function SelectShippingAddressComponent({
         <Modal.Body>
           <FormDeliverAddressComponent
             getDeliverAddress={getDeliverAddress}
-            handleClose={ () => setshowDe(false)}
+            handleClose={() => setshowDe(false)}
           />
         </Modal.Body>
         {/* <Modal.Footer>
@@ -107,6 +133,18 @@ export default function SelectShippingAddressComponent({
           </Button>
         </Modal.Footer> */}
       </Modal>
+
+      <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Registrando Informacion de Envio</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <FormDeliverAddressComponent
+            getDeliverAddress={getDeliverAddress}
+            handleClose={() => setShow(false)}
+          />
+        </Offcanvas.Body>
+      </Offcanvas>
     </div>
   );
 }

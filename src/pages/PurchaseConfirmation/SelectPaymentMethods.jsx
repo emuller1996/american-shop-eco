@@ -48,7 +48,6 @@ export default function SelectPaymentMethodsComponent({ data }) {
   };
   const customization = {
     paymentMethods: {
-      ticket: "all",
       bankTransfer: "all",
       creditCard: "all",
       debitCard: "all",
@@ -113,7 +112,6 @@ export default function SelectPaymentMethodsComponent({ data }) {
   return (
     <div className="card border-0">
       <div className="">
-        {isLoading && <SpinnerComponent />}
         <Payment
           initialization={initialization}
           customization={customization}
