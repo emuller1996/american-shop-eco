@@ -13,6 +13,12 @@
 
 }
 
+.Mui-active {
+  color: #e73f3f !important;
+}
+.Mui-completed {
+  color: #89e472 !important;
+}
 
 .card-new-envio:hover {
   padding: 0.5em;
