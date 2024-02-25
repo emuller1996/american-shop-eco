@@ -7,3 +7,10 @@ export const getOrdersByUserServicio = (email, token) => {
     },
   });
 };
+export const getOrdersByIdServicio = (id) => {
+  return axios.get(`/order/comfirmation/${id}/`, {
+    /*  headers: {
+      Authorization: `Bearer ${token}`,
+    }, */
+  });
+};

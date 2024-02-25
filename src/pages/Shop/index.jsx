@@ -15,6 +15,7 @@ import {
   setTotalPages,
 } from "../../features/Products/ProductSlice";
 import Pagination from "@mui/material/Pagination";
+import { Skeleton } from "@mui/material";
 
 export default function Shop() {
   const protuctosTodos = useSelector((state) => state.products.products);
@@ -149,7 +150,7 @@ export default function Shop() {
               </div>
             </div>
             <div
-              className="row g-3 justify-content-center mb-4"
+              className="row g-3 justify-content-start mb-4"
               style={{ minHeight: "50vh" }}
             >
               {error && (
@@ -173,7 +174,19 @@ export default function Shop() {
                   />
                 ))
               ) : (
-                <SpinnerComponent />
+                <div className="d-flex gap-3 ">
+                  {[1, 2, 3].map((i) => (
+                    <div className="col-12  col-md-4">
+                      <div className="card p-2">
+                        <Skeleton
+                          variant="rounded"
+                          width={"100%"}
+                          height={"400px"}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               )}
               {/* {isLoading && <SpinnerComponent />} */}
             </div>

@@ -1,0 +1,20 @@
+.PedidoItemCard {
+
+    background: rgb(246,246,246);
+background: -moz-linear-gradient(145deg, rgba(246,246,246,1) 74%, rgba(230,230,230,1) 100%);
+background: -webkit-linear-gradient(145deg, rgba(246,246,246,1) 74%, rgba(230,230,230,1) 100%);
+background: linear-gradient(145deg, rgba(246,246,246,1) 74%, rgba(230,230,230,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f6f6f6",endColorstr="#e6e6e6",GradientType=1);
+}
+
+.PedidoItemCard:hover {
+    background: rgb(246, 246, 246);
+    background: -moz-linear-gradient(68deg, rgba(246, 246, 246, 1) 5%, rgba(238, 250, 255, 1) 23%, rgba(255, 237, 237, 1) 64%);
+    background: -webkit-linear-gradient(68deg, rgba(246, 246, 246, 1) 5%, rgba(238, 250, 255, 1) 23%, rgba(255, 237, 237, 1) 64%);
+    background: linear-gradient(68deg, rgba(246, 246, 246, 1) 5%, rgba(238, 250, 255, 1) 23%, rgba(255, 237, 237, 1) 64%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f6f6f6", endColorstr="#ffeded", GradientType=1);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: all 2s;
+
+
+}

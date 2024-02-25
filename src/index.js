@@ -7,8 +7,12 @@ import { Provider } from "react-redux";
 import axios from "axios";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ThemeProvider, createTheme } from "@mui/material";
-const root = ReactDOM.createRoot(document.getElementById("root"));
+import TimeAgo from "javascript-time-ago";
 
+import en from "javascript-time-ago/locale/es-CO";
+
+TimeAgo.addDefaultLocale(en);
+const root = ReactDOM.createRoot(document.getElementById("root"));
 const {
   REACT_APP_AUTH0_DOMAIN,
   REACT_APP_AUTH0_CLIENT_ID,
