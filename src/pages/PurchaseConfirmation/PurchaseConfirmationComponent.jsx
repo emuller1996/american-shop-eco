@@ -89,7 +89,7 @@ export default function PurchaseConfirmationComponent() {
             setErrorDirecion={setErrorDirecion}
           />
           {ErrorDirecion && (
-            <Alert severity="warning">{ErrorDirecion}</Alert>
+            <Alert className="my-3" severity="warning">{ErrorDirecion}</Alert>
           )}
         </>
       ),
@@ -111,12 +111,12 @@ export default function PurchaseConfirmationComponent() {
   ];
   return (
     <div className=" row justify-content-center align-items-center g-4">
-      <div className="col-lg-4 order-0 order-md-1 ">
+      <div className="col-lg-4 order-0 order-md-1  align-self-start ">
         <ListProductsOrder products={cartState} />
       </div>
 
       <div className="col-lg-8 ">
-        <div className=" ">
+        <div className="">
           <Box>
             <Stepper activeStep={activeStep} orientation="vertical">
               {steps.map((step, index) => (

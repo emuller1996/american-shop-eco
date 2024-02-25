@@ -14,6 +14,7 @@ import {
   setPage,
   setTotalPages,
 } from "../../features/Products/ProductSlice";
+import Pagination from "@mui/material/Pagination";
 
 export default function Shop() {
   const protuctosTodos = useSelector((state) => state.products.products);
@@ -147,7 +148,10 @@ export default function Shop() {
                 </div>
               </div>
             </div>
-            <div className="row g-3 justify-content-center mb-4" style={{ minHeight:"50vh" }}>
+            <div
+              className="row g-3 justify-content-center mb-4"
+              style={{ minHeight: "50vh" }}
+            >
               {error && (
                 <div class="alert alert-danger" role="alert">
                   {error}
@@ -155,7 +159,10 @@ export default function Shop() {
               )}
 
               {productsAll && !isLoading && productsAll.length === 0 && (
-                <p className="text-center py-2"> No hay Productos Encontrados </p>
+                <p className="text-center py-2">
+                  {" "}
+                  No hay Productos Encontrados{" "}
+                </p>
               )}
               {!isLoading ? (
                 protuctosTodos.map((p) => (
@@ -171,7 +178,19 @@ export default function Shop() {
               {/* {isLoading && <SpinnerComponent />} */}
             </div>
             <div div="row">
-              <ReactPaginate
+              <div className="card p-3 d-flex justify-content-center ">
+                <Pagination
+                  variant="outlined"
+                  shape="rounded"
+                  count={totalPages}
+                  color="error"
+                  page={page + 1}
+                  onChange={(e, value) => dispatch(setPage(value - 1))}
+                  siblingCount={0}
+                  boundaryCount={1}
+                />
+              </div>
+              {/* <ReactPaginate
                 forcePage={page}
                 breakLabel="..."
                 breakLinkClassName="btn-outline-danger-pag "
@@ -181,7 +200,6 @@ export default function Shop() {
                 marginPagesDisplayed={2}
                 pageCount={totalPages !== 0 ? totalPages : 1}
                 previousLabel="<"
-                /* renderOnZeroPageCount={1} */
                 className="pagination gap-1  justify-content-end"
                 pageClassName=""
                 pageLinkClassName=" btn-outline-danger-pag "
@@ -191,7 +209,7 @@ export default function Shop() {
                 nextClassName=""
                 previousLinkClassName=" btn-outline-danger-pag"
                 nextLinkClassName=" btn-outline-danger-pag"
-              />
+              /> */}
             </div>
           </div>
         </div>

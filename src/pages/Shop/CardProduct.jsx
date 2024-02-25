@@ -55,7 +55,7 @@ export default function CardProduct({ product, addProducToCart }) {
       </Link> */}
       <Link
         to={`/articulo/${product.id}`}
-        class="card card_pro position-relative "
+        class="card card_pro rounded-2 position-relative "
       >
         {product.is_discount && (
           <div
@@ -99,7 +99,7 @@ export default function CardProduct({ product, addProducToCart }) {
               )}
             </p>
           )}
-          <div className="text_brand "> {product.Category.name}</div>
+          <div className="text_brand "> {product?.Category?.name}</div>
           <div className="text_brand_category "> {product.brand}</div>
         </div>
       </Link>

@@ -6,24 +6,39 @@ import { store } from "./app/store";
 import { Provider } from "react-redux";
 import axios from "axios";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { ThemeProvider, createTheme } from "@mui/material";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const  { REACT_APP_AUTH0_DOMAIN, REACT_APP_AUTH0_CLIENT_ID,REACT_APP_AUTH0_AUDIENCE} = process.env;
+const {
+  REACT_APP_AUTH0_DOMAIN,
+  REACT_APP_AUTH0_CLIENT_ID,
+  REACT_APP_AUTH0_AUDIENCE,
+} = process.env;
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
+const theme = createTheme({
+  typography: {
+    allVariants: {
+      fontFamily: "Gabarito",
+    },
+  },
+});
 root.render(
   /* <React.StrictMode> */
-  <Auth0Provider 
-  domain={REACT_APP_AUTH0_DOMAIN} 
-  clientId={REACT_APP_AUTH0_CLIENT_ID}
-  audience={REACT_APP_AUTH0_AUDIENCE}  
-  redirectUri={window.location.origin}
-  authorizationParams={{
-    redirect_uri: window.location.origin,
-		audience: REACT_APP_AUTH0_AUDIENCE
-  }} >
+  <Auth0Provider
+    domain={REACT_APP_AUTH0_DOMAIN}
+    clientId={REACT_APP_AUTH0_CLIENT_ID}
+    audience={REACT_APP_AUTH0_AUDIENCE}
+    redirectUri={window.location.origin}
+    authorizationParams={{
+      redirect_uri: window.location.origin,
+      audience: REACT_APP_AUTH0_AUDIENCE,
+    }}
+  >
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Provider>
   </Auth0Provider>
 

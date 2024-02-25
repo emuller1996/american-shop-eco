@@ -189,3 +189,7 @@
 opacity: 0.4;  
 
 }
+
+.MuiPagination-ul{
+  justify-content: center;
+}

@@ -46,9 +46,8 @@ export default function ListProductsOrder({ products }) {
           {products &&
             products.map((p) => (
               <div className="col-12 text-center mt-2">
-                <div className="p-2 card-detalle-producto d-flex justify-content-around text-center gap-4">
+                <div className="p-1 card-detalle-producto d-flex justify-content-around text-center gap-3">
                   <span>{p.name}</span>
-                  <span>{p.cant}</span>
                   <span>{`${p.cant} x ${MostrarPesoCOP(
                     !p.is_discount
                       ? p.price

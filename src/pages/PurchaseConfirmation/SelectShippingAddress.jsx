@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import SpinnerComponent from "../../components/Spinner";
 import { getDeliveryAddressByIdUser } from "../../services/delivery.services";
-import { Button, Modal, Offcanvas } from "react-bootstrap";
+import { Modal, Offcanvas } from "react-bootstrap";
 import FormDeliverAddressComponent from "../../components/Dashboard/MyProfile/FormDeliveryAddress";
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 export default function SelectShippingAddressComponent({
   setShippingAddress,
@@ -37,9 +37,9 @@ export default function SelectShippingAddressComponent({
     <div class="card text-center border-0">
       <div class="card-body p-0">
         <div
-          className=" "
+          className="p-1 "
           style={{
-            maxHeight: "400px",
+            maxHeight: "500px",
             overflowX: "hidden",
             overflowY: "scroll",
           }}
@@ -67,7 +67,7 @@ export default function SelectShippingAddressComponent({
               <div
                 class={
                   shippingAddress?.id === d.id
-                    ? "card-new-envio-selected  w-100 mb-3"
+                    ? "card-new-envio-selected w-100 mb-3"
                     : " card-new-envio  w-100 mb-3"
                 }
               >
@@ -94,6 +94,28 @@ export default function SelectShippingAddressComponent({
                       <div className="d-flex justify-content-between flex-wrap ">
                         <span>{`${d.address}`}</span>
                         <span>{`${d.neighborhood}`}</span>
+                      </div>
+                      <div className="d-flex justify-content-center gap-2  ">
+                        <Button
+                          startIcon={<i className="far fa-edit"></i>}
+                          variant="contained"
+                          size="small"
+                          color="info"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            console.log(e);
+                          }}
+                        >
+                          Editar
+                        </Button>
+                        <Button
+                          startIcon={<i className="fas fa-trash-alt"></i>}
+                          variant="contained"
+                          size="small"
+                          color="warning"
+                        >
+                          Borrar
+                        </Button>
                       </div>
                     </div>
                   </div>

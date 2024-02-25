@@ -53,7 +53,12 @@ export default function SelectPaymentMethodsComponent({ data }) {
       debitCard: "all",
       mercadoPago: "all",
     },
-    visual: { font: "Arial" },
+    visual: {
+      hideFormTitle: true,
+      style: {
+        theme: "default",
+      },
+    },
   };
   const onSubmit = async ({ selectedPaymentMethod, formData }) => {
     // callback llamado al hacer clic en el botón enviar datos
@@ -77,13 +82,15 @@ export default function SelectPaymentMethodsComponent({ data }) {
           console.log(response);
           console.log(response.data.payment_data.status === "approved");
           dispatch(resetCart());
-          if(response.data.payment_data.external_resource_url){
-            window.location.replace(response.data.payment_data.external_resource_url)
+          if (response.data.payment_data.external_resource_url) {
+            window.location.replace(
+              response.data.payment_data.external_resource_url
+            );
           }
-          if(response.data.payment_data.status === "approved"){
+          if (response.data.payment_data.status === "approved") {
             history.push(`/compra-exitosa/${response.data.order.id}`);
           }
-          if(response.data.payment_data.status === "rejected"){
+          if (response.data.payment_data.status === "rejected") {
             history.push(`/pago-rechazado/${response.data.order.id}`);
           }
           resolve();
