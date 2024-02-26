@@ -174,19 +174,19 @@ export default function Shop() {
                   />
                 ))
               ) : (
-                <div className="d-flex gap-3 ">
+                <>
                   {[1, 2, 3].map((i) => (
-                    <div className="col-12  col-md-4">
+                    <div className="col-lg-6 col-xl-4">
                       <div className="card p-2">
                         <Skeleton
                           variant="rounded"
                           width={"100%"}
-                          height={"400px"}
+                          height={"447px"}
                         />
                       </div>
                     </div>
                   ))}
-                </div>
+                </>
               )}
               {/* {isLoading && <SpinnerComponent />} */}
             </div>

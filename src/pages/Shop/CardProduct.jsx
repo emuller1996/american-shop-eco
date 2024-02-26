@@ -5,7 +5,11 @@ import { MostrarPesoCOP } from "../../utils";
 
 export default function CardProduct({ product, addProducToCart }) {
   return (
-    <div className="col-md-4" data-aos="fade-out" data-aos-duration="300">
+    <div
+      className=" col-lg-6 col-xl-4"
+      data-aos="fade-out"
+      data-aos-duration="300"
+    >
       {/* <Link
         className="card card-product mb-4 product-wap rounded-0 text-decoration-none h-100"
         to={`/articulo/${product.id}`}
@@ -62,7 +66,7 @@ export default function CardProduct({ product, addProducToCart }) {
             style={{ zIndex: 2 }}
             className="position-absolute top-50 start-50 translate-middle badge bg-danger"
           >
-            {`${product.discount_percentage}% Descuento`} 
+            {`${product.discount_percentage}% Descuento`}
           </div>
         )}
         <div class="image">
