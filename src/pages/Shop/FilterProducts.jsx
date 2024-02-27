@@ -12,7 +12,7 @@ export default function FilterProducts({ categories, setCategoryFilter }) {
 
   return (
     <>
-      <Accordion defaultExpanded className="card-filtar">
+      <Accordion defaultExpanded className="border border-secondary-subtle">
         <AccordionSummary
           expandIcon={<i className="fas fa-chevron-down  text-danger"></i>}
           aria-controls="panel1-content"
@@ -34,7 +34,7 @@ export default function FilterProducts({ categories, setCategoryFilter }) {
                         name={"category"}
                         onChange={(e) => dispatch(setCategory(e.target.value))}
                       />
-                      <span>{c.name}</span>
+                      <span >{c.name}</span>
                     </div>
                     <b>{c.productCantidad}</b>
                   </label>

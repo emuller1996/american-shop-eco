@@ -1,7 +1,7 @@
 import React from "react";
-import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MostrarPesoCOP } from "../../utils";
+import { Card, CardContent } from "@mui/material";
 
 export default function CardProduct({ product, addProducToCart }) {
   return (
@@ -57,55 +57,57 @@ export default function CardProduct({ product, addProducToCart }) {
           </p>
         </div>
       </Link> */}
-      <Link
-        to={`/articulo/${product.id}`}
-        class="card card_pro rounded-2 position-relative "
-      >
-        {product.is_discount && (
-          <div
-            style={{ zIndex: 2 }}
-            className="position-absolute top-50 start-50 translate-middle badge bg-danger"
-          >
-            {`${product.discount_percentage}% Descuento`}
-          </div>
-        )}
-        <div class="image">
-          <img
-            height={"400px"}
-            className="img-product"
-            src={
-              product.image
-                ? product.image
-                : "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
-            }
-            alt=""
-          />
-        </div>
-        <div class="text">
-          <span>{product.name}</span>
-          <p
-            className={`m-0  ${
-              product.is_discount && "text-decoration-line-through text-muted"
-            }`}
-          >
-            {MostrarPesoCOP(product.price)}
-            {/* {product.is_discount && (
+      <Link to={`/articulo/${product.id}`} class="  ">
+        <Card   className="card card_pro ">
+          <CardContent>
+            {product.is_discount && (
+              <div
+                style={{ zIndex: 2 }}
+                className="position-absolute top-50 start-50 translate-middle badge bg-danger"
+              >
+                {`${product.discount_percentage}% Descuento`}
+              </div>
+            )}
+            <div class="image">
+              <img
+                height={"400px"}
+                className="img-product"
+                src={
+                  product.image
+                    ? product.image
+                    : "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
+                }
+                alt=""
+              />
+            </div>
+            <div class="text">
+              <span>{product.name}</span>
+              <p
+                className={`m-0  ${
+                  product.is_discount &&
+                  "text-decoration-line-through text-muted"
+                }`}
+              >
+                {MostrarPesoCOP(product.price)}
+                {/* {product.is_discount && (
               <span className="ms-2 badge bg-danger ">
                 {product.discount_percentage}%
               </span>
             )} */}
-          </p>
-          {product.is_discount && (
-            <p className="m-0">
-              {MostrarPesoCOP(
-                product.price -
-                  product.price * (product.discount_percentage / 100)
+              </p>
+              {product.is_discount && (
+                <p className="m-0">
+                  {MostrarPesoCOP(
+                    product.price -
+                      product.price * (product.discount_percentage / 100)
+                  )}
+                </p>
               )}
-            </p>
-          )}
-          <div className="text_brand "> {product?.Category?.name}</div>
-          <div className="text_brand_category "> {product.brand}</div>
-        </div>
+              <div className="text_brand "> {product?.Category?.name}</div>
+              <div className="text_brand_category "> {product.brand}</div>
+            </div>
+          </CardContent>
+        </Card>
       </Link>
     </div>
   );

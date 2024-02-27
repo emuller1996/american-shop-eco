@@ -54,6 +54,8 @@ input:focus{
     border-radius: 99em;
     transition: 0.25s ease;
     color: #dd3636;
+    font-size: smaller;
+    font-weight: 200;
   }
   
   .label_filter_check span:hover {

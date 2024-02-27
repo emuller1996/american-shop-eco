@@ -45,7 +45,7 @@
   background: #fff;
   height: 465px;
   border-radius: 0.9em;
-  border-color: #b9b9b9;
+  border-color: #e9e9e9;
   cursor: pointer;
   transition: all 120ms;
   overflow: hidden;
@@ -115,7 +115,7 @@
 .text {
   position: absolute;
   top: 15%;
-  left: -99%;
+  left: -999%;
   color: #181818;
   transition: all .3s ease-in;
 }
@@ -192,4 +192,12 @@ opacity: 0.4;
 
 .MuiPagination-ul{
   justify-content: center;
+}
+
+.MuiCardContent-root:last-child {
+  padding-bottom: 16px !important;
+}
+
+body{
+  background-color: #fafafa;
 }

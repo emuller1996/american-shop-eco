@@ -23,9 +23,10 @@ axios.defaults.baseURL = process.env.REACT_APP_API;
 const theme = createTheme({
   typography: {
     allVariants: {
-      fontFamily: "Gabarito",
+      fontFamily: "Roboto",
     },
   },
+  
 });
 root.render(
   /* <React.StrictMode> */

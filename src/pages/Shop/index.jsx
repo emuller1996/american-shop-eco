@@ -15,7 +15,20 @@ import {
   setTotalPages,
 } from "../../features/Products/ProductSlice";
 import Pagination from "@mui/material/Pagination";
-import { Skeleton } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  InputLabel,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
+  Skeleton,
+  TextField,
+} from "@mui/material";
 
 export default function Shop() {
   const protuctosTodos = useSelector((state) => state.products.products);
@@ -25,7 +38,7 @@ export default function Shop() {
 
   const [productsAll, setProductsAll] = useState();
   const [categories, setCategories] = useState();
-  const [size] = useState(3);
+  const [size, setSize] = useState(3);
   /* const [page, setPage] = useState(); */
   /* const [total, setTotal] = useState(); */
   const [isLoading, setIsLoading] = useState(false);
@@ -98,11 +111,60 @@ export default function Shop() {
     setSearch(e.target.value);
   }
 
+  const styles = {
+    cardcontent: {
+      padding: 0,
+      "&:last-child": {
+        paddingBottom: 0,
+      },
+    },
+  };
+
   return (
     <>
       {/* <!-- Start Content --> */}
       <div className="container py-5">
-        <div className="row">
+        <Card className="mb-3 border border-secondary-subtle">
+          <CardContent>
+            <div className="d-flex justify-content-between align-items-center flex-wrap ">
+              <FormControl className="col-12 col-md-6" sx={{ m: 1, minWidth: 170, maxWidth: 120 }}>
+                <InputLabel color="error" id="demo-simple-select-label">
+                  Producto por Pagina
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={size}
+                  variant="outlined"
+                  color="error"
+                  onChange={(event) => {
+                    setSize(event.target.value);
+                  }}
+                  label="Producto por Pagina"
+                >
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={6}>6</MenuItem>
+                  <MenuItem value={9}>9</MenuItem>
+                </Select>
+              </FormControl>
+
+              <div className="col-12 col-md-6">
+                
+                <TextField
+                  /* sx={{ minWidth: 400 ,maxWidth:600 }} */
+                  variant="outlined"
+                  color="error"
+                  fullWidth
+                  value={search}
+                  onChange={handleSearch}
+                  placeholder="Jordan Retro 13, Nike Air"
+                  label="Buscar productos"
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <div className="row g-3 ">
           <div className="col-lg-3">
             <FilterProducts
               categories={categories}
@@ -111,8 +173,8 @@ export default function Shop() {
           </div>
 
           <div className="col-lg-9">
-            <div className="row  justify-content-center">
-              {/* <div className="col-md-6">
+            {/* <div className="row  justify-content-center">
+              <div className="col-md-6">
                 <ul className="list-inline shop-top-menu pb-3 pt-1">
                   <li className="list-inline-item">
                     <a
@@ -136,7 +198,7 @@ export default function Shop() {
                     </a>
                   </li>
                 </ul>
-              </div> */}
+              </div>
               <div className="col-md-6 py-3 align-self-center">
                 <div className="d-flex">
                   <input
@@ -148,7 +210,7 @@ export default function Shop() {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
             <div
               className="row g-3 justify-content-start mb-4"
               style={{ minHeight: "50vh" }}
@@ -177,13 +239,13 @@ export default function Shop() {
                 <>
                   {[1, 2, 3].map((i) => (
                     <div className="col-lg-6 col-xl-4">
-                      <div className="card p-2">
+                      <Card className="card card_pro ">
                         <Skeleton
                           variant="rounded"
                           width={"100%"}
-                          height={"447px"}
+                          height={"467px"}
                         />
-                      </div>
+                      </Card>
                     </div>
                   ))}
                 </>
@@ -191,18 +253,28 @@ export default function Shop() {
               {/* {isLoading && <SpinnerComponent />} */}
             </div>
             <div div="row">
-              <div className="card p-3 d-flex justify-content-center ">
-                <Pagination
-                  variant="outlined"
-                  shape="rounded"
-                  count={totalPages}
-                  color="error"
-                  page={page + 1}
-                  onChange={(e, value) => dispatch(setPage(value - 1))}
-                  siblingCount={0}
-                  boundaryCount={1}
-                />
-              </div>
+              <Card
+                style={{
+                  padding: 0,
+                  "&:last-child": {
+                    paddingBottom: 0,
+                  },
+                }}
+                className="border border-secondary-subtle    d-flex justify-content-center "
+              >
+                <CardContent>
+                  <Pagination
+                    variant="outlined"
+                    shape="rounded"
+                    count={totalPages}
+                    color="error"
+                    page={page + 1}
+                    onChange={(e, value) => dispatch(setPage(value - 1))}
+                    siblingCount={0}
+                    boundaryCount={1}
+                  />
+                </CardContent>
+              </Card>
               {/* <ReactPaginate
                 forcePage={page}
                 breakLabel="..."
