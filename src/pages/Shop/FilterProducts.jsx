@@ -36,7 +36,7 @@ export default function FilterProducts({ categories, setCategoryFilter }) {
                       />
                       <span >{c.name}</span>
                     </div>
-                    <b>{c.productCantidad}</b>
+                    <b className="fw-light ">{c.productCantidad}</b>
                   </label>
                 </>
               ))}

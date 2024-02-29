@@ -16,6 +16,7 @@ import {
 } from "../../features/Products/ProductSlice";
 import Pagination from "@mui/material/Pagination";
 import {
+  Alert,
   Card,
   CardContent,
   FormControl,
@@ -126,12 +127,13 @@ export default function Shop() {
       <div className="container py-5">
         <Card className="mb-3 border border-secondary-subtle">
           <CardContent>
-            <div className="d-flex justify-content-between align-items-center flex-wrap ">
-              <FormControl className="col-12 col-md-6" sx={{ m: 1, minWidth: 170, maxWidth: 120 }}>
+            <div className="d-flex gap-2  justify-content-between align-items-center flex-wrap ">
+              <FormControl className="col-12 col-md-2">
                 <InputLabel color="error" id="demo-simple-select-label">
                   Producto por Pagina
                 </InputLabel>
                 <Select
+                  fullWidth
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={size}
@@ -149,7 +151,6 @@ export default function Shop() {
               </FormControl>
 
               <div className="col-12 col-md-6">
-                
                 <TextField
                   /* sx={{ minWidth: 400 ,maxWidth:600 }} */
                   variant="outlined"
@@ -215,11 +216,9 @@ export default function Shop() {
               className="row g-3 justify-content-start mb-4"
               style={{ minHeight: "50vh" }}
             >
-              {error && (
-                <div class="alert alert-danger" role="alert">
-                  {error}
-                </div>
-              )}
+              {error && <Alert severity="error">{error}.
+              <p className="block">Estamo </p>
+              </Alert>}
 
               {productsAll && !isLoading && productsAll.length === 0 && (
                 <p className="text-center py-2">

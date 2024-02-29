@@ -8,7 +8,7 @@ import axios from "axios";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ThemeProvider, createTheme } from "@mui/material";
 import TimeAgo from "javascript-time-ago";
-
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import en from "javascript-time-ago/locale/es-CO";
 
 TimeAgo.addDefaultLocale(en);
@@ -53,3 +53,4 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+serviceWorkerRegistration.unregister();
