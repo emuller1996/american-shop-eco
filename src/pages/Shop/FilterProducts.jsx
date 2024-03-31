@@ -1,14 +1,12 @@
 import React from "react";
-import { Form } from "react-bootstrap";
 import "./Filter.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCategory } from "../../features/Products/ProductSlice";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 export default function FilterProducts({ categories, setCategoryFilter }) {
   const dispatch = useDispatch();
-  const category = useSelector((state) => state.products.category);
 
   return (
     <>

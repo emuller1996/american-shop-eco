@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import CardProduct from "./CardProduct";
 import axios from "axios";
-import ReactPaginate from "react-paginate";
 import FilterProducts from "./FilterProducts";
 import "./index.css";
 import { addProductToCart } from "../../features/Car/carSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import SpinnerComponent from "../../components/Spinner";
 import {
   SetProducts,
   setCategory,
+  setGender,
   setPage,
   setTotalPages,
 } from "../../features/Products/ProductSlice";
@@ -19,14 +18,6 @@ import {
   Alert,
   Card,
   CardContent,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  InputLabel,
-  MenuItem,
-  Radio,
-  RadioGroup,
-  Select,
   Skeleton,
   TextField,
 } from "@mui/material";
@@ -36,10 +27,12 @@ export default function Shop() {
   const page = useSelector((state) => state.products.page);
   const category = useSelector((state) => state.products.category);
   const totalPages = useSelector((state) => state.products.totalPages);
+  const gender = useSelector((state) => state.products.gender);
+
 
   const [productsAll, setProductsAll] = useState();
   const [categories, setCategories] = useState();
-  const [size, setSize] = useState(3);
+  const [size, ] = useState(3);
   /* const [page, setPage] = useState(); */
   /* const [total, setTotal] = useState(); */
   const [isLoading, setIsLoading] = useState(false);
@@ -61,10 +54,10 @@ export default function Shop() {
   };
 
   useEffect(() => {
-    getProductAll(size, page, search, category);
+    getProductAll(size, page, search, category,gender);
 
     getCategoryAll();
-  }, [size, page, search, totalPages, category]);
+  }, [size, page, search, totalPages, category,gender]);
 
   const handlePageClick = (event) => {
     dispatch(setPage(event.selected));
@@ -75,7 +68,7 @@ export default function Shop() {
     setCategories(result.data);
   };
 
-  const getProductAll = async (size, page, search, categoryFilter) => {
+  const getProductAll = async (size, page, search, categoryFilter,gender) => {
     setError(undefined);
     setIsLoading(true);
     try {
@@ -86,7 +79,7 @@ export default function Shop() {
 
     try {
       const result = await axios.get(
-        `/products/published?size=${size}&page=${page}&search=${search}&cat=${categoryFilter}`,
+        `/products/published?size=${size}&page=${page}&search=${search}&cat=${categoryFilter}&gender=${gender}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -128,7 +121,7 @@ export default function Shop() {
         <Card className="mb-3 border border-secondary-subtle">
           <CardContent>
             <div className="d-flex gap-2  justify-content-between align-items-center flex-wrap ">
-              <FormControl className="col-12 col-md-2">
+              {/* <FormControl className="col-12 col-md-2">
                 <InputLabel color="error" id="demo-simple-select-label">
                   Producto por Pagina
                 </InputLabel>
@@ -148,7 +141,58 @@ export default function Shop() {
                   <MenuItem value={6}>6</MenuItem>
                   <MenuItem value={9}>9</MenuItem>
                 </Select>
-              </FormControl>
+              </FormControl> */}
+              <div className="d-flex  flex-wrap  gap-1 ">
+              <label className="label_filter_check d-flex justify-content-between ">
+                  <div>
+                    <input
+                      value={""}
+                      type="radio"
+                      name={"genero"}
+                      onChange={(e) => dispatch(setGender(e.target.value))}
+
+                    />
+                    <span>Todo</span>
+                  </div>
+                </label>
+                <label className="label_filter_check d-flex justify-content-between ">
+                  <div>
+                    <input
+                      value={"Hombre"}
+                      type="radio"
+                      name={"genero"}
+                      onChange={(e) => dispatch(setGender(e.target.value))}
+
+                    />
+                    <span>Hombre</span>
+                  </div>
+                </label>
+
+                <label className="label_filter_check d-flex justify-content-between ">
+                  <div>
+                    <input
+                      value={"Mujer"}
+                      type="radio"
+                      name={"genero"}
+                      onChange={(e) => dispatch(setGender(e.target.value))}
+
+                    />
+                    <span>Mujer</span>
+                  </div>
+                </label>
+
+                <label className="label_filter_check d-flex justify-content-between ">
+                  <div>
+                    <input
+                      value={"Nino"}
+                      type="radio"
+                      name={"genero"}
+                      onChange={(e) => dispatch(setGender(e.target.value))}
+                    />
+                    <span>Niño</span>
+                  </div>
+                </label>
+              </div>
 
               <div className="col-12 col-md-6">
                 <TextField
@@ -216,17 +260,23 @@ export default function Shop() {
               className="row g-3 justify-content-start mb-4"
               style={{ minHeight: "50vh" }}
             >
-              {error && <Alert severity="error">{error}.
-              <p className="block">Estamo </p>
-              </Alert>}
-
-              {productsAll && !isLoading && productsAll.length === 0 && (
-                <p className="text-center py-2">
-                  {" "}
-                  No hay Productos Encontrados{" "}
-                </p>
+              {error && (
+                <Alert severity="error">
+                  {error}.<p className="block">Estamo </p>
+                </Alert>
               )}
+
+              {productsAll &&
+                !isLoading &&
+                Array.isArray(productsAll) &&
+                productsAll.length === 0 && (
+                  <p className="text-center py-2">
+                    {" "}
+                    No hay Productos Encontrados{" "}
+                  </p>
+                )}
               {!isLoading ? (
+                protuctosTodos &&
                 protuctosTodos.map((p) => (
                   <CardProduct
                     addProducToCart={addProducToCart}

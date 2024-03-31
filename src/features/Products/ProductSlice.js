@@ -6,26 +6,31 @@ export const productSlice = createSlice({
     products: [],
     totalPages: undefined,
     page: 0,
-    category:"",
-    search :""
+    category: "",
+    search: "",
+    gender: "",
   },
   reducers: {
     SetProducts: (state, action) => {
       return { ...state, products: action.payload };
     },
-    setPage :(state, action) => {
+    setPage: (state, action) => {
       return { ...state, page: action.payload };
     },
-    setCategory :(state, action) => {
+    setCategory: (state, action) => {
       return { ...state, category: action.payload };
     },
-    setTotalPages :(state, action) => {
+    setGender: (state, action) => {
+      return { ...state, gender: action.payload };
+    },
+    setTotalPages: (state, action) => {
       return { ...state, totalPages: action.payload };
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { SetProducts,setPage,setCategory ,setTotalPages} = productSlice.actions;
+export const { SetProducts, setPage, setCategory, setTotalPages, setGender } =
+  productSlice.actions;
 
 export default productSlice.reducer;

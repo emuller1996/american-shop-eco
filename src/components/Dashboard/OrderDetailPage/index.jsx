@@ -152,6 +152,25 @@ export default function OrderDetailPage() {
                   {DetailPedido?.Payments[0]?.updatedAt.substring(0, 10)}
                 </span>
               </div>
+              {DetailPedido &&
+                DetailPedido?.Payments[0]?.status === "pending" &&
+                DetailPedido?.Payments[0]?.status_detail ===
+                  "pending_waiting_transfer" &&
+                DetailPedido?.Payments[0].external_resource_url && (
+                  <span className="badge ">
+                    <a
+                      target="_blank"
+                      without
+                      rel="noreferrer"
+                      href={
+                        DetailPedido &&
+                        DetailPedido?.Payments[0].external_resource_url
+                      }
+                    >
+                      Continuar con el Pago
+                    </a>
+                  </span>
+                )}
             </div>
           </div>
         </CardContent>
