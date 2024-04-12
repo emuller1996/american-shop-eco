@@ -12,6 +12,8 @@ import img from "./img-place.gif";
 import "./ProductoDetalle.css";
 import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
+import ReactTimeAgo from "react-time-ago";
+
 const ProductDetail = () => {
   let { id } = useParams();
   const [productDetail, setProductDetail] = useState(undefined);
@@ -177,7 +179,11 @@ const ProductDetail = () => {
                 data-aos="fade-out"
                 data-aos-delay="200"
               >
-                {productDetail?.is_discount && <div className="position-absolute top-0 start-50 translate-middle badge bg-danger">En Descuento</div>}
+                {productDetail?.is_discount && (
+                  <div className="position-absolute top-0 start-50 translate-middle badge bg-danger">
+                    En Descuento
+                  </div>
+                )}
                 <div class="card-body">
                   <button
                     type="button"
@@ -432,10 +438,10 @@ const ProductDetail = () => {
                                     {c?.User?.name}
                                   </span>
                                   <small className="text-nowrap ">
-                                    {c?.createdAt.substring(0, 10)}
-                                  </small>
-                                  <small className="text-nowrap ">
-                                    {c?.createdAt.substring(11, 16)}
+                                    <ReactTimeAgo
+                                      date={c?.createdAt}
+                                      locale="en-CO"
+                                    />
                                   </small>
                                 </div>
                               </div>
@@ -480,10 +486,10 @@ const ProductDetail = () => {
                                         {s?.write_by}
                                       </span>
                                       <small className="text-nowrap ">
-                                        {s?.createdAt.substring(0, 10)}
-                                      </small>
-                                      <small className="text-nowrap ">
-                                        {s?.createdAt.substring(11, 16)}
+                                        <ReactTimeAgo
+                                          date={s?.createdAt}
+                                          locale="en-CO"
+                                        />
                                       </small>
                                     </div>
                                   </div>

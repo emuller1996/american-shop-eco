@@ -16,6 +16,7 @@ import MyOrderComponent from "../components/Dashboard/MyOrder";
 import ProtectedRouteMiProfile from "../utils/ProtectedRouteMiProfile";
 import PagoPage from "../pages/Pago";
 import OrderDetailPage from "../components/Dashboard/OrderDetailPage";
+import Notifications from "../components/Dashboard/Notifications/Notifications";
 
 export default function TemplateBase() {
   return (
@@ -64,6 +65,11 @@ export default function TemplateBase() {
         <Route strict path={"/d/mi-perfil"}>
           <ProtectedRouteMiProfile>
             <MyProfileComponent />
+          </ProtectedRouteMiProfile>
+        </Route>
+        <Route strict path={"/d/notificaciones"}>
+          <ProtectedRouteMiProfile>
+            <Notifications />
           </ProtectedRouteMiProfile>
         </Route>
       </Switch>
