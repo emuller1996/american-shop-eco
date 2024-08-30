@@ -163,28 +163,7 @@ export default function PurchaseConfirmationComponent() {
             </Stepper>
           </Box>
 
-          {/* <SelectShippingAddressComponent
-            setShippingAddress={setShippingAddress}
-            shippingAddress={shippingAddress}
-          /> */}
-          {/* {shippingAddress && (
-            <SelectPaymentMethodsComponent
-              data={{
-                products: cartState,
-                DeliveryAddressId: shippingAddress?.id,
-                user_email: user.email,
-                purchase_date: new Date().toISOString(),
-                total_payment: total,
-              }}
-            />
-          )} */}
-          {/* <button
-            type="button"
-            onClick={onSaveOrder}
-            class="btn btn-success w-100 py-4 fs-4 fw-bold"
-          >
-            COMPRAR
-          </button> */}
+      
         </div>
       </div>
 

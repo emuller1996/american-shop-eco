@@ -164,7 +164,7 @@ const ProductDetail = () => {
                     <Carousel.Item className=" rounded-2">
                       <img
                         class="card-img img-fluid rounded-2 overflow-auto "
-                        src={i && i.url_image}
+                        src={i && i.imageBase64}
                         alt="ProductImage1"
                       />
                       <Carousel.Caption></Carousel.Caption>

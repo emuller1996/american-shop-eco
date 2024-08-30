@@ -49,9 +49,9 @@ export default function SelectPaymentMethodsComponent({ data }) {
   const customization = {
     paymentMethods: {
       bankTransfer: "all",
-      creditCard: "all",
+      /* creditCard: "all",
       debitCard: "all",
-      mercadoPago: "all",
+      mercadoPago: "all", */
     },
     visual: {
       hideFormTitle: true,
